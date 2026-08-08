@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bykmcplhy1f47"]
+
+[ext_resource type="Script" uid="uid://dbf83gq5o1iyi" path="res://main.gd" id="1_ig7tw"]
+
+[node name="Main" type="Node" unique_id=1208397320]
+script = ExtResource("1_ig7tw")
+
+[node name="Label" type="Label" parent="." unique_id=3349341]
+modulate = Color(0.15115806, 0.5176471, 0.26026437, 1)
+anchors_preset = -1
+anchor_left = 0.51100004
+anchor_top = 0.518
+anchor_right = 0.51100004
+anchor_bottom = 0.518
+offset_left = -268.67206
+offset_top = -73.664
+offset_right = 269.32794
+offset_bottom = 73.336
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "THIS IS A LABEL"
+horizontal_alignment = 1
+vertical_alignment = 1

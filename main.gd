@@ -1,7 +1,6 @@
 extends Node
 
-var remaining_tiles: int = 24
-var current_player: int
+var game_state: GameState
 
 var players = {
 	0: {
@@ -15,26 +14,34 @@ var players = {
 }
 
 func _ready():
-	current_player = randi_range(0, 1)
+	game_state = RulesEngine.create_initial_state()
 
-	$TurnLabel.text = players[current_player]["name"] + " goes first"
-	$RemainingTilesLabel.text = "Remaining tiles: %d" % remaining_tiles
+	print("Board: ", game_state.board)
+	print("Current player: ", game_state.current_player)
+	print("Remaining tiles: ", game_state.remaining_tiles)
+	print("Phase: ", game_state.phase)
+	print("Winner: ", game_state.winner)
+
+	$TurnLabel.text = players[game_state.current_player]["name"] + " goes first"
+	$RemainingTilesLabel.text = "Remaining tiles: %d" % game_state.remaining_tiles
 
 
 func _on_button_pressed():
-	if current_player == 0:
-		current_player = 1
+	if game_state.current_player == 0:
+		game_state.current_player = 1
 	else:
-		current_player = 0
+		game_state.current_player = 0
+		
+	print("Current player: ", game_state.current_player)
 
-	$TurnLabel.text = players[current_player]["name"] + "'s turn"
+	$TurnLabel.text = players[game_state.current_player]["name"] + "'s turn"
 
 
 func _on_place_tile_button_pressed():
-	if remaining_tiles > 0:
-		remaining_tiles -= 1
+	if game_state.remaining_tiles > 0:
+		game_state.remaining_tiles -= 1
 
-	$RemainingTilesLabel.text = "Remaining tiles: %d" % remaining_tiles
+	$RemainingTilesLabel.text = "Remaining tiles: %d" % game_state.remaining_tiles
 
-	if remaining_tiles == 0:
+	if game_state.remaining_tiles == 0:
 		$TurnLabel.text = "No tiles left"
