@@ -24,32 +24,6 @@ func _ready():
 
 	$TurnLabel.text = players[game_state.current_player]["name"] + " goes first"
 	$RemainingTilesLabel.text = "Remaining tiles: %d" % game_state.remaining_tiles
-
-	var test_move = {
-		"player_id": game_state.current_player,
-"tiles": [
-	{
-		"position": Vector2i(2, 0),
-		"type": 0,
-		"rotation": 1
-	},
-	{
-		"position": Vector2i(3, 0),
-		"type": 0,
-		"rotation": 1
-	},
-	{
-		"position": Vector2i(4, 0),
-		"type": 0,
-		"rotation": 1
-	}
-]
-	}
-
-	RulesEngine.apply_move(game_state, test_move)
-	
-	print("Board after move: ", game_state.board)
-	print("Remaining after move: ", game_state.remaining_tiles)
 	
 	
 func _on_button_pressed():
