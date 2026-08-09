@@ -8,6 +8,17 @@ static func create_initial_state() -> GameState:
 	var state := GameState.new()
 
 	state.board = {}
+	
+	state.board[LEFT_START_POS] = MonoTile.make_tile(
+	MonoTile.TileType.STRAIGHT,
+	1
+)
+
+	state.board[RIGHT_START_POS] = MonoTile.make_tile(
+		MonoTile.TileType.STRAIGHT,
+		1
+)
+	
 	state.current_player = randi_range(0, 1)
 	state.remaining_tiles = 24
 	state.phase = GameState.GamePhase.PLACING
