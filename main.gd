@@ -21,11 +21,11 @@ func _ready():
 	print("Remaining tiles: ", game_state.remaining_tiles)
 	print("Phase: ", game_state.phase)
 	print("Winner: ", game_state.winner)
-
+	
 	$TurnLabel.text = players[game_state.current_player]["name"] + " goes first"
 	$RemainingTilesLabel.text = "Remaining tiles: %d" % game_state.remaining_tiles
-
-
+	
+	
 func _on_button_pressed():
 	if game_state.current_player == 0:
 		game_state.current_player = 1
@@ -35,7 +35,7 @@ func _on_button_pressed():
 	print("Current player: ", game_state.current_player)
 
 	$TurnLabel.text = players[game_state.current_player]["name"] + "'s turn"
-
+	
 
 func _on_place_tile_button_pressed():
 	if game_state.remaining_tiles > 0:
