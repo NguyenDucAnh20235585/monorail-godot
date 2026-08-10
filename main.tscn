@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bykmcplhy1f47"]
 
 [ext_resource type="Script" uid="uid://dbf83gq5o1iyi" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://d0hqdee5jplup" path="res://scripts/ui/board/board_view.gd" id="2_0xm2m"]
 
 [node name="Main" type="Node" unique_id=1208397320]
 script = ExtResource("1_ig7tw")
@@ -51,6 +52,10 @@ offset_right = 560.0
 offset_bottom = 380.0
 theme_override_font_sizes/font_size = 25
 text = "CANCEL"
+
+[node name="Board" type="Node2D" parent="." unique_id=2008717891]
+position = Vector2(300, 220)
+script = ExtResource("2_0xm2m")
 
 [connection signal="pressed" from="ConfirmButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="PlaceTileButton" to="." method="_on_place_tile_button_pressed"]

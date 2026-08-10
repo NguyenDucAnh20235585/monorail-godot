@@ -19,6 +19,8 @@ func _ready():
 	game_state = RulesEngine.create_initial_state()
 	
 	reset_pending_move()
+	
+	$Board.set_board(game_state.board)
 
 	print("Board: ", game_state.board)
 	print("Current player: ", game_state.current_player)
@@ -44,6 +46,7 @@ func _on_place_tile_button_pressed():
 		"type": MonoTile.TileType.STRAIGHT,
 		"rotation": 1
 	})
+	$Board.set_pending_move(pending_move)
 	
 func update_hud():
 	$TurnLabel.text = players[game_state.current_player]["name"] + "'s turn"
@@ -61,9 +64,13 @@ func confirm_pending_move():
 		return
 
 	RulesEngine.apply_move(game_state, pending_move)
+	$Board.set_board(game_state.board)
+
 	RulesEngine.end_turn(game_state)
 
 	reset_pending_move()
+	$Board.set_pending_move(pending_move)
+
 	update_hud()
 	
 	print("Move confirmed")
@@ -76,6 +83,8 @@ func cancel_pending_move():
 		return
 
 	reset_pending_move()
+	$Board.set_pending_move(pending_move)
+
 	print("Pending move cancelled")
 
 func _on_cancel_button_pressed() -> void:
