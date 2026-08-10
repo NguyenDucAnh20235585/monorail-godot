@@ -60,6 +60,7 @@ func confirm_pending_move():
 
 	reset_pending_move()
 	$Board.set_pending_move(pending_move)
+	$Board.set_indicators([])
 
 	update_hud()
 	
@@ -74,22 +75,26 @@ func cancel_pending_move():
 
 	reset_pending_move()
 	$Board.set_pending_move(pending_move)
+	$Board.set_indicators([])
 
 	print("Pending move cancelled")
 
 func _on_cancel_button_pressed():
 	cancel_pending_move()
 
-# DEBUG/TẠM: candidate positions chưa dùng validator thật
+# DEBUG/TẠM: candidate theo committed + pending tile, chưa dùng validator thật
 func show_debug_indicators():
-	var positions = [
-		Vector2i(-1, 0),
-		Vector2i(2, 0),
-		Vector2i(0, -1),
-		Vector2i(0, 1),
-		Vector2i(1, -1),
-		Vector2i(1, 1)
-	]
+	var positions: Array = []
+
+	for board_position in game_state.board.keys():
+		for neighbor in MonoTile.get_neighbor_positions(board_position):
+			if not game_state.board.has(neighbor) and neighbor not in positions:
+				positions.append(neighbor)
+
+	for tile in pending_move["tiles"]:
+		for neighbor in MonoTile.get_neighbor_positions(tile["position"]):
+			if not game_state.board.has(neighbor) and neighbor not in positions:
+				positions.append(neighbor)
 
 	for tile in pending_move["tiles"]:
 		positions.erase(tile["position"])
@@ -128,3 +133,17 @@ func _on_board_indicator_clicked(grid_pos: Vector2i):
 
 	print("Pending tile added: ", tile)
 	print("Pending tile count: ", pending_move["tiles"].size())
+
+func _on_board_pending_tile_clicked(grid_pos: Vector2i):
+	for tile in pending_move["tiles"]:
+		if tile["position"] == grid_pos:
+			var rotated_tile = MonoTile.rotate_tile(tile)
+
+			tile["type"] = rotated_tile["type"]
+			tile["rotation"] = rotated_tile["rotation"]
+
+			$Board.set_pending_move(pending_move)
+
+			print("Rotated pending tile at: ", grid_pos)
+			print("New rotation: ", tile["rotation"])
+			return

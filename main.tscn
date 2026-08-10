@@ -72,3 +72,4 @@ script = ExtResource("2_0xm2m")
 [connection signal="pressed" from="CancelButton" to="." method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="CornerButton" to="." method="_on_corner_button_pressed"]
 [connection signal="indicator_clicked" from="Board" to="." method="_on_board_indicator_clicked"]
+[connection signal="pending_tile_clicked" from="Board" to="." method="_on_board_pending_tile_clicked"]

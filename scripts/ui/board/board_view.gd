@@ -5,6 +5,8 @@ signal indicator_clicked(grid_pos: Vector2i)
 
 const CELL_SIZE := 80
 
+signal pending_tile_clicked(grid_pos: Vector2i)
+
 var board: Dictionary = {}
 
 var pending_tiles: Array = []
@@ -27,6 +29,11 @@ func _unhandled_input(event: InputEvent) -> void:
 				floori(local_position.x / CELL_SIZE),
 				floori(local_position.y / CELL_SIZE)
 			)
+
+			for tile in pending_tiles:
+				if tile["position"] == grid_pos:
+					pending_tile_clicked.emit(grid_pos)
+					return
 
 			if grid_pos in indicator_positions:
 				indicator_clicked.emit(grid_pos)
