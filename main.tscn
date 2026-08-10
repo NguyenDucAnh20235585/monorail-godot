@@ -27,36 +27,48 @@ anchor_left = -0.046000004
 anchor_top = -0.033
 anchor_right = 0.053000003
 anchor_bottom = 0.071
-offset_left = 632.992
-offset_top = 351.384
-offset_right = 664.944
-offset_bottom = 333.992
+offset_left = 702.992
+offset_top = 391.384
+offset_right = 734.944
+offset_bottom = 373.992
 theme_override_font_sizes/font_size = 30
 text = "CONFIRM
 "
 
-[node name="PlaceTileButton" type="Button" parent="." unique_id=1806819512]
+[node name="StraightButton" type="Button" parent="." unique_id=1806819512]
 custom_minimum_size = Vector2(160, 50)
-offset_left = 496.0
-offset_top = 260.0
-offset_right = 661.0
-offset_bottom = 310.0
+offset_left = 470.0
+offset_top = 300.0
+offset_right = 635.0
+offset_bottom = 350.0
 theme_override_font_sizes/font_size = 30
-text = "PLACE TILE"
+text = "STRAIGHT"
 
 [node name="CancelButton" type="Button" parent="." unique_id=547421458]
 custom_minimum_size = Vector2(120, 50)
-offset_left = 440.0
-offset_top = 330.0
-offset_right = 560.0
-offset_bottom = 380.0
+offset_left = 500.0
+offset_top = 370.0
+offset_right = 620.0
+offset_bottom = 420.0
 theme_override_font_sizes/font_size = 25
 text = "CANCEL"
+
+[node name="CornerButton" type="Button" parent="." unique_id=2122806873]
+custom_minimum_size = Vector2(160, 50)
+offset_left = 650.0
+offset_top = 300.0
+offset_right = 815.0
+offset_bottom = 350.0
+theme_override_font_sizes/font_size = 30
+text = "CORNER
+"
 
 [node name="Board" type="Node2D" parent="." unique_id=2008717891]
 position = Vector2(300, 220)
 script = ExtResource("2_0xm2m")
 
-[connection signal="pressed" from="ConfirmButton" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="PlaceTileButton" to="." method="_on_place_tile_button_pressed"]
+[connection signal="pressed" from="ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="StraightButton" to="." method="_on_straight_button_pressed"]
 [connection signal="pressed" from="CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="CornerButton" to="." method="_on_corner_button_pressed"]
+[connection signal="indicator_clicked" from="Board" to="." method="_on_board_indicator_clicked"]

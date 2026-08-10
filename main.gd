@@ -1,7 +1,7 @@
 extends Node
 
 var game_state: GameState
-
+var selected_tile_type: int = -1
 var pending_move: Dictionary
 
 var players = {
@@ -21,6 +21,8 @@ func _ready():
 	reset_pending_move()
 	
 	$Board.set_board(game_state.board)
+	
+	$Board.set_indicators([])
 
 	print("Board: ", game_state.board)
 	print("Current player: ", game_state.current_player)
@@ -31,22 +33,8 @@ func _ready():
 	$TurnLabel.text = players[game_state.current_player]["name"] + " goes first"
 	$RemainingTilesLabel.text = "Remaining tiles: %d" % game_state.remaining_tiles
 	
-func _on_button_pressed():
+func _on_confirm_button_pressed():
 	confirm_pending_move()
-	
-func _on_place_tile_button_pressed():
-	if pending_move["tiles"].size() >= 3:
-		print("Pending move already has 3 tiles")
-		return
-
-	var next_x = game_state.board.size() + pending_move["tiles"].size()
-
-	pending_move["tiles"].append({
-		"position": Vector2i(next_x, 0),
-		"type": MonoTile.TileType.STRAIGHT,
-		"rotation": 1
-	})
-	$Board.set_pending_move(pending_move)
 	
 func update_hud():
 	$TurnLabel.text = players[game_state.current_player]["name"] + "'s turn"
@@ -57,6 +45,8 @@ func reset_pending_move():
 		"player_id": game_state.current_player,
 		"tiles": []
 	}
+
+	selected_tile_type = -1
 	
 func confirm_pending_move():
 	if pending_move["tiles"].is_empty():
@@ -87,5 +77,54 @@ func cancel_pending_move():
 
 	print("Pending move cancelled")
 
-func _on_cancel_button_pressed() -> void:
+func _on_cancel_button_pressed():
 	cancel_pending_move()
+
+# DEBUG/TẠM: candidate positions chưa dùng validator thật
+func show_debug_indicators():
+	var positions = [
+		Vector2i(-1, 0),
+		Vector2i(2, 0),
+		Vector2i(0, -1),
+		Vector2i(0, 1),
+		Vector2i(1, -1),
+		Vector2i(1, 1)
+	]
+
+	for tile in pending_move["tiles"]:
+		positions.erase(tile["position"])
+
+	$Board.set_indicators(positions)
+
+func _on_straight_button_pressed():
+	selected_tile_type = MonoTile.TileType.STRAIGHT
+	show_debug_indicators()
+	print("Selected tile: STRAIGHT")
+
+func _on_corner_button_pressed():
+	selected_tile_type = MonoTile.TileType.CORNER
+	show_debug_indicators()
+	print("Selected tile: CORNER")
+
+func _on_board_indicator_clicked(grid_pos: Vector2i):
+	if selected_tile_type == -1:
+		print("No tile type selected")
+		return
+
+	if pending_move["tiles"].size() >= 3:
+		print("Pending move already has 3 tiles")
+		return
+
+	var tile = {
+		"position": grid_pos,
+		"type": selected_tile_type,
+		"rotation": 0
+	}
+
+	pending_move["tiles"].append(tile)
+
+	$Board.set_pending_move(pending_move)
+	show_debug_indicators()
+
+	print("Pending tile added: ", tile)
+	print("Pending tile count: ", pending_move["tiles"].size())

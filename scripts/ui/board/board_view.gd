@@ -1,18 +1,41 @@
 class_name BoardView
 extends Node2D
 
+signal indicator_clicked(grid_pos: Vector2i)
+
 const CELL_SIZE := 80
 
 var board: Dictionary = {}
 
 var pending_tiles: Array = []
+var indicator_positions: Array = []
 
 func set_board(board_data: Dictionary) -> void:
 	board = board_data
 	queue_redraw()
 
+func set_indicators(positions: Array) -> void:
+	indicator_positions = positions
+	queue_redraw()
+	
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			var local_position := to_local(event.position)
 
-func _draw() -> void:
+			var grid_pos := Vector2i(
+				floori(local_position.x / CELL_SIZE),
+				floori(local_position.y / CELL_SIZE)
+			)
+
+			if grid_pos in indicator_positions:
+				indicator_clicked.emit(grid_pos)
+
+func _draw():
+	
+	# DEBUG/TẠM: candidate indicators
+	for grid_position in indicator_positions:
+		draw_cell(grid_position, Color(0.55, 0.9, 0.65, 0.45))
 	# Tile đã confirm
 	for grid_position in board.keys():
 		draw_cell(grid_position, Color(0.7, 0.85, 0.95))
@@ -20,7 +43,6 @@ func _draw() -> void:
 	# Tile đang pending
 	for tile in pending_tiles:
 		draw_cell(tile["position"], Color(0.95, 0.9, 0.55))
-
 
 func draw_cell(grid_position: Vector2i, color: Color) -> void:
 	var screen_position = Vector2(
