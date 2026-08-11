@@ -34,11 +34,17 @@ func _ready():
 	$RemainingTilesLabel.text = "Remaining tiles: %d" % game_state.remaining_tiles
 	
 func _on_confirm_button_pressed():
-	confirm_pending_move()
+	confirm_move()
 	
 func update_hud():
 	$TurnLabel.text = players[game_state.current_player]["name"] + "'s turn"
 	$RemainingTilesLabel.text = "Remaining tiles: %d" % game_state.remaining_tiles
+	
+func start_turn():
+	reset_pending_move()
+	$Board.set_pending_move(pending_move)
+	$Board.set_indicators([])
+	update_hud()
 	
 func reset_pending_move():
 	pending_move = {
@@ -48,7 +54,7 @@ func reset_pending_move():
 
 	selected_tile_type = -1
 	
-func confirm_pending_move():
+func confirm_move():
 	if pending_move["tiles"].is_empty():
 		print("No pending tiles to confirm")
 		return
@@ -57,22 +63,15 @@ func confirm_pending_move():
 	$Board.set_board(game_state.board)
 
 	RulesEngine.end_turn(game_state)
-
-	reset_pending_move()
-	$Board.set_pending_move(pending_move)
-	$Board.set_indicators([])
-
-	update_hud()
+	start_turn()
 	
+	# DEBUG/TẠM
+	print("Pending player: ", pending_move["player_id"])
 	print("Move confirmed")
 	print("Remaining tiles: ", game_state.remaining_tiles)
 	print("Current player: ", game_state.current_player)
 	
 func cancel_pending_move():
-	if pending_move["tiles"].is_empty():
-		print("No pending tiles to cancel")
-		return
-
 	reset_pending_move()
 	$Board.set_pending_move(pending_move)
 	$Board.set_indicators([])
@@ -81,6 +80,9 @@ func cancel_pending_move():
 
 func _on_cancel_button_pressed():
 	cancel_pending_move()
+	
+func get_pending_tile_limit() -> int:
+	return mini(3, game_state.remaining_tiles)
 
 # DEBUG/TẠM: candidate placement theo pending flow, chưa dùng validator thật
 func show_debug_indicators():
@@ -100,7 +102,7 @@ func show_debug_indicators():
 	for tile in pending_move["tiles"]:
 		positions.erase(tile["position"])
 
-	if pending_move["tiles"].size() >= 3:
+	if pending_move["tiles"].size() >= get_pending_tile_limit():
 		positions.clear()
 
 	$Board.set_indicators(positions)
@@ -120,8 +122,8 @@ func _on_board_indicator_clicked(grid_pos: Vector2i):
 		print("No tile type selected")
 		return
 
-	if pending_move["tiles"].size() >= 3:
-		print("Pending move already has 3 tiles")
+	if pending_move["tiles"].size() >= get_pending_tile_limit():
+		print("Pending move reached tile limit")
 		return
 
 	var tile = {
