@@ -82,22 +82,26 @@ func cancel_pending_move():
 func _on_cancel_button_pressed():
 	cancel_pending_move()
 
-# DEBUG/TẠM: candidate theo committed + pending tile, chưa dùng validator thật
+# DEBUG/TẠM: candidate placement theo pending flow, chưa dùng validator thật
 func show_debug_indicators():
 	var positions: Array = []
 
-	for board_position in game_state.board.keys():
-		for neighbor in MonoTile.get_neighbor_positions(board_position):
-			if not game_state.board.has(neighbor) and neighbor not in positions:
-				positions.append(neighbor)
-
-	for tile in pending_move["tiles"]:
-		for neighbor in MonoTile.get_neighbor_positions(tile["position"]):
-			if not game_state.board.has(neighbor) and neighbor not in positions:
-				positions.append(neighbor)
+	if pending_move["tiles"].is_empty():
+		for board_position in game_state.board.keys():
+			for neighbor in MonoTile.get_neighbor_positions(board_position):
+				if not game_state.board.has(neighbor) and neighbor not in positions:
+					positions.append(neighbor)
+	else:
+		for tile in pending_move["tiles"]:
+			for neighbor in MonoTile.get_neighbor_positions(tile["position"]):
+				if not game_state.board.has(neighbor) and neighbor not in positions:
+					positions.append(neighbor)
 
 	for tile in pending_move["tiles"]:
 		positions.erase(tile["position"])
+
+	if pending_move["tiles"].size() >= 3:
+		positions.clear()
 
 	$Board.set_indicators(positions)
 
