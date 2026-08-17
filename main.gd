@@ -65,8 +65,6 @@ func confirm_move():
 	RulesEngine.end_turn(game_state)
 	start_turn()
 	
-	# DEBUG/TẠM
-	print("Pending player: ", pending_move["player_id"])
 	print("Move confirmed")
 	print("Remaining tiles: ", game_state.remaining_tiles)
 	print("Current player: ", game_state.current_player)
