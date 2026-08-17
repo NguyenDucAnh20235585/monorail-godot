@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://dl7sgbrkes2vd" path="res://assets/font/ARCADECLASSIC.TTF" id="2_0ebjn"]
 [ext_resource type="AudioStream" uid="uid://kxmvbj2xkr6s" path="res://assets/soundtracks/Piano 6.ogg" id="4_uqeha"]
 [ext_resource type="Script" uid="uid://cqldyfbrhtlxg" path="res://scenes/main_menu/audio_control.gd" id="4_wem23"]
-[ext_resource type="Script" uid="uid://noiw1jkej6b0" path="res://scenes/main_menu/full_screen_control.gd" id="5_3ovsr"]
+[ext_resource type="Script" uid="uid://bhjrnyefa0xyl" path="res://scenes/main_menu/display_section.gd" id="5_3ovsr"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3owqy"]
 texture = ExtResource("1_0ebjn")
@@ -273,27 +273,40 @@ value = 0.5
 script = ExtResource("4_wem23")
 audio_bus_name = "SFX"
 
-[node name="FullscreenRow" type="HBoxContainer" parent="Options" unique_id=832257808]
+[node name="DisplaySection" type="HBoxContainer" parent="Options" unique_id=832257808]
 layout_mode = 0
-offset_left = 122.0
-offset_top = 199.0
-offset_right = 486.0
-offset_bottom = 266.0
+offset_left = 94.0
+offset_top = 188.0
+offset_right = 482.0
+offset_bottom = 255.0
+theme_override_constants/separation = 30
+script = ExtResource("5_3ovsr")
 
-[node name="Label" type="Label" parent="Options/FullscreenRow" unique_id=1948814325]
+[node name="Label" type="Label" parent="Options/DisplaySection" unique_id=1948814325]
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.09923177, 0.09923177, 0.09923177, 1)
 theme_override_colors/font_shadow_color = Color(0.093160845, 0.093160845, 0.09316083, 0)
 theme_override_font_sizes/font_size = 25
-text = "Fullscreen"
+text = "Display"
 vertical_alignment = 1
 
-[node name="FullScreenControl" type="CheckBox" parent="Options/FullscreenRow" unique_id=26409810]
+[node name="WindowedButton" type="Button" parent="Options/DisplaySection" unique_id=120170295]
+custom_minimum_size = Vector2(120, 30)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-script = ExtResource("5_3ovsr")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3owqy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0ebjn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ob46e")
+text = "Windowed"
+
+[node name="FullscreenButton" type="Button" parent="Options/DisplaySection" unique_id=1658512770]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.009317472, 0.009317516, 0.009317483, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_3owqy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0ebjn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ob46e")
+text = "FullScreen"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=282359540]
 stream = ExtResource("4_uqeha")
@@ -304,4 +317,5 @@ bus = &"Music"
 [connection signal="pressed" from="Options/Close" to="." method="_on_close_options_pressed"]
 [connection signal="value_changed" from="Options/AudioControl" to="Options/AudioControl" method="_on_value_changed"]
 [connection signal="value_changed" from="Options/SFXControl" to="Options/SFXControl" method="_on_value_changed"]
-[connection signal="toggled" from="Options/FullscreenRow/FullScreenControl" to="Options/FullscreenRow/FullScreenControl" method="_on_toggled"]
+[connection signal="pressed" from="Options/DisplaySection/WindowedButton" to="Options/DisplaySection" method="_on_windowed_button_pressed"]
+[connection signal="pressed" from="Options/DisplaySection/FullscreenButton" to="Options/DisplaySection" method="_on_fullscreen_button_pressed"]
