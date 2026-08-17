@@ -156,11 +156,6 @@ static func rotate_tile(tile: Dictionary) -> Dictionary:
 	return make_tile(tile["type"], tile["rotation"] + 1)
 
 
-## Xoay ngược chiều kim đồng hồ — dùng cho phím tắt Shift+R nếu cần.
-static func rotate_tile_ccw(tile: Dictionary) -> Dictionary:
-	return make_tile(tile["type"], tile["rotation"] - 1)
-
-
 ## Lật tile: đổi mặt STRAIGHT <-> CORNER, giữ nguyên rotation.
 ## Trả về tile MỚI.
 static func flip_tile(tile: Dictionary) -> Dictionary:
@@ -254,13 +249,3 @@ static func to_dict(tile: Dictionary) -> Dictionary:
 ## Khôi phục tile từ dữ liệu đã serialize.
 static func from_dict(data: Dictionary) -> Dictionary:
 	return make_tile(int(data["type"]), int(data["rotation"]))
-
-
-## Chuỗi ngắn để debug và ghi game log.
-static func to_string_debug(tile: Dictionary) -> String:
-	var type_name: String = "STRAIGHT" if tile["type"] == TileType.STRAIGHT else "CORNER"
-	return "%s@%d [%s]" % [
-		type_name,
-		tile["rotation"],
-		", ".join(get_open_edges(tile["type"], tile["rotation"])),
-	]
