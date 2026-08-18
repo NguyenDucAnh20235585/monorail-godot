@@ -76,7 +76,6 @@ Thứ tự chuẩn `EDGE_ORDER = ["top", "right", "bottom", "left"]` — xoay th
 | Thao tác | Hành vi |
 |---|---|
 | `rotate_tile(tile)` | `rotation + 1` (90° CW), giữ nguyên `type` |
-| `rotate_tile_ccw(tile)` | `rotation - 1`, tự chuẩn hóa về 0–3 |
 | `flip_tile(tile)` | Đổi `STRAIGHT <-> CORNER`, **giữ nguyên rotation** |
 
 **Cả hai hàm đều trả về Dictionary MỚI, không sửa tile đầu vào.** Pending move giữ tile của mình, gọi rotate/flip rồi gán lại kết quả:
@@ -87,9 +86,11 @@ pending_move["tiles"][i] = MonoTile.rotate_tile(pending_move["tiles"][i])
 
 Tính chất đã được test:
 
-- Xoay CW 4 lần → về đúng tile ban đầu
-- Xoay CW rồi CCW → về đúng tile ban đầu
+- Xoay 4 lần → về đúng tile ban đầu
 - Flip 2 lần → về đúng tile ban đầu
+
+`normalize_rotation()` nhận cả số âm, nên nếu cần xoay ngược thì gọi
+`MonoTile.make_tile(tile["type"], tile["rotation"] - 1)`.
 
 > Lưu ý về flip: theo Rules, tile vật lý có 2 mặt (thẳng / góc), nên flip đổi **mặt** chứ không phải mirror hình học. Rotation được giữ nguyên vì người chơi lật tile tại chỗ rồi mới xoay tiếp.
 

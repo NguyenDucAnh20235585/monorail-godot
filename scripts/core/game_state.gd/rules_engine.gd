@@ -41,3 +41,9 @@ static func apply_move(
 		}
 
 	state.remaining_tiles -= tiles.size()
+	
+static func end_turn(state: GameState) -> void:
+	if state.current_player == 0:
+		state.current_player = 1
+	else:
+		state.current_player = 0
