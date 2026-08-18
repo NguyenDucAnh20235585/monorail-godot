@@ -1,8 +1,6 @@
 class_name GameState
 extends RefCounted
 
-var game_state: GameState
-
 var board: Dictionary = {}
 var current_player: int = -1
 var remaining_tiles: int = 24

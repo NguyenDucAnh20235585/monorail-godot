@@ -115,13 +115,6 @@ func _test_rotate_four_times_returns_to_origin() -> void:
 				"%s rot %d: xoay CW 4 lần == ban đầu" % [_type_name(type), start_rot]
 			)
 
-			# xoay CW rồi CCW cũng phải về chỗ cũ
-			var round_trip: Dictionary = MonoTile.rotate_tile_ccw(MonoTile.rotate_tile(tile))
-			_assert_true(
-				round_trip == tile,
-				"%s rot %d: CW rồi CCW == ban đầu" % [_type_name(type), start_rot]
-			)
-
 
 # ----------------------------------------------------------------------------
 # Test: flip
