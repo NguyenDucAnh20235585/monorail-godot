@@ -9,8 +9,11 @@ func _ready():
 
 func _on_settings_button_pressed():
 	main_buttons.visible = false
-	options.visible = true
+	options.visible = true	
 
 func _on_close_options_pressed():
 	main_buttons.visible = true
 	options.visible = false
+
+func _on_pvp_button_pressed():
+	get_tree().change_scene_to_file("res://main.tscn")
