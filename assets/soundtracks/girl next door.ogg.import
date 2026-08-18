@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dejoxwfqpv73d"
+path="res://.godot/imported/girl next door.ogg-480a0ab02912b2340d6aa9efa114db71.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/soundtracks/girl next door.ogg"
+dest_files=["res://.godot/imported/girl next door.ogg-480a0ab02912b2340d6aa9efa114db71.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
