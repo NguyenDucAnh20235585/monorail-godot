@@ -67,6 +67,14 @@ text = "CORNER
 position = Vector2(300, 220)
 script = ExtResource("2_0xm2m")
 
+[node name="GameplayUI" type="CanvasLayer" parent="." unique_id=990129623]
+
+[node name="HUD" type="Control" parent="GameplayUI" unique_id=426455513]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [connection signal="pressed" from="ConfirmButton" to="." method="_on_confirm_button_pressed"]
 [connection signal="pressed" from="StraightButton" to="." method="_on_straight_button_pressed"]
 [connection signal="pressed" from="CancelButton" to="." method="_on_cancel_button_pressed"]
