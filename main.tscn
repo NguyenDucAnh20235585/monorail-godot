@@ -2,6 +2,41 @@
 
 [ext_resource type="Script" uid="uid://dbf83gq5o1iyi" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://d0hqdee5jplup" path="res://scripts/ui/board/board_view.gd" id="2_0xm2m"]
+[ext_resource type="FontFile" uid="uid://dl7sgbrkes2vd" path="res://assets/font/ARCADECLASSIC.TTF" id="3_h2yge"]
+[ext_resource type="Texture2D" uid="uid://cu2duj0vw86v5" path="res://assets/png/Straight_tile.png" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://bja2egrh1pukd" path="res://assets/png/Curve_tile.png" id="5_lquwl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvp3"]
+bg_color = Color(0.84705883, 0, 0, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+shadow_color = Color(0, 0, 0, 0.44313726)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
+bg_color = Color(0.8489673, 0.43312973, 0.7016545, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.44313726)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2yge"]
+bg_color = Color(0.21960784, 0.43137255, 0.7019608, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 1
+shadow_color = Color(0, 0, 0, 0.44313726)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.5)
 
 [node name="Main" type="Node" unique_id=1208397320]
 script = ExtResource("1_ig7tw")
@@ -71,9 +106,126 @@ script = ExtResource("2_0xm2m")
 
 [node name="HUD" type="Control" parent="GameplayUI" unique_id=426455513]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TopRow" type="HBoxContainer" parent="GameplayUI/HUD" unique_id=239948336]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 106.0
+grow_horizontal = 2
+
+[node name="Player1Label" type="Label" parent="GameplayUI/HUD/TopRow" unique_id=1338864630]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.07444572, 0.07444573, 0.07444573, 1)
+theme_override_colors/font_shadow_color = Color(0.15199637, 0.15199634, 0.15199634, 0)
+theme_override_fonts/font = ExtResource("3_h2yge")
+theme_override_font_sizes/font_size = 30
+text = "● PLAYER 1"
+
+[node name="TopLeftSpacer" type="Control" parent="GameplayUI/HUD/TopRow" unique_id=1246648031]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TopCenterZone" type="HBoxContainer" parent="GameplayUI/HUD/TopRow" unique_id=914360195]
+layout_mode = 2
+
+[node name="RemainingTilesLabel" type="Label" parent="GameplayUI/HUD/TopRow/TopCenterZone" unique_id=551859937]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.080783345, 0.080783345, 0.080783345, 1)
+theme_override_colors/font_shadow_color = Color(0.093160845, 0.093160845, 0.09316083, 0)
+theme_override_constants/line_spacing = 2
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("3_h2yge")
+theme_override_font_sizes/font_size = 30
+text = "Tiles: 24"
+
+[node name="ImpossibleButton" type="Button" parent="GameplayUI/HUD/TopRow/TopCenterZone" unique_id=1074076662]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.080783166, 0.08078342, 0.080783226, 1)
+theme_override_fonts/font = ExtResource("3_h2yge")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_1bvp3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lquwl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_h2yge")
+text = "Impossible"
+
+[node name="TopRightSpacer" type="Control" parent="GameplayUI/HUD/TopRow" unique_id=1434935644]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Player2Label" type="Label" parent="GameplayUI/HUD/TopRow" unique_id=1890284870]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0010853444, 0.0010853446, 0.0010853445, 1)
+theme_override_colors/font_shadow_color = Color(0.093160845, 0.093160845, 0.09316083, 0)
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("3_h2yge")
+theme_override_font_sizes/font_size = 30
+text = "PLAYER 2"
+horizontal_alignment = 2
+
+[node name="BottomRow" type="HBoxContainer" parent="GameplayUI/HUD" unique_id=1044555593]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -123.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ControlsArea" type="VBoxContainer" parent="GameplayUI/HUD/BottomRow" unique_id=752939431]
+layout_mode = 2
+
+[node name="TileRow" type="HBoxContainer" parent="GameplayUI/HUD/BottomRow/ControlsArea" unique_id=1583260359]
+layout_mode = 2
+
+[node name="StraightTileObject" type="TextureButton" parent="GameplayUI/HUD/BottomRow/ControlsArea/TileRow" unique_id=2126241641]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+texture_normal = ExtResource("4_1bvp3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="CornerTileObject" type="TextureButton" parent="GameplayUI/HUD/BottomRow/ControlsArea/TileRow" unique_id=1875824984]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+texture_normal = ExtResource("5_lquwl")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ActionRow" type="HBoxContainer" parent="GameplayUI/HUD/BottomRow/ControlsArea" unique_id=1448818693]
+layout_mode = 2
+
+[node name="RotateButton" type="Button" parent="GameplayUI/HUD/BottomRow/ControlsArea/ActionRow" unique_id=704569226]
+layout_mode = 2
+text = "ROTATE
+"
+
+[node name="ConfirmButton" type="Button" parent="GameplayUI/HUD/BottomRow/ControlsArea/ActionRow" unique_id=994016034]
+layout_mode = 2
+text = "CONFIRM"
+
+[node name="CancelButton" type="Button" parent="GameplayUI/HUD/BottomRow/ControlsArea/ActionRow" unique_id=1521902884]
+layout_mode = 2
+text = "CANCEL"
+
+[node name="BottomSpacer" type="Control" parent="GameplayUI/HUD/BottomRow" unique_id=238529720]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GameLog" type="Label" parent="GameplayUI/HUD/BottomRow" unique_id=1920631923]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Started."
+clip_text = true
 
 [connection signal="pressed" from="ConfirmButton" to="." method="_on_confirm_button_pressed"]
 [connection signal="pressed" from="StraightButton" to="." method="_on_straight_button_pressed"]
@@ -81,3 +233,5 @@ offset_bottom = 40.0
 [connection signal="pressed" from="CornerButton" to="." method="_on_corner_button_pressed"]
 [connection signal="indicator_clicked" from="Board" to="." method="_on_board_indicator_clicked"]
 [connection signal="pending_tile_clicked" from="Board" to="." method="_on_board_pending_tile_clicked"]
+[connection signal="pressed" from="GameplayUI/HUD/BottomRow/ControlsArea/TileRow/StraightTileObject" to="." method="_on_straight_button_pressed"]
+[connection signal="pressed" from="GameplayUI/HUD/BottomRow/ControlsArea/TileRow/CornerTileObject" to="." method="_on_corner_button_pressed"]

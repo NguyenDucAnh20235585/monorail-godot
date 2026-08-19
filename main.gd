@@ -147,3 +147,7 @@ func _on_board_pending_tile_clicked(grid_pos: Vector2i):
 
 	print("Rotated pending tile at: ", grid_pos)
 	print("New rotation: ", pending_move.get_tile_at(grid_pos)["rotation"])
+
+
+func _on_straight_tile_object_pressed() -> void:
+	pass # Replace with function body.
