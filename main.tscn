@@ -38,65 +38,10 @@ shadow_color = Color(0, 0, 0, 0.44313726)
 shadow_size = 5
 shadow_offset = Vector2(0, 3.5)
 
+[sub_resource type="FontVariation" id="FontVariation_lquwl"]
+
 [node name="Main" type="Node" unique_id=1208397320]
 script = ExtResource("1_ig7tw")
-
-[node name="TurnLabel" type="Label" parent="." unique_id=564717392]
-offset_left = 30.0
-offset_top = 25.0
-offset_right = 31.0
-offset_bottom = 48.0
-theme_override_font_sizes/font_size = 24
-
-[node name="RemainingTilesLabel" type="Label" parent="." unique_id=1375934370]
-offset_left = 30.0
-offset_top = 65.0
-offset_right = 110.0
-offset_bottom = 145.0
-theme_override_font_sizes/font_size = 25
-
-[node name="ConfirmButton" type="Button" parent="." unique_id=1635529809]
-custom_minimum_size = Vector2(140, 50)
-anchors_preset = -1
-anchor_left = -0.046000004
-anchor_top = -0.033
-anchor_right = 0.053000003
-anchor_bottom = 0.071
-offset_left = 702.992
-offset_top = 391.384
-offset_right = 734.944
-offset_bottom = 373.992
-theme_override_font_sizes/font_size = 30
-text = "CONFIRM
-"
-
-[node name="StraightButton" type="Button" parent="." unique_id=1806819512]
-custom_minimum_size = Vector2(160, 50)
-offset_left = 470.0
-offset_top = 300.0
-offset_right = 635.0
-offset_bottom = 350.0
-theme_override_font_sizes/font_size = 30
-text = "STRAIGHT"
-
-[node name="CancelButton" type="Button" parent="." unique_id=547421458]
-custom_minimum_size = Vector2(120, 50)
-offset_left = 500.0
-offset_top = 370.0
-offset_right = 620.0
-offset_bottom = 420.0
-theme_override_font_sizes/font_size = 25
-text = "CANCEL"
-
-[node name="CornerButton" type="Button" parent="." unique_id=2122806873]
-custom_minimum_size = Vector2(160, 50)
-offset_left = 650.0
-offset_top = 300.0
-offset_right = 815.0
-offset_bottom = 350.0
-theme_override_font_sizes/font_size = 30
-text = "CORNER
-"
 
 [node name="Board" type="Node2D" parent="." unique_id=2008717891]
 position = Vector2(300, 220)
@@ -221,17 +166,21 @@ text = "CANCEL"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="GameLog" type="Label" parent="GameplayUI/HUD/BottomRow" unique_id=1920631923]
-custom_minimum_size = Vector2(300, 0)
+[node name="GameLog" type="RichTextLabel" parent="GameplayUI/HUD/BottomRow" unique_id=1425273130]
+custom_minimum_size = Vector2(400, 80)
 layout_mode = 2
+theme_override_colors/default_color = Color(0.11415806, 0.1141581, 0.11415804, 1)
+theme_override_colors/font_shadow_color = Color(0.2585664, 0.2585664, 0.25856638, 0.654902)
+theme_override_constants/line_separation = 2
+theme_override_fonts/normal_font = SubResource("FontVariation_lquwl")
+theme_override_font_sizes/normal_font_size = 18
 text = "Started."
-clip_text = true
+scroll_following = true
 
-[connection signal="pressed" from="ConfirmButton" to="." method="_on_confirm_button_pressed"]
-[connection signal="pressed" from="StraightButton" to="." method="_on_straight_button_pressed"]
-[connection signal="pressed" from="CancelButton" to="." method="_on_cancel_button_pressed"]
-[connection signal="pressed" from="CornerButton" to="." method="_on_corner_button_pressed"]
 [connection signal="indicator_clicked" from="Board" to="." method="_on_board_indicator_clicked"]
 [connection signal="pending_tile_clicked" from="Board" to="." method="_on_board_pending_tile_clicked"]
 [connection signal="pressed" from="GameplayUI/HUD/BottomRow/ControlsArea/TileRow/StraightTileObject" to="." method="_on_straight_button_pressed"]
 [connection signal="pressed" from="GameplayUI/HUD/BottomRow/ControlsArea/TileRow/CornerTileObject" to="." method="_on_corner_button_pressed"]
+[connection signal="pressed" from="GameplayUI/HUD/BottomRow/ControlsArea/ActionRow/RotateButton" to="." method="_on_rotate_button_pressed"]
+[connection signal="pressed" from="GameplayUI/HUD/BottomRow/ControlsArea/ActionRow/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="GameplayUI/HUD/BottomRow/ControlsArea/ActionRow/CancelButton" to="." method="_on_cancel_button_pressed"]
