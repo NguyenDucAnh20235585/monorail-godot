@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dbf83gq5o1iyi" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://d0hqdee5jplup" path="res://scripts/ui/board/board_view.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://cnm08ilbc28ks" path="res://scripts/ui/board_camera/board_camera.gd" id="3_7mycd"]
 [ext_resource type="FontFile" uid="uid://dl7sgbrkes2vd" path="res://assets/font/ARCADECLASSIC.TTF" id="3_h2yge"]
 [ext_resource type="Texture2D" uid="uid://cu2duj0vw86v5" path="res://assets/png/Straight_tile.png" id="4_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://bja2egrh1pukd" path="res://assets/png/Curve_tile.png" id="5_lquwl"]
@@ -46,6 +47,10 @@ script = ExtResource("1_ig7tw")
 [node name="Board" type="Node2D" parent="." unique_id=2008717891]
 position = Vector2(300, 220)
 script = ExtResource("2_0xm2m")
+
+[node name="BoardCamera" type="Camera2D" parent="." unique_id=946126118]
+position = Vector2(577, 321)
+script = ExtResource("3_7mycd")
 
 [node name="GameplayUI" type="CanvasLayer" parent="." unique_id=990129623]
 

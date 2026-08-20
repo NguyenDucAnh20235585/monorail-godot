@@ -28,8 +28,8 @@ func set_indicators(positions: Array) -> void:
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			var local_position := to_local(event.position)
+		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
+			var local_position := to_local(get_global_mouse_position())
 
 			var grid_pos := Vector2i(
 				floori(local_position.x / CELL_SIZE),
@@ -45,8 +45,6 @@ func _unhandled_input(event: InputEvent) -> void:
 				indicator_clicked.emit(grid_pos)
 
 func _draw():
-	
-	# DEBUG/TẠM: candidate indicators
 	for grid_position in indicator_positions:
 		draw_cell(grid_position, Color(0.55, 0.9, 0.65, 0.45))
 	# Tile đã confirm
