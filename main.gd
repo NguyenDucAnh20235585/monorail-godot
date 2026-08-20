@@ -14,17 +14,10 @@ func add_game_log(message: String) -> void:
 	game_log.append_text(message + "\n")
 
 func _ready():
-	# DEBUG/TẠM
-	print("P1: ", player_1_label)
-	print("P2: ", player_2_label)
-	print("Tiles: ", remaining_tiles_label)
-	print("Log: ", game_log)
 	game_state = RulesEngine.create_initial_state()
-	
 	reset_pending_move()
 	
 	$Board.set_board(game_state.board)
-	
 	$Board.set_indicators([])
 
 	print("Board: ", game_state.board)
