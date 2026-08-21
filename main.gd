@@ -8,7 +8,7 @@ var pending_move: PendingMove
 @onready var player_1_label: Label = $GameplayUI/HUD/TopRow/Player1Label
 @onready var player_2_label: Label = $GameplayUI/HUD/TopRow/Player2Label
 @onready var remaining_tiles_label: Label = $GameplayUI/HUD/TopRow/TopCenterZone/RemainingTilesLabel
-@onready var game_log: RichTextLabel = $GameplayUI/HUD/BottomRow/GameLog
+@onready var game_log: RichTextLabel = $GameplayUI/HUD/BottomRow/RightZone/GameLog
 
 func add_game_log(message: String) -> void:
 	game_log.append_text(message + "\n")
