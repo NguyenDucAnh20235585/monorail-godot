@@ -195,11 +195,10 @@ shadow_offset = Vector2(0, 2)
 script = ExtResource("1_ig7tw")
 
 [node name="Board" type="Node2D" parent="." unique_id=2008717891]
-position = Vector2(300, 220)
 script = ExtResource("2_0xm2m")
 
 [node name="BoardCamera" type="Camera2D" parent="." unique_id=946126118]
-position = Vector2(577, 321)
+position = Vector2(80, 40)
 script = ExtResource("3_7mycd")
 
 [node name="GameplayUI" type="CanvasLayer" parent="." unique_id=990129623]
@@ -397,6 +396,51 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_vivmo")
 text = "Started."
 scroll_following = true
 
+[node name="EndGameOverlay" type="Control" parent="GameplayUI" unique_id=2135237721]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="GameplayUI/EndGameOverlay" unique_id=921984227]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1254902, 0.16470589, 0.1882353, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="GameplayUI/EndGameOverlay" unique_id=316692667]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EndGameContainer" type="VBoxContainer" parent="GameplayUI/EndGameOverlay/CenterContainer" unique_id=309827006]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="WinnerLabel" type="Label" parent="GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer" unique_id=650253867]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "PLAYER 1 WINS"
+horizontal_alignment = 1
+
+[node name="PlayAgainButton" type="Button" parent="GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer" unique_id=1077915538]
+layout_mode = 2
+text = "PLAY AGAIN"
+
+[node name="BackToMenuButton" type="Button" parent="GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer" unique_id=1515880853]
+layout_mode = 2
+text = "BACK TO MENU"
+
 [connection signal="indicator_clicked" from="Board" to="." method="_on_board_indicator_clicked"]
 [connection signal="pending_tile_clicked" from="Board" to="." method="_on_board_pending_tile_clicked"]
 [connection signal="pressed" from="GameplayUI/HUD/BottomRow/LeftZone/ControlsArea/TileRow/StraightTileObject" to="." method="_on_straight_button_pressed"]
@@ -404,3 +448,5 @@ scroll_following = true
 [connection signal="pressed" from="GameplayUI/HUD/BottomRow/LeftZone/ControlsArea/ActionRow/RotateButton" to="." method="_on_rotate_button_pressed"]
 [connection signal="pressed" from="GameplayUI/HUD/BottomRow/LeftZone/ControlsArea/ActionRow/CancelButton" to="." method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="GameplayUI/HUD/BottomRow/CenterZone/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]

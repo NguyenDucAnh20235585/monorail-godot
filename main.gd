@@ -9,6 +9,8 @@ var pending_move: PendingMove
 @onready var player_2_label: Label = $GameplayUI/HUD/TopRow/Player2Label
 @onready var remaining_tiles_label: Label = $GameplayUI/HUD/TopRow/TopCenterZone/RemainingTilesLabel
 @onready var game_log: RichTextLabel = $GameplayUI/HUD/BottomRow/RightZone/GameLog
+@onready var end_game_overlay: Control = $GameplayUI/EndGameOverlay
+@onready var winner_label: Label = $GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer/WinnerLabel
 
 func add_game_log(message: String) -> void:
 	game_log.append_text(message + "\n")
@@ -202,3 +204,14 @@ func _on_rotate_button_pressed() -> void:
 
 	print("Rotated pending tile at: ", selected_pending_position)
 	print("New rotation: ", pending_move.get_tile_at(selected_pending_position)["rotation"])
+	
+func show_end_game(winner: int):
+	winner_label.text = "PLAYER %d WINS" % (winner + 1)
+	end_game_overlay.visible = true
+
+
+func _on_play_again_button_pressed():
+	get_tree().reload_current_scene()
+
+func _on_back_to_menu_button_pressed():
+	get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn")

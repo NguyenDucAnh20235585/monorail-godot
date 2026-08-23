@@ -7,8 +7,6 @@ const CELL_SIZE := 80
 
 const STRAIGHT_TEXTURE := preload("res://assets/png/Straight_tile.png")
 const CORNER_TEXTURE := preload("res://assets/png/Curve_tile.png")
-const STATION_1_TEXTURE := preload("res://assets/png/Station_tile_01.png")
-const STATION_2_TEXTURE := preload("res://assets/png/Station_tile_02.png")
 
 signal pending_tile_clicked(grid_pos: Vector2i)
 
@@ -48,19 +46,16 @@ func _draw():
 	for grid_position in indicator_positions:
 		draw_cell(grid_position, Color(0.55, 0.9, 0.65, 0.45))
 	# Tile đã confirm
+	# Tile đã confirm
 	for grid_position in board.keys():
-		if grid_position == Vector2i(0, 0):
-			draw_station_tile(grid_position, STATION_1_TEXTURE)
-		elif grid_position == Vector2i(1, 0):
-			draw_station_tile(grid_position, STATION_2_TEXTURE)
-		else:
-			var tile = board[grid_position]
-			draw_tile(
-				grid_position,
-				tile["type"],
-				tile["rotation"],
-				false
-			)
+		var tile = board[grid_position]
+
+		draw_tile(
+			grid_position,
+			tile["type"],
+			tile["rotation"],
+			false
+		)
 
 	# Tile đang pending
 	var selected_tile: Dictionary = {}
@@ -104,22 +99,6 @@ func draw_cell(grid_position: Vector2i, color: Color) -> void:
 
 	draw_rect(rect, color, true)
 	draw_rect(rect, Color(0.2, 0.2, 0.2), false, 2.0)
-
-func draw_station_tile(
-	grid_position: Vector2i,
-	texture: Texture2D
-) -> void:
-	var screen_position := Vector2(
-		grid_position.x * CELL_SIZE,
-		grid_position.y * CELL_SIZE
-	)
-
-	var rect := Rect2(
-		screen_position,
-		Vector2(CELL_SIZE, CELL_SIZE)
-	)
-
-	draw_texture_rect(texture, rect, false)
 
 func draw_tile(
 	grid_position: Vector2i,
