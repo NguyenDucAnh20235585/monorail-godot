@@ -10,7 +10,7 @@ extends RefCounted
 # vào đây ngay bây giờ mà tuần sau không phải sửa lại chỗ nối.
 #
 # Đã kiểm tra ở bản này:
-#   1. Game chưa kết thúc.
+#   1. Game chưa kết thúc (phase khác GAME_FINISHED).
 #   2. player_id khớp current_player.
 #   3. Move có 1–3 tile.
 #   4. Không vượt quá số tile còn lại.
@@ -63,7 +63,9 @@ const NOT_TOUCHING_BOARD: String = "NOT_TOUCHING_BOARD"
 ## Chỉ dừng ở lỗi ĐẦU TIÊN tìm thấy — mỗi lần chỉ báo một lý do cho người chơi dễ hiểu.
 static func validate_move(state: GameState, move: Dictionary) -> Dictionary:
 	# --- Game đã kết thúc ---
-	if state.phase != GameState.GamePhase.PLACING:
+	# Chặn theo GAME_FINISHED chứ không phải "khác PLACING", để khi Công thêm
+	# phase IMPOSSIBLE_REVIEW thì đối thủ vẫn đặt được tile trong giai đoạn đó.
+	if state.phase == GameState.GamePhase.GAME_FINISHED:
 		return _fail(GAME_FINISHED, "Ván đấu đã kết thúc.", [])
 
 	# --- Đúng người chơi ---

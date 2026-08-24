@@ -193,25 +193,21 @@ Cần Công xác nhận trước khi mình khóa lại ở Giai đoạn 3.
 
 Mình **không sửa** file nào của Công. Liệt kê ở đây để Công tự xử lý:
 
-1. **`game_state.gd` dòng 4: `var game_state: GameState`** — GameState đang chứa một biến trỏ tới chính GameState. Thừa và dễ gây nhầm, nên xóa.
+1. **Thư mục `scripts/core/game_state.gd/`** có đuôi `.gd` nhưng lại là folder. Theo Git_Workflow mục 6 nên là `scripts/core/game_state/` và `scripts/core/rules_engine/`. Đổi sớm thì đỡ phải sửa import sau.
 
-2. **Thư mục `scripts/core/game_state.gd/`** có đuôi `.gd` nhưng lại là folder. Theo Git_Workflow mục 6 nên là `scripts/core/game_state/` và `scripts/core/rules_engine/`. Đổi sớm thì đỡ phải sửa import sau.
+2. **`create_initial_state()` dùng `randi_range(0, 1)`** nên test không xác định được người đi trước. Đề xuất thêm tham số `starting_player: int = -1` (âm thì mới random) để test và replay dùng được. Test của mình đang tự dựng `GameState` thủ công để né chỗ này.
 
-3. **`main.gd._on_place_tile_button_pressed()` giảm `remaining_tiles` trực tiếp từ UI.** Vi phạm nguyên tắc 6 của Roadmap: chỉ `apply_move()` mới được đổi state chính thức. Chỗ này cần bỏ khi làm turn flow thật.
+3. **`main.tscn1612972479.tmp` đang bị Git theo dõi.** File tạm của Godot, nên `git rm --cached` và thêm `*.tmp` vào `.gitignore`.
 
-4. **`create_initial_state()` dùng `randi_range(0, 1)`** nên test không xác định được người đi trước. Đề xuất thêm tham số `starting_player: int = -1` (âm thì mới random) để test và replay dùng được. Test của mình đang tự dựng `GameState` thủ công để né chỗ này.
+4. **Vị trí ga nên nằm trong `GameState` khi làm serialize** (Giai đoạn 7). Hiện `WinChecker` đọc `RulesEngine.LEFT_START_POS` / `RIGHT_START_POS` — dùng tốt, nhưng state khôi phục từ file sẽ không đầy đủ nếu vị trí ga chỉ là hằng số trong code.
 
-5. **`GameState` chưa có `impossible_declared_by`** — Game_State.pdf và Roadmap Giai đoạn 5 đều cần. Chưa gấp.
-
-6. **`main.tscn1612972479.tmp` đang bị Git theo dõi.** File tạm của Godot, nên `git rm --cached` và thêm `*.tmp` vào `.gitignore`.
-
-7. **`check_win()` cần biết ô nào là ga.** Hiện mình đọc `RulesEngine.LEFT_START_POS` / `RIGHT_START_POS` — dùng được. Nhưng khi làm serialize ở Giai đoạn 7, vị trí ga nên nằm trong `GameState` để state khôi phục lại là đầy đủ, không phụ thuộc hằng số trong code.
+Các mục về `impossible_declared_by` và phase `IMPOSSIBLE_REVIEW` nằm ở `docs/win_and_impossible.md` mục 5.
 
 ---
 
 ## 7. Chạy test
 
-**Test tự động:** mở `scenes/TileTestRunner.tscn` → **F6**. Chạy cả test tile (Tuần 1) lẫn test placement/pending/validator (Tuần 2), in PASS/FAIL ra Output.
+Mở `scenes/TileTestRunner.tscn` → **F6**. Scene này chạy tất cả các nhóm test của dự án, in PASS/FAIL ra Output.
 
 Test tuần 2 phủ: contract với `create_initial_state()` của Công, ô trống/bị chiếm, kề board và kề chéo, cả 5 trạng thái preview, danh sách ô đặt được, cụm liền/thẳng hàng/chạm board, nối ray, toàn bộ API của PendingMove, và 12 trường hợp hợp lệ / không hợp lệ của validator — gồm cả kiểm tra validator không làm đổi state.
 

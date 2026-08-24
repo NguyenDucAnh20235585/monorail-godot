@@ -1,25 +1,16 @@
-extends Node
+extends TestCase
 
 # ============================================================================
 # Monorail — Test tile logic
 # Phụ trách: Khiêm
 #
-# Cách chạy:
-#   Mở project trong Godot, bấm F5 (scene chính là TileTestRunner.tscn).
-#   Kết quả PASS/FAIL in ra Output panel.
-#
+# Cách chạy: mở scenes/TileTestRunner.tscn rồi bấm F6.
 # Không cần cài addon nào. Không đụng tới GameState hay UI.
 # ============================================================================
 
-var _passed: int = 0
-var _failed: int = 0
-var _current_group: String = ""
-
 
 func _ready() -> void:
-	print("=========================================")
-	print("  MONORAIL — TILE LOGIC TEST")
-	print("=========================================")
+	_begin("MONORAIL — TILE LOGIC TEST")
 
 	_test_straight_edges()
 	_test_corner_edges()
@@ -326,13 +317,9 @@ func _test_is_valid_tile() -> void:
 
 
 # ----------------------------------------------------------------------------
-# Hạ tầng test
+# Hạ tầng riêng của nhóm test này
+# (phần đếm PASS/FAIL nằm ở tests/test_case.gd)
 # ----------------------------------------------------------------------------
-
-func _group(title: String) -> void:
-	_current_group = title
-	print("\n--- %s ---" % title)
-
 
 func _check_edges(type: int, rotation: int, expected_open: Array) -> void:
 	var edges: Dictionary = MonoTile.get_edges(type, rotation)
@@ -347,40 +334,5 @@ func _check_edges(type: int, rotation: int, expected_open: Array) -> void:
 	)
 
 
-func _assert_true(condition: bool, label: String) -> void:
-	if condition:
-		_passed += 1
-		print("  PASS  %s" % label)
-	else:
-		_failed += 1
-		print("  FAIL  %s" % label)
-		push_error("[tile test] FAIL: %s" % label)
-
-
-func _assert_false(condition: bool, label: String) -> void:
-	_assert_true(not condition, label)
-
-
-func _assert_eq(actual: Variant, expected: Variant, label: String) -> void:
-	if actual == expected:
-		_passed += 1
-		print("  PASS  %s" % label)
-	else:
-		_failed += 1
-		print("  FAIL  %s (nhận %s, mong đợi %s)" % [label, str(actual), str(expected)])
-		push_error("[tile test] FAIL: %s" % label)
-
-
 func _type_name(type: int) -> String:
 	return "STRAIGHT" if type == MonoTile.TileType.STRAIGHT else "CORNER"
-
-
-func _print_summary() -> void:
-	var total: int = _passed + _failed
-	print("\n=========================================")
-	print("  TỔNG: %d test | PASS %d | FAIL %d" % [total, _passed, _failed])
-	if _failed == 0:
-		print("  TẤT CẢ TEST ĐỀU PASS")
-	else:
-		print("  CÓ TEST FAIL — xem log phía trên")
-	print("=========================================")
