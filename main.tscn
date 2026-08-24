@@ -191,6 +191,14 @@ shadow_color = Color(0, 0, 0, 0)
 shadow_size = 3
 shadow_offset = Vector2(0, 2)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2cqfq"]
+bg_color = Color(0.14117648, 0.20392157, 0.24313726, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3764706, 0.6156863, 0.6901961, 1)
+
 [node name="Main" type="Node" unique_id=1208397320]
 script = ExtResource("1_ig7tw")
 
@@ -441,8 +449,64 @@ text = "PLAY AGAIN"
 layout_mode = 2
 text = "BACK TO MENU"
 
+[node name="ImpossibleScene" type="Control" parent="GameplayUI" unique_id=2061374961]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DimLayer" type="ColorRect" parent="GameplayUI/ImpossibleScene" unique_id=286451774]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="CenterContainer" type="CenterContainer" parent="GameplayUI/ImpossibleScene" unique_id=316781397]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="GameplayUI/ImpossibleScene/CenterContainer" unique_id=746319529]
+custom_minimum_size = Vector2(420, 180)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2cqfq")
+
+[node name="Content" type="VBoxContainer" parent="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer" unique_id=129488349]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="MessageLabel" type="Label" parent="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content" unique_id=668971167]
+layout_mode = 2
+text = "Declare this monorail impossible?"
+horizontal_alignment = 1
+
+[node name="ButtonRow" type="HBoxContainer" parent="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content" unique_id=915512357]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="CancelButton" type="Button" parent="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content/ButtonRow" unique_id=1553929276]
+layout_mode = 2
+text = "CANCEL
+"
+
+[node name="ConfirmButton" type="Button" parent="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content/ButtonRow" unique_id=1803974468]
+layout_mode = 2
+text = "CONFIRM"
+
 [connection signal="indicator_clicked" from="Board" to="." method="_on_board_indicator_clicked"]
 [connection signal="pending_tile_clicked" from="Board" to="." method="_on_board_pending_tile_clicked"]
+[connection signal="pressed" from="GameplayUI/HUD/TopRow/TopCenterZone/ImpossibleButton" to="." method="_on_impossible_button_pressed"]
 [connection signal="pressed" from="GameplayUI/HUD/BottomRow/LeftZone/ControlsArea/TileRow/StraightTileObject" to="." method="_on_straight_button_pressed"]
 [connection signal="pressed" from="GameplayUI/HUD/BottomRow/LeftZone/ControlsArea/TileRow/CornerTileObject" to="." method="_on_corner_button_pressed"]
 [connection signal="pressed" from="GameplayUI/HUD/BottomRow/LeftZone/ControlsArea/ActionRow/RotateButton" to="." method="_on_rotate_button_pressed"]
@@ -450,3 +514,4 @@ text = "BACK TO MENU"
 [connection signal="pressed" from="GameplayUI/HUD/BottomRow/CenterZone/ConfirmButton" to="." method="_on_confirm_button_pressed"]
 [connection signal="pressed" from="GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
 [connection signal="pressed" from="GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
+[connection signal="pressed" from="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content/ButtonRow/CancelButton" to="." method="_on_impossible_cancel_button_pressed"]

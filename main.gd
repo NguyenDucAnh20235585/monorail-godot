@@ -11,6 +11,7 @@ var pending_move: PendingMove
 @onready var game_log: RichTextLabel = $GameplayUI/HUD/BottomRow/RightZone/GameLog
 @onready var end_game_overlay: Control = $GameplayUI/EndGameOverlay
 @onready var winner_label: Label = $GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer/WinnerLabel
+@onready var impossible_scene: Control = $GameplayUI/ImpossibleScene
 
 func add_game_log(message: String) -> void:
 	game_log.append_text(message + "\n")
@@ -215,3 +216,9 @@ func _on_play_again_button_pressed():
 
 func _on_back_to_menu_button_pressed():
 	get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn")
+
+func _on_impossible_button_pressed():
+	impossible_scene.visible = true
+
+func _on_impossible_cancel_button_pressed():
+	impossible_scene.visible = false
