@@ -497,12 +497,12 @@ alignment = 1
 
 [node name="CancelButton" type="Button" parent="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content/ButtonRow" unique_id=1553929276]
 layout_mode = 2
-text = "CANCEL
+text = "Cancel
 "
 
-[node name="ConfirmButton" type="Button" parent="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content/ButtonRow" unique_id=1803974468]
+[node name="DeclareButton" type="Button" parent="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content/ButtonRow" unique_id=1803974468]
 layout_mode = 2
-text = "CONFIRM"
+text = "Declare"
 
 [connection signal="indicator_clicked" from="Board" to="." method="_on_board_indicator_clicked"]
 [connection signal="pending_tile_clicked" from="Board" to="." method="_on_board_pending_tile_clicked"]
@@ -515,3 +515,4 @@ text = "CONFIRM"
 [connection signal="pressed" from="GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
 [connection signal="pressed" from="GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
 [connection signal="pressed" from="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content/ButtonRow/CancelButton" to="." method="_on_impossible_cancel_button_pressed"]
+[connection signal="pressed" from="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content/ButtonRow/DeclareButton" to="." method="_on_impossible_declare_button_pressed"]

@@ -1,38 +1,6 @@
 class_name MoveValidator
 extends RefCounted
 
-# ============================================================================
-# Monorail — Move Validator
-# Phụ trách: Khiêm
-#
-# TRẠNG THÁI: bản Giai đoạn 2. Chữ ký hàm và định dạng kết quả đã CHỐT,
-# nội dung luật còn bổ sung tiếp ở Giai đoạn 3. Công nối được confirm_move()
-# vào đây ngay bây giờ mà tuần sau không phải sửa lại chỗ nối.
-#
-# Đã kiểm tra ở bản này:
-#   1. Game chưa kết thúc (phase khác GAME_FINISHED).
-#   2. player_id khớp current_player.
-#   3. Move có 1–3 tile.
-#   4. Không vượt quá số tile còn lại.
-#   5. Dữ liệu tile đúng định dạng.
-#   6. Không có hai tile trong move vào cùng một ô.
-#   7. Không đặt đè lên tile đã có trên board.
-#   8. Các tile mới phải kề cạnh nhau thành một cụm liền.
-#   9. Ít nhất một tile mới phải kề board hiện tại.
-#
-# CHƯA kiểm tra (Giai đoạn 3):
-#   - Luật thẳng hàng (Rules.pdf và Roadmap đang lệch nhau — xem docs).
-#   - Điều kiện kết nối đường ray.
-#
-# validate_move() CHỈ ĐỌC GameState:
-#   không sửa board, không giảm remaining_tiles, không chuyển lượt, không đụng UI.
-# ============================================================================
-
-
-# ----------------------------------------------------------------------------
-# Mã lỗi
-# ----------------------------------------------------------------------------
-
 const OK: String = "OK"
 const GAME_FINISHED: String = "GAME_FINISHED"
 const WRONG_PLAYER: String = "WRONG_PLAYER"
@@ -43,28 +11,12 @@ const DUPLICATE_POSITION: String = "DUPLICATE_POSITION"
 const CELL_OCCUPIED: String = "CELL_OCCUPIED"
 const TILES_NOT_ADJACENT: String = "TILES_NOT_ADJACENT"
 const NOT_TOUCHING_BOARD: String = "NOT_TOUCHING_BOARD"
-
+const TRACK_MISMATCH: String = "TRACK_MISMATCH"
 
 # ----------------------------------------------------------------------------
 # Hàm chính
-# ----------------------------------------------------------------------------
 
-## Kiểm tra một nước đi.
-##
-## Trả về ValidationResult:
-##   {
-##       "is_valid": bool,
-##       "error_code": String,
-##       "message": String,
-##       "invalid_positions": Array[Vector2i]
-##   }
-##
-## Khi hợp lệ: is_valid = true, error_code = "OK", invalid_positions rỗng.
-## Chỉ dừng ở lỗi ĐẦU TIÊN tìm thấy — mỗi lần chỉ báo một lý do cho người chơi dễ hiểu.
 static func validate_move(state: GameState, move: Dictionary) -> Dictionary:
-	# --- Game đã kết thúc ---
-	# Chặn theo GAME_FINISHED chứ không phải "khác PLACING", để khi Công thêm
-	# phase IMPOSSIBLE_REVIEW thì đối thủ vẫn đặt được tile trong giai đoạn đó.
 	if state.phase == GameState.GamePhase.GAME_FINISHED:
 		return _fail(GAME_FINISHED, "Ván đấu đã kết thúc.", [])
 
@@ -85,7 +37,14 @@ static func validate_move(state: GameState, move: Dictionary) -> Dictionary:
 	if tiles.is_empty():
 		return _fail(INVALID_TILE_COUNT, "Phải đặt ít nhất 1 tile.", [])
 
-	if tiles.size() > PlacementHelper.MAX_TILES_PER_MOVE:
+	var in_impossible_review := ImpossibleFlow.is_in_review(
+		state.impossible_declared_by
+)
+
+	if (
+		not in_impossible_review
+		and tiles.size() > PlacementHelper.MAX_TILES_PER_MOVE
+	):
 		return _fail(
 			INVALID_TILE_COUNT,
 			"Mỗi lượt chỉ được đặt tối đa %d tile." % PlacementHelper.MAX_TILES_PER_MOVE,
@@ -139,29 +98,42 @@ static func validate_move(state: GameState, move: Dictionary) -> Dictionary:
 			occupied
 		)
 
-	# --- Các tile mới phải liền cụm ---
+	# --- Luật vị trí ---
 	var positions: Array[Vector2i] = _collect_positions(tiles)
 
-	if not PlacementHelper.is_cluster_contiguous(positions):
-		return _fail(
-			TILES_NOT_ADJACENT,
-			"Các tile đặt trong cùng một lượt phải kề cạnh nhau.",
-			positions
-		)
+	if in_impossible_review:
+		if not _are_tiles_placeable_sequentially(state.board, tiles):
+			return _fail(
+				NOT_TOUCHING_BOARD,
+				"Mỗi tile phải được đặt kề với board tại thời điểm đặt.",
+				positions
+			)
+	else:
+		if not PlacementHelper.is_cluster_contiguous(positions):
+			return _fail(
+				TILES_NOT_ADJACENT,
+				"Các tile đặt trong cùng một lượt phải kề cạnh nhau.",
+				positions
+			)
 
-	# --- Ít nhất một tile chạm board ---
-	if not PlacementHelper.cluster_touches_board(state.board, positions):
-		return _fail(
-			NOT_TOUCHING_BOARD,
-			"Ít nhất một tile mới phải kề cạnh tile đã có trên bàn.",
-			positions
-		)
+		if not PlacementHelper.cluster_touches_board(state.board, positions):
+			return _fail(
+				NOT_TOUCHING_BOARD,
+				"Ít nhất một tile mới phải kề cạnh tile đã có trên bàn.",
+				positions
+			)
 
-	# TODO Giai đoạn 3: luật thẳng hàng (sau khi chốt với Công).
-	# TODO Giai đoạn 3: điều kiện kết nối đường ray.
+	# --- Kiểm tra hướng ray cho CẢ normal và Impossible ---
+	var mismatch_positions := _find_track_mismatches(state.board, tiles)
+
+	if not mismatch_positions.is_empty():
+		return _fail(
+			TRACK_MISMATCH,
+			"Đầu ray không được đâm vào cạnh kín của tile kề.",
+			mismatch_positions
+		)
 
 	return _ok()
-
 
 # ----------------------------------------------------------------------------
 # Nội bộ
@@ -175,7 +147,6 @@ static func _ok() -> Dictionary:
 		"message": "",
 		"invalid_positions": empty,
 	}
-
 
 static func _fail(code: String, message: String, positions: Array) -> Dictionary:
 	var invalid: Array[Vector2i] = []
@@ -206,3 +177,80 @@ static func _is_valid_move_tile(tile: Variant) -> bool:
 		"type": tile.get("type", -1),
 		"rotation": tile.get("rotation", -1),
 	})
+
+static func _find_track_mismatches(
+	board: Dictionary,
+	tiles: Array
+) -> Array[Vector2i]:
+	var invalid: Array[Vector2i] = []
+
+	var simulated_board: Dictionary = board.duplicate(true)
+
+	for tile in tiles:
+		simulated_board[tile["position"]] = {
+			"type": tile["type"],
+			"rotation": tile["rotation"],
+		}
+
+	for tile in tiles:
+		var position: Vector2i = tile["position"]
+
+		var edges: Array[String] = MonoTile.get_open_edges(
+			tile["type"],
+			tile["rotation"]
+		)
+
+		for edge_key in MonoTile.EDGE_OFFSETS.keys():
+			var edge: String = edge_key
+			var neighbor_position: Vector2i = (
+				position + MonoTile.EDGE_OFFSETS[edge]
+			)
+
+			if not simulated_board.has(neighbor_position):
+				continue
+
+			var neighbor: Dictionary = simulated_board[neighbor_position]
+
+			var neighbor_edges: Array[String] = MonoTile.get_open_edges(
+				neighbor["type"],
+				neighbor["rotation"]
+			)
+
+			var this_open: bool = edges.has(edge)
+			var neighbor_open: bool = neighbor_edges.has(
+				MonoTile.OPPOSITE_EDGE[edge]
+			)
+
+			if this_open != neighbor_open:
+				if not invalid.has(position):
+					invalid.append(position)
+
+	return invalid
+
+static func _are_tiles_placeable_sequentially(
+	board: Dictionary,
+	tiles: Array
+) -> bool:
+	var simulated_board: Dictionary = board.duplicate(true)
+
+	for tile in tiles:
+		var position: Vector2i = tile["position"]
+		var touches_board := false
+
+		for edge_key in MonoTile.EDGE_OFFSETS.keys():
+			var offset: Vector2i = MonoTile.EDGE_OFFSETS[edge_key]
+			var neighbor_position := position + offset
+
+			if simulated_board.has(neighbor_position):
+				touches_board = true
+				break
+
+		if not touches_board:
+			return false
+
+		simulated_board[position] = {
+			"type": tile["type"],
+			"rotation": tile["rotation"],
+		}
+
+	return true

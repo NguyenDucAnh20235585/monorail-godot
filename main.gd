@@ -12,6 +12,9 @@ var pending_move: PendingMove
 @onready var end_game_overlay: Control = $GameplayUI/EndGameOverlay
 @onready var winner_label: Label = $GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer/WinnerLabel
 @onready var impossible_scene: Control = $GameplayUI/ImpossibleScene
+@onready var impossible_button: Button = $GameplayUI/HUD/TopRow/TopCenterZone/ImpossibleButton
+@onready var impossible_message: Label = $GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content/MessageLabel
+@onready var impossible_action_button: Button = $GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content/ButtonRow/DeclareButton
 
 func add_game_log(message: String) -> void:
 	game_log.append_text(message + "\n")
@@ -46,6 +49,11 @@ func update_hud():
 
 	remaining_tiles_label.text = "TILES: %d" % game_state.remaining_tiles
 	
+	if ImpossibleFlow.is_in_review(game_state.impossible_declared_by):
+		impossible_button.text = "Give Up"
+	else:
+		impossible_button.text = "IMPOSSIBLE"
+	
 func start_turn():
 	reset_pending_move()	
 	$Board.set_pending_move(pending_move.to_move())
@@ -69,7 +77,7 @@ func confirm_move():
 		return
 
 	var move := pending_move.to_move()
-	
+
 	var confirmed_player := game_state.current_player + 1
 	var straight_count := 0
 	var corner_count := 0
@@ -90,9 +98,7 @@ func confirm_move():
 	RulesEngine.apply_move(game_state, move)
 	$Board.set_board(game_state.board)
 
-	RulesEngine.end_turn(game_state)
-	start_turn()
-	
+	# Ghi lịch sử nước đi
 	var parts: Array[String] = []
 
 	if straight_count > 0:
@@ -111,6 +117,37 @@ func confirm_move():
 		"Player %d placed %s."
 		% [confirmed_player, " and ".join(parts)]
 	)
+
+	# --- Impossible review ---
+	if ImpossibleFlow.is_in_review(game_state.impossible_declared_by):
+		var review_result := ImpossibleFlow.resolve_after_move(
+			game_state,
+			move,
+			game_state.impossible_declared_by
+		)
+
+		if review_result["is_finished"]:
+			game_state.winner = review_result["winner"]
+			game_state.phase = GameState.GamePhase.GAME_FINISHED
+			add_game_log(review_result["message"])
+			show_end_game(game_state.winner)
+			return
+
+		# Challenger tiếp tục đi, KHÔNG đổi lượt.
+		start_turn()
+		return
+
+	# --- Normal game ---
+	var win_result := WinChecker.check_win(game_state, move)
+
+	if win_result["is_win"]:
+		game_state.winner = win_result["winner"]
+		game_state.phase = GameState.GamePhase.GAME_FINISHED
+		show_end_game(game_state.winner)
+		return
+
+	RulesEngine.end_turn(game_state)
+	start_turn()
 
 	print("Move confirmed")
 	print("Remaining tiles: ", game_state.remaining_tiles)
@@ -135,16 +172,22 @@ func _on_cancel_button_pressed():
 	cancel_pending_move()
 	
 func get_pending_tile_limit() -> int:
+	if ImpossibleFlow.is_in_review(game_state.impossible_declared_by):
+		return game_state.remaining_tiles
+
 	return mini(3, game_state.remaining_tiles)
 
 func update_placement_indicators():
-	var positions := PlacementHelper.get_placeable_positions(
-		game_state.board,
-		pending_move.get_tiles()
+	var in_review := ImpossibleFlow.is_in_review(
+		game_state.impossible_declared_by
 	)
 
-	if pending_move.size() >= get_pending_tile_limit():
-		positions.clear()
+	var positions := PlacementHelper.get_placeable_positions(
+		game_state.board,
+		pending_move.get_tiles(),
+		get_pending_tile_limit(),
+		in_review
+	)
 
 	$Board.set_indicators(positions)
 
@@ -167,10 +210,13 @@ func _on_board_indicator_clicked(grid_pos: Vector2i):
 		print("Pending move reached tile limit")
 		return
 
+	var default_rotation := 1 if selected_tile_type == MonoTile.TileType.STRAIGHT else 0
+
 	var added := pending_move.add_tile(
 		grid_pos,
 		selected_tile_type,
-		0
+		default_rotation,
+		get_pending_tile_limit()
 	)
 
 	if not added:
@@ -218,7 +264,58 @@ func _on_back_to_menu_button_pressed():
 	get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn")
 
 func _on_impossible_button_pressed():
+	if ImpossibleFlow.is_in_review(game_state.impossible_declared_by):
+		impossible_message.text = "Give up? The declaring player will win."
+		impossible_action_button.text = "GIVE UP"
+		impossible_scene.visible = true
+		return
+
+	var check := ImpossibleFlow.can_declare(
+		game_state,
+		game_state.current_player,
+		pending_move.size(),
+		game_state.impossible_declared_by
+	)
+
+	if not check["is_allowed"]:
+		add_game_log(check["message"])
+		return
+
+	impossible_message.text = "Declare this monorail impossible?"
+	impossible_action_button.text = "Declare"
 	impossible_scene.visible = true
 
 func _on_impossible_cancel_button_pressed():
 	impossible_scene.visible = false
+
+func _on_impossible_declare_button_pressed():
+	if ImpossibleFlow.is_in_review(game_state.impossible_declared_by):
+		game_state.winner = game_state.impossible_declared_by
+		game_state.phase = GameState.GamePhase.GAME_FINISHED
+
+		impossible_scene.visible = false
+		add_game_log(
+			"Player %d gave up. Player %d wins."
+			% [game_state.current_player + 1, game_state.winner + 1]
+		)
+		show_end_game(game_state.winner)
+		return
+		
+	var result := ImpossibleFlow.declare_impossible(
+		game_state,
+		game_state.current_player,
+		pending_move.size(),
+		game_state.impossible_declared_by
+	)
+
+	if not result["is_valid"]:
+		add_game_log(result["message"])
+		return
+
+	game_state.impossible_declared_by = result["declared_by"]
+	game_state.current_player = result["challenger"]
+
+	impossible_scene.visible = false
+
+	add_game_log(result["message"])
+	start_turn()

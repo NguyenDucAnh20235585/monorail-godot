@@ -88,9 +88,15 @@ func get_tiles() -> Array:
 ## Trả về false nếu đã đủ 3 tile hoặc ô đó đã có pending tile.
 ## KHÔNG kiểm tra ô có bị board chiếm không — gọi PlacementHelper.can_place_at()
 ## trước khi gọi hàm này.
-func add_tile(position: Vector2i, type: int, rotation: int = 0) -> bool:
-	if is_full():
+func add_tile(
+	position: Vector2i,
+	type: int,
+	rotation: int = 0,
+	max_tiles: int = MAX_TILES
+) -> bool:
+	if tiles.size() >= max_tiles:
 		return false
+
 	if has_tile_at(position):
 		return false
 

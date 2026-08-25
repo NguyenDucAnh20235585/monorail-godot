@@ -12,3 +12,4 @@ enum GamePhase {
 
 var phase: GamePhase = GamePhase.PLACING
 var winner: int = -1
+var impossible_declared_by: int = -1
