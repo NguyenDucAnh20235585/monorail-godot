@@ -1,4 +1,4 @@
-extends Node
+extends TestCase
 
 # ============================================================================
 # Monorail — Test placement helper / pending move / move validator
@@ -6,21 +6,15 @@ extends Node
 # Giai đoạn 2
 #
 # Cách chạy: mở scenes/TileTestRunner.tscn rồi bấm F6.
-# Kết quả PASS/FAIL in ra Output panel.
 # ============================================================================
 
 ## Viết tắt cho gọn trong test.
 var straight: int = MonoTile.TileType.STRAIGHT
 var corner: int = MonoTile.TileType.CORNER
 
-var _passed: int = 0
-var _failed: int = 0
-
 
 func _ready() -> void:
-	print("\n=========================================")
-	print("  MONORAIL — PLACEMENT / PENDING / VALIDATOR")
-	print("=========================================")
+	_begin("MONORAIL — PLACEMENT / PENDING / VALIDATOR")
 
 	_test_initial_state_contract()
 	_test_occupancy()
@@ -588,20 +582,16 @@ func _test_validator_does_not_touch_state() -> void:
 
 
 # ----------------------------------------------------------------------------
-# Hạ tầng test
+# Hạ tầng riêng của nhóm test này
+# (phần đếm PASS/FAIL nằm ở tests/test_case.gd)
 # ----------------------------------------------------------------------------
 
 func _assert_valid(state: GameState, move: Dictionary, label: String) -> void:
 	var result: Dictionary = MoveValidator.validate_move(state, move)
 	if result["is_valid"]:
-		_passed += 1
-		print("  PASS  %s" % label)
+		_pass(label)
 	else:
-		_failed += 1
-		print("  FAIL  %s (bị chặn bởi %s: %s)" % [
-			label, result["error_code"], result["message"]
-		])
-		push_error("[placement test] FAIL: %s" % label)
+		_fail("%s (bị chặn bởi %s: %s)" % [label, result["error_code"], result["message"]])
 
 
 func _assert_error(
@@ -609,50 +599,6 @@ func _assert_error(
 ) -> void:
 	var result: Dictionary = MoveValidator.validate_move(state, move)
 	if not result["is_valid"] and result["error_code"] == expected_code:
-		_passed += 1
-		print("  PASS  %s -> %s" % [label, expected_code])
+		_pass("%s -> %s" % [label, expected_code])
 	else:
-		_failed += 1
-		print("  FAIL  %s (mong đợi %s, nhận %s)" % [
-			label, expected_code, result["error_code"]
-		])
-		push_error("[placement test] FAIL: %s" % label)
-
-
-func _group(title: String) -> void:
-	print("\n--- %s ---" % title)
-
-
-func _assert_true(condition: bool, label: String) -> void:
-	if condition:
-		_passed += 1
-		print("  PASS  %s" % label)
-	else:
-		_failed += 1
-		print("  FAIL  %s" % label)
-		push_error("[placement test] FAIL: %s" % label)
-
-
-func _assert_false(condition: bool, label: String) -> void:
-	_assert_true(not condition, label)
-
-
-func _assert_eq(actual: Variant, expected: Variant, label: String) -> void:
-	if actual == expected:
-		_passed += 1
-		print("  PASS  %s" % label)
-	else:
-		_failed += 1
-		print("  FAIL  %s (nhận %s, mong đợi %s)" % [label, str(actual), str(expected)])
-		push_error("[placement test] FAIL: %s" % label)
-
-
-func _print_summary() -> void:
-	var total: int = _passed + _failed
-	print("\n=========================================")
-	print("  TỔNG: %d test | PASS %d | FAIL %d" % [total, _passed, _failed])
-	if _failed == 0:
-		print("  TẤT CẢ TEST ĐỀU PASS")
-	else:
-		print("  CÓ TEST FAIL — xem log phía trên")
-	print("=========================================")
+		_fail("%s (mong đợi %s, nhận %s)" % [label, expected_code, result["error_code"]])
