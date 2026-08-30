@@ -13,14 +13,14 @@ enum PlayerController {
 
 var player_controllers: Array[PlayerController] = []
 
-@onready var player_1_label: Label = $GameplayUI/HUD/TopRow/Player1Label
-@onready var player_2_label: Label = $GameplayUI/HUD/TopRow/Player2Label
-@onready var remaining_tiles_label: Label = $GameplayUI/HUD/TopRow/TopCenterZone/RemainingTilesLabel
-@onready var game_log: RichTextLabel = $GameplayUI/HUD/BottomRow/RightZone/GameLog
+@onready var player_1_label: Label = $GameplayUI/HUDV2/MainLayout/TopArea/TopBar/LeftSide/Player1Label
+@onready var player_2_label: Label = $GameplayUI/HUDV2/MainLayout/TopArea/TopBar/RightSide/Player2Label
+@onready var remaining_tiles_label: Label = $GameplayUI/HUDV2/MainLayout/TopArea/TopBar/CenterInfo/RemainingTilesLabel
+@onready var impossible_button: Button = $GameplayUI/HUDV2/MainLayout/TopArea/TopBar/CenterInfo/ImpossibleButton
+@onready var game_log: RichTextLabel = $GameplayUI/HUDV2/MainLayout/BottomArea/BottomLayout/ControlsRow/RightControls/GameLog
 @onready var end_game_overlay: Control = $GameplayUI/EndGameOverlay
 @onready var winner_label: Label = $GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer/WinnerLabel
 @onready var impossible_scene: Control = $GameplayUI/ImpossibleScene
-@onready var impossible_button: Button = $GameplayUI/HUD/TopRow/TopCenterZone/ImpossibleButton
 @onready var impossible_message: Label = $GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content/MessageLabel
 @onready var impossible_action_button: Button = $GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content/ButtonRow/DeclareButton
 
@@ -78,11 +78,11 @@ func _on_confirm_button_pressed():
 	
 func update_hud():
 	if game_state.current_player == 0:
-		player_1_label.text = "● PLAYER 1"
+		player_1_label.text = "⬢ PLAYER 1"
 		player_2_label.text = "PLAYER 2"
 	else:
 		player_1_label.text = "PLAYER 1"
-		player_2_label.text = "● PLAYER 2"
+		player_2_label.text = "⬢ PLAYER 2"
 
 	remaining_tiles_label.text = "TILES: %d" % game_state.remaining_tiles
 	
