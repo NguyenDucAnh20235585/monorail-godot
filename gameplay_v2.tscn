@@ -43,7 +43,7 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.4509804, 0.5411765, 0.5882353, 1)
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -68,12 +68,12 @@ shadow_size = 3
 shadow_offset = Vector2(0, 2)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efxa6"]
-bg_color = Color(0.15294118, 0.20784314, 0.23921569, 0.003921569)
+bg_color = Color(0.22352941, 0.29411766, 0.34117648, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.5686275, 0.6666667, 0.70980394, 1)
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -88,7 +88,7 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.4509804, 0.5411765, 0.5882353, 1)
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -103,7 +103,7 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.3764706, 0.4627451, 0.5019608, 1)
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -123,7 +123,7 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
-shadow_color = Color(0, 0, 0, 0)
+shadow_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
 shadow_size = 3
 shadow_offset = Vector2(0, 2)
 
@@ -180,7 +180,97 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.43529412, 0.5294118, 0.57254905, 1)
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rnw2r"]
+bg_color = Color(0.84313726, 0.65882355, 0.29411766, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.90588236, 0.76862746, 0.46666667, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7024m"]
+bg_color = Color(0.7372549, 0.5568628, 0.21176471, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.90588236, 0.76862746, 0.46666667, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8f350"]
+bg_color = Color(0.88235295, 0.7137255, 0.3647059, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.90588236, 0.76862746, 0.46666667, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u1003"]
+bg_color = Color(0.27450982, 0.33333334, 0.3882353, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0sb3x"]
+bg_color = Color(0.22352941, 0.2784314, 0.32156864, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_354db"]
+bg_color = Color(0.33333334, 0.4, 0.45490196, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -190,12 +280,87 @@ shadow_size = 3
 shadow_offset = Vector2(0, 2)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2cqfq"]
-bg_color = Color(0.14117648, 0.20392157, 0.24313726, 1)
+bg_color = Color(0.1882353, 0.21960784, 0.25490198, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.3764706, 0.6156863, 0.6901961, 1)
+border_color = Color(0.27450982, 0.33333334, 0.3882353, 1)
+corner_detail = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xad4f"]
+bg_color = Color(0.27450982, 0.33333334, 0.3882353, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jill7"]
+bg_color = Color(0.22352941, 0.2784314, 0.32156864, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tld6k"]
+bg_color = Color(0.33333334, 0.4, 0.45490196, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5254902, 0.76862746, 0.8352941, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h621w"]
+bg_color = Color(0.72156864, 0.39607844, 0.3529412, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.56078434, 0.32941177, 0.29803923, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5t2yk"]
+bg_color = Color(0.61960787, 0.32941177, 0.29411766, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.56078434, 0.32941177, 0.29803923, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0.7607843, 0.47843137, 0.44705883, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6crm3"]
+bg_color = Color(0.78431374, 0.45490196, 0.40784314, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.56078434, 0.32941177, 0.29803923, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0.88235295, 0.627451, 0.5921569, 1)
 
 [node name="Main" type="Node" unique_id=1208397320]
 script = ExtResource("1_hiya0")
@@ -337,7 +502,7 @@ theme_override_constants/margin_left = 24
 
 [node name="Player1Label" type="Label" parent="GameplayUI/HUDV2/MainLayout/TopArea/TopBar/LeftSide" unique_id=1338864630]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.07444572, 0.07444573, 0.07444573, 1)
+theme_override_colors/font_color = Color(0.9254902, 0.91764706, 0.89411765, 1)
 theme_override_colors/font_shadow_color = Color(0.15199637, 0.15199634, 0.15199634, 0)
 theme_override_fonts/font = ExtResource("4_jill7")
 theme_override_font_sizes/font_size = 28
@@ -350,7 +515,7 @@ alignment = 1
 
 [node name="RemainingTilesLabel" type="Label" parent="GameplayUI/HUDV2/MainLayout/TopArea/TopBar/CenterInfo" unique_id=551859937]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.080783345, 0.080783345, 0.080783345, 1)
+theme_override_colors/font_color = Color(0.9254902, 0.91764706, 0.89411765, 1)
 theme_override_colors/font_shadow_color = Color(0.093160845, 0.093160845, 0.09316083, 0)
 theme_override_constants/line_spacing = 2
 theme_override_constants/shadow_outline_size = 10
@@ -381,7 +546,7 @@ theme_override_constants/margin_right = 24
 
 [node name="Player2Label" type="Label" parent="GameplayUI/HUDV2/MainLayout/TopArea/TopBar/RightSide" unique_id=1890284870]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.0010853444, 0.0010853446, 0.0010853445, 1)
+theme_override_colors/font_color = Color(0.9254902, 0.91764706, 0.89411765, 1)
 theme_override_colors/font_shadow_color = Color(0.093160845, 0.093160845, 0.09316083, 0)
 theme_override_constants/shadow_outline_size = 10
 theme_override_fonts/font = ExtResource("4_jill7")
@@ -509,7 +674,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.1254902, 0.16470589, 0.1882353, 1)
+color = Color(0.1254902, 0.14509805, 0.16862746, 1)
 
 [node name="CenterContainer" type="CenterContainer" parent="GameplayUI/EndGameOverlay" unique_id=316692667]
 layout_mode = 1
@@ -526,16 +691,32 @@ theme_override_constants/separation = 16
 
 [node name="WinnerLabel" type="Label" parent="GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer" unique_id=650253867]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_colors/font_color = Color(0.84313726, 0.65882355, 0.29411766, 1)
+theme_override_fonts/font = ExtResource("4_jill7")
+theme_override_font_sizes/font_size = 46
 text = "PLAYER 1 WINS"
 horizontal_alignment = 1
 
 [node name="PlayAgainButton" type="Button" parent="GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer" unique_id=1077915538]
+custom_minimum_size = Vector2(260, 54)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_colors/font_pressed_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_colors/font_hover_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_rnw2r")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7024m")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8f350")
 text = "PLAY AGAIN"
 
 [node name="BackToMenuButton" type="Button" parent="GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer" unique_id=1515880853]
+custom_minimum_size = Vector2(260, 54)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_colors/font_pressed_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_colors/font_hover_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_u1003")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0sb3x")
+theme_override_styles/hover = SubResource("StyleBoxFlat_354db")
 text = "BACK TO MENU"
 
 [node name="ImpossibleScene" type="Control" parent="GameplayUI" unique_id=2061374961]
@@ -565,17 +746,19 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="GameplayUI/ImpossibleScene/CenterContainer" unique_id=746319529]
-custom_minimum_size = Vector2(420, 180)
+custom_minimum_size = Vector2(440, 180)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_2cqfq")
 
 [node name="Content" type="VBoxContainer" parent="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer" unique_id=129488349]
 layout_mode = 2
-theme_override_constants/separation = 14
+theme_override_constants/separation = 22
 alignment = 1
 
 [node name="MessageLabel" type="Label" parent="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content" unique_id=668971167]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.9254902, 0.9098039, 0.8745098, 1)
+theme_override_font_sizes/font_size = 22
 text = "Declare this monorail impossible?"
 horizontal_alignment = 1
 
@@ -585,12 +768,22 @@ theme_override_constants/separation = 20
 alignment = 1
 
 [node name="CancelButton" type="Button" parent="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content/ButtonRow" unique_id=1553929276]
+custom_minimum_size = Vector2(120, 44)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.9254902, 0.9098039, 0.8745098, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_xad4f")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jill7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tld6k")
 text = "Cancel
 "
 
 [node name="DeclareButton" type="Button" parent="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content/ButtonRow" unique_id=1803974468]
+custom_minimum_size = Vector2(120, 44)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.9254902, 0.9098039, 0.8745098, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_h621w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5t2yk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6crm3")
 text = "Declare"
 
 [connection signal="indicator_clicked" from="Board" to="." method="_on_board_indicator_clicked"]
