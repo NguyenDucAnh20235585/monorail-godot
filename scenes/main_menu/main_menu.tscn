@@ -51,6 +51,141 @@ thickness = 9
 color = Color(0.8782683, 0.52268225, 0.5579117, 1)
 thickness = 9
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ovsr"]
+bg_color = Color(0.27450982, 0.33333334, 0.3882353, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5seab"]
+bg_color = Color(0.22352941, 0.2784314, 0.32156864, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4xg86"]
+bg_color = Color(0.33333334, 0.4, 0.45490196, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_thkx5"]
+bg_color = Color(0.27450982, 0.33333334, 0.3882353, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x2yjq"]
+bg_color = Color(0.22352941, 0.2784314, 0.32156864, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lqpn7"]
+bg_color = Color(0.33333334, 0.4, 0.45490196, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qel0l"]
+bg_color = Color(0.27450982, 0.33333334, 0.3882353, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rrgl4"]
+bg_color = Color(0.22352941, 0.2784314, 0.32156864, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dn3lk"]
+bg_color = Color(0.33333334, 0.4, 0.45490196, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
 [node name="MainMenu" type="Control" unique_id=187986517]
 layout_mode = 3
 anchors_preset = 15
@@ -334,24 +469,47 @@ grow_vertical = 2
 
 [node name="Content" type="VBoxContainer" parent="TurnOrder/CenterContainer" unique_id=1780884930]
 layout_mode = 2
+theme_override_constants/separation = 22
+alignment = 1
 
 [node name="TitleLabel" type="Label" parent="TurnOrder/CenterContainer/Content" unique_id=299233464]
 layout_mode = 2
-text = "Choose the order"
+theme_override_colors/font_color = Color(0.84313726, 0.65882355, 0.29411766, 1)
+theme_override_fonts/font = ExtResource("2_0ebjn")
+theme_override_font_sizes/font_size = 32
+text = "CHOOSE THE ORDER"
+horizontal_alignment = 1
 
 [node name="ButtonRow" type="HBoxContainer" parent="TurnOrder/CenterContainer/Content" unique_id=2073682734]
 layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
 
 [node name="GoFirst" type="Button" parent="TurnOrder/CenterContainer/Content/ButtonRow" unique_id=719211189]
+custom_minimum_size = Vector2(175, 50)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.9254902, 0.9098039, 0.8745098, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_3ovsr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5seab")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4xg86")
 text = "GO 1ST"
 
 [node name="GoSecond" type="Button" parent="TurnOrder/CenterContainer/Content/ButtonRow" unique_id=2029018821]
+custom_minimum_size = Vector2(175, 50)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.9254902, 0.9098039, 0.8745098, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_thkx5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_x2yjq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lqpn7")
 text = "GO 2ND"
 
 [node name="Random" type="Button" parent="TurnOrder/CenterContainer/Content/ButtonRow" unique_id=1075721969]
+custom_minimum_size = Vector2(175, 50)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.9254902, 0.9098039, 0.8745098, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_qel0l")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rrgl4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dn3lk")
 text = "RANDOM"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=282359540]

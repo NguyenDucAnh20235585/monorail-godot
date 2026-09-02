@@ -13,11 +13,11 @@ enum PlayerController {
 
 var player_controllers: Array[PlayerController] = []
 
-@onready var player_1_label: Label = $GameplayUI/HUDV2/MainLayout/TopArea/TopBar/LeftSide/Player1Label
-@onready var player_2_label: Label = $GameplayUI/HUDV2/MainLayout/TopArea/TopBar/RightSide/Player2Label
-@onready var remaining_tiles_label: Label = $GameplayUI/HUDV2/MainLayout/TopArea/TopBar/CenterInfo/RemainingTilesLabel
-@onready var impossible_button: Button = $GameplayUI/HUDV2/MainLayout/TopArea/TopBar/CenterInfo/ImpossibleButton
-@onready var game_log: RichTextLabel = $GameplayUI/HUDV2/MainLayout/BottomArea/BottomLayout/ControlsRow/RightControls/GameLog
+@onready var player_1_label: Label = $GameplayUI/HUD/MainLayout/TopArea/TopBar/LeftSide/Player1Label
+@onready var player_2_label: Label = $GameplayUI/HUD/MainLayout/TopArea/TopBar/RightSide/Player2Label
+@onready var remaining_tiles_label: Label = $GameplayUI/HUD/MainLayout/TopArea/TopBar/CenterInfo/RemainingTilesLabel
+@onready var impossible_button: Button = $GameplayUI/HUD/MainLayout/TopArea/TopBar/CenterInfo/ImpossibleButton
+@onready var game_log: RichTextLabel = $GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/RightControls/GameLog
 @onready var end_game_overlay: Control = $GameplayUI/EndGameOverlay
 @onready var winner_label: Label = $GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer/WinnerLabel
 @onready var impossible_scene: Control = $GameplayUI/ImpossibleScene
@@ -306,7 +306,7 @@ func _on_back_to_menu_button_pressed():
 func _on_impossible_button_pressed():
 	if ImpossibleFlow.is_in_review(game_state.impossible_declared_by):
 		impossible_message.text = "Give up? The declaring player will win."
-		impossible_action_button.text = "GIVE UP"
+		impossible_action_button.text = "Give up"
 		impossible_scene.visible = true
 		return
 

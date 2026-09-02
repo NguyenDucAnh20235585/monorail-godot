@@ -375,7 +375,7 @@ script = ExtResource("3_7mycd")
 
 [node name="GameplayUI" type="CanvasLayer" parent="." unique_id=990129623]
 
-[node name="HUDV2" type="Control" parent="GameplayUI" unique_id=498430183]
+[node name="HUD" type="Control" parent="GameplayUI" unique_id=498430183]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -384,7 +384,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MainLayout" type="VBoxContainer" parent="GameplayUI/HUDV2" unique_id=2120043514]
+[node name="MainLayout" type="VBoxContainer" parent="GameplayUI/HUD" unique_id=2120043514]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -392,11 +392,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TopArea" type="Control" parent="GameplayUI/HUDV2/MainLayout" unique_id=1163806924]
+[node name="TopArea" type="Control" parent="GameplayUI/HUD/MainLayout" unique_id=1163806924]
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 
-[node name="TopBar" type="HBoxContainer" parent="GameplayUI/HUDV2/MainLayout/TopArea" unique_id=1325801741]
+[node name="TopBar" type="HBoxContainer" parent="GameplayUI/HUD/MainLayout/TopArea" unique_id=1325801741]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -404,12 +404,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LeftSide" type="MarginContainer" parent="GameplayUI/HUDV2/MainLayout/TopArea/TopBar" unique_id=1691835040]
+[node name="LeftSide" type="MarginContainer" parent="GameplayUI/HUD/MainLayout/TopArea/TopBar" unique_id=1691835040]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 24
 
-[node name="Player1Label" type="Label" parent="GameplayUI/HUDV2/MainLayout/TopArea/TopBar/LeftSide" unique_id=1338864630]
+[node name="Player1Label" type="Label" parent="GameplayUI/HUD/MainLayout/TopArea/TopBar/LeftSide" unique_id=1338864630]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9254902, 0.91764706, 0.89411765, 1)
 theme_override_colors/font_shadow_color = Color(0.15199637, 0.15199634, 0.15199634, 0)
@@ -417,12 +417,12 @@ theme_override_fonts/font = ExtResource("3_h2yge")
 theme_override_font_sizes/font_size = 28
 text = "⬢ PLAYER 1"
 
-[node name="CenterInfo" type="HBoxContainer" parent="GameplayUI/HUDV2/MainLayout/TopArea/TopBar" unique_id=995534444]
+[node name="CenterInfo" type="HBoxContainer" parent="GameplayUI/HUD/MainLayout/TopArea/TopBar" unique_id=995534444]
 layout_mode = 2
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="RemainingTilesLabel" type="Label" parent="GameplayUI/HUDV2/MainLayout/TopArea/TopBar/CenterInfo" unique_id=551859937]
+[node name="RemainingTilesLabel" type="Label" parent="GameplayUI/HUD/MainLayout/TopArea/TopBar/CenterInfo" unique_id=551859937]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9254902, 0.91764706, 0.89411765, 1)
 theme_override_colors/font_shadow_color = Color(0.093160845, 0.093160845, 0.09316083, 0)
@@ -432,7 +432,7 @@ theme_override_fonts/font = ExtResource("3_h2yge")
 theme_override_font_sizes/font_size = 30
 text = "Tiles: 24"
 
-[node name="ImpossibleButton" type="Button" parent="GameplayUI/HUDV2/MainLayout/TopArea/TopBar/CenterInfo" unique_id=1074076662]
+[node name="ImpossibleButton" type="Button" parent="GameplayUI/HUD/MainLayout/TopArea/TopBar/CenterInfo" unique_id=1074076662]
 custom_minimum_size = Vector2(108, 30)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -448,12 +448,12 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_lquwl")
 theme_override_styles/hover = SubResource("StyleBoxFlat_h2yge")
 text = "Impossible"
 
-[node name="RightSide" type="MarginContainer" parent="GameplayUI/HUDV2/MainLayout/TopArea/TopBar" unique_id=1691410048]
+[node name="RightSide" type="MarginContainer" parent="GameplayUI/HUD/MainLayout/TopArea/TopBar" unique_id=1691410048]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_right = 24
 
-[node name="Player2Label" type="Label" parent="GameplayUI/HUDV2/MainLayout/TopArea/TopBar/RightSide" unique_id=1890284870]
+[node name="Player2Label" type="Label" parent="GameplayUI/HUD/MainLayout/TopArea/TopBar/RightSide" unique_id=1890284870]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9254902, 0.91764706, 0.89411765, 1)
 theme_override_colors/font_shadow_color = Color(0.093160845, 0.093160845, 0.09316083, 0)
@@ -463,17 +463,17 @@ theme_override_font_sizes/font_size = 28
 text = "PLAYER 2"
 horizontal_alignment = 2
 
-[node name="CenterArea" type="Control" parent="GameplayUI/HUDV2/MainLayout" unique_id=380588728]
+[node name="CenterArea" type="Control" parent="GameplayUI/HUD/MainLayout" unique_id=380588728]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="BottomArea" type="Control" parent="GameplayUI/HUDV2/MainLayout" unique_id=53408603]
+[node name="BottomArea" type="Control" parent="GameplayUI/HUD/MainLayout" unique_id=53408603]
 custom_minimum_size = Vector2(0, 130)
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="BottomLayout" type="VBoxContainer" parent="GameplayUI/HUDV2/MainLayout/BottomArea" unique_id=912296563]
+[node name="BottomLayout" type="VBoxContainer" parent="GameplayUI/HUD/MainLayout/BottomArea" unique_id=912296563]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -481,31 +481,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ControlsRow" type="HBoxContainer" parent="GameplayUI/HUDV2/MainLayout/BottomArea/BottomLayout" unique_id=280392677]
+[node name="ControlsRow" type="HBoxContainer" parent="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout" unique_id=280392677]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="LeftControls" type="HBoxContainer" parent="GameplayUI/HUDV2/MainLayout/BottomArea/BottomLayout/ControlsRow" unique_id=1978371113]
+[node name="LeftControls" type="HBoxContainer" parent="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow" unique_id=1978371113]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
 theme_override_constants/separation = 16
 
-[node name="StraightTileObject" type="TextureButton" parent="GameplayUI/HUDV2/MainLayout/BottomArea/BottomLayout/ControlsRow/LeftControls" unique_id=2126241641]
+[node name="StraightTileObject" type="TextureButton" parent="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/LeftControls" unique_id=2126241641]
 custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
 texture_normal = ExtResource("4_1bvp3")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="CornerTileObject" type="TextureButton" parent="GameplayUI/HUDV2/MainLayout/BottomArea/BottomLayout/ControlsRow/LeftControls" unique_id=1875824984]
+[node name="CornerTileObject" type="TextureButton" parent="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/LeftControls" unique_id=1875824984]
 custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
 texture_normal = ExtResource("5_lquwl")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="RotateButton" type="Button" parent="GameplayUI/HUDV2/MainLayout/BottomArea/BottomLayout/ControlsRow/LeftControls" unique_id=704569226]
+[node name="RotateButton" type="Button" parent="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/LeftControls" unique_id=704569226]
 custom_minimum_size = Vector2(88, 36)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -519,14 +519,14 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_efxa6")
 text = "ROTATE
 "
 
-[node name="CenterControls" type="HBoxContainer" parent="GameplayUI/HUDV2/MainLayout/BottomArea/BottomLayout/ControlsRow" unique_id=2002038386]
+[node name="CenterControls" type="HBoxContainer" parent="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow" unique_id=2002038386]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="CancelButton" type="Button" parent="GameplayUI/HUDV2/MainLayout/BottomArea/BottomLayout/ControlsRow/CenterControls" unique_id=1521902884]
+[node name="CancelButton" type="Button" parent="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/CenterControls" unique_id=1521902884]
 custom_minimum_size = Vector2(108, 54)
 layout_mode = 2
 size_flags_vertical = 4
@@ -535,7 +535,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_ycdy4")
 theme_override_styles/hover = SubResource("StyleBoxFlat_w48qg")
 text = "CANCEL"
 
-[node name="ConfirmButton" type="Button" parent="GameplayUI/HUDV2/MainLayout/BottomArea/BottomLayout/ControlsRow/CenterControls" unique_id=994016034]
+[node name="ConfirmButton" type="Button" parent="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/CenterControls" unique_id=994016034]
 custom_minimum_size = Vector2(132, 64)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -549,12 +549,12 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_272bh")
 theme_override_styles/hover = SubResource("StyleBoxFlat_5vw27")
 text = "CONFIRM"
 
-[node name="RightControls" type="MarginContainer" parent="GameplayUI/HUDV2/MainLayout/BottomArea/BottomLayout/ControlsRow" unique_id=1807317531]
+[node name="RightControls" type="MarginContainer" parent="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow" unique_id=1807317531]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
 
-[node name="GameLog" type="RichTextLabel" parent="GameplayUI/HUDV2/MainLayout/BottomArea/BottomLayout/ControlsRow/RightControls" unique_id=1425273130]
+[node name="GameLog" type="RichTextLabel" parent="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/RightControls" unique_id=1425273130]
 custom_minimum_size = Vector2(400, 67)
 layout_mode = 2
 size_flags_vertical = 8
@@ -697,12 +697,12 @@ text = "Declare"
 
 [connection signal="indicator_clicked" from="Board" to="." method="_on_board_indicator_clicked"]
 [connection signal="pending_tile_clicked" from="Board" to="." method="_on_board_pending_tile_clicked"]
-[connection signal="pressed" from="GameplayUI/HUDV2/MainLayout/TopArea/TopBar/CenterInfo/ImpossibleButton" to="." method="_on_impossible_button_pressed"]
-[connection signal="pressed" from="GameplayUI/HUDV2/MainLayout/BottomArea/BottomLayout/ControlsRow/LeftControls/StraightTileObject" to="." method="_on_straight_button_pressed"]
-[connection signal="pressed" from="GameplayUI/HUDV2/MainLayout/BottomArea/BottomLayout/ControlsRow/LeftControls/CornerTileObject" to="." method="_on_corner_button_pressed"]
-[connection signal="pressed" from="GameplayUI/HUDV2/MainLayout/BottomArea/BottomLayout/ControlsRow/LeftControls/RotateButton" to="." method="_on_rotate_button_pressed"]
-[connection signal="pressed" from="GameplayUI/HUDV2/MainLayout/BottomArea/BottomLayout/ControlsRow/CenterControls/CancelButton" to="." method="_on_cancel_button_pressed"]
-[connection signal="pressed" from="GameplayUI/HUDV2/MainLayout/BottomArea/BottomLayout/ControlsRow/CenterControls/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="GameplayUI/HUD/MainLayout/TopArea/TopBar/CenterInfo/ImpossibleButton" to="." method="_on_impossible_button_pressed"]
+[connection signal="pressed" from="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/LeftControls/StraightTileObject" to="." method="_on_straight_button_pressed"]
+[connection signal="pressed" from="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/LeftControls/CornerTileObject" to="." method="_on_corner_button_pressed"]
+[connection signal="pressed" from="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/LeftControls/RotateButton" to="." method="_on_rotate_button_pressed"]
+[connection signal="pressed" from="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/CenterControls/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/CenterControls/ConfirmButton" to="." method="_on_confirm_button_pressed"]
 [connection signal="pressed" from="GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
 [connection signal="pressed" from="GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
 [connection signal="pressed" from="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content/ButtonRow/CancelButton" to="." method="_on_impossible_cancel_button_pressed"]
