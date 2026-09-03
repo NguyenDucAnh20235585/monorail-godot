@@ -65,3 +65,8 @@ func change_zoom(amount: float) -> void:
 
 	global_position += mouse_before - mouse_after
 	force_update_scroll()
+
+func reset_drag_state():
+	left_mouse_down = false
+	is_dragging = false
+	drag_start_position = Vector2.ZERO

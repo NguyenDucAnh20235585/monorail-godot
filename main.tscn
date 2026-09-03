@@ -6,9 +6,11 @@
 [ext_resource type="FontFile" uid="uid://dl7sgbrkes2vd" path="res://assets/font/ARCADECLASSIC.TTF" id="3_h2yge"]
 [ext_resource type="Texture2D" uid="uid://cu2duj0vw86v5" path="res://assets/png/Straight_tile.png" id="4_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://bja2egrh1pukd" path="res://assets/png/Curve_tile.png" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://cqldyfbrhtlxg" path="res://scenes/main_menu/audio_control.gd" id="7_5vw27"]
+[ext_resource type="Script" uid="uid://bhjrnyefa0xyl" path="res://scenes/main_menu/display_section.gd" id="8_kek77"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3owqy"]
-bg_color = Color(0.2627451, 0.33333334, 0.35686275, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yaehf"]
+bg_color = Color(0.27450982, 0.33333334, 0.3882353, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -18,7 +20,38 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
-shadow_color = Color(0.083911665, 0.083911665, 0.083911665, 0.6)
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_074og"]
+bg_color = Color(0.22352941, 0.2784314, 0.32156864, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cegan"]
+bg_color = Color(0.33333334, 0.4, 0.45490196, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
 shadow_offset = Vector2(0, 2)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kek77"]
@@ -293,6 +326,46 @@ shadow_color = Color(0, 0, 0, 0)
 shadow_size = 3
 shadow_offset = Vector2(0, 2)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3owqy"]
+bg_color = Color(0.3529412, 0.24705882, 0.24705882, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.44313726)
+shadow_size = 2
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ebjn"]
+bg_color = Color(0.5753687, 0.5443133, 0.9233006, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0.054573774, 0.054573774, 0.05457376, 0.6)
+shadow_offset = Vector2(0, 3.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ob46e"]
+bg_color = Color(1, 0.18197519, 0.25317082, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0.04755766, 0.047557645, 0.047557645, 0.6)
+shadow_offset = Vector2(0, 3.5)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_3owqy"]
+color = Color(0.5411765, 0.4, 0.38431373, 1)
+thickness = 9
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_drsw1"]
+color = Color(0.8782683, 0.52268225, 0.5579117, 1)
+thickness = 9
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_wem23"]
+color = Color(0.8782683, 0.52268225, 0.5579117, 1)
+thickness = 9
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2cqfq"]
 bg_color = Color(0.1882353, 0.21960784, 0.25490198, 1)
 border_width_left = 2
@@ -405,24 +478,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="TopArea" type="Control" parent="GameplayUI/HUD/MainLayout" unique_id=1163806924]
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 
-[node name="MenuFrame" type="PanelContainer" parent="GameplayUI/HUD/MainLayout/TopArea" unique_id=1897457648]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 40.0
-offset_bottom = 40.0
-offset_transform_enabled = true
-theme_override_styles/panel = SubResource("StyleBoxFlat_3owqy")
-
-[node name="MenuButton" type="MenuButton" parent="GameplayUI/HUD/MainLayout/TopArea/MenuFrame" unique_id=637568001]
+[node name="MenuButton" type="MenuButton" parent="GameplayUI/HUD/MainLayout/TopArea" unique_id=637568001]
 custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
+layout_mode = 1
+offset_left = 3.0
+offset_top = 6.0
+offset_right = 47.0
+offset_bottom = 50.0
 theme_override_colors/font_color = Color(0.9254902, 0.9098039, 0.8745098, 1)
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_yaehf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_074og")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cegan")
 text = "⋮"
 
 [node name="TimerLabel" type="Label" parent="GameplayUI/HUD/MainLayout/TopArea" unique_id=362376602]
@@ -449,11 +522,13 @@ offset_top = 18.0
 offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/separation = 14
 
 [node name="LeftSide" type="MarginContainer" parent="GameplayUI/HUD/MainLayout/TopArea/TopBar" unique_id=1691835040]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_constants/margin_left = 24
 
 [node name="Player1Label" type="Label" parent="GameplayUI/HUD/MainLayout/TopArea/TopBar/LeftSide" unique_id=1338864630]
@@ -675,6 +750,249 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_0sb3x")
 theme_override_styles/hover = SubResource("StyleBoxFlat_354db")
 text = "BACK TO MENU"
 
+[node name="PauseMenu" type="Control" parent="GameplayUI" unique_id=848764261]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="GameplayUI/PauseMenu" unique_id=611016638]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="GameplayUI/PauseMenu" unique_id=714354756]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseContainer" type="VBoxContainer" parent="GameplayUI/PauseMenu/CenterContainer" unique_id=448650416]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="PauseLabel" type="Label" parent="GameplayUI/PauseMenu/CenterContainer/PauseContainer" unique_id=2108770270]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.84313726, 0.65882355, 0.29411766, 1)
+theme_override_fonts/font = ExtResource("3_h2yge")
+theme_override_font_sizes/font_size = 46
+text = "PAused"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="GameplayUI/PauseMenu/CenterContainer/PauseContainer" unique_id=1516815904]
+custom_minimum_size = Vector2(260, 54)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_colors/font_pressed_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_colors/font_hover_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_rnw2r")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7024m")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8f350")
+text = "Resume"
+
+[node name="HowToPlayButton" type="Button" parent="GameplayUI/PauseMenu/CenterContainer/PauseContainer" unique_id=1205850055]
+custom_minimum_size = Vector2(260, 54)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_colors/font_pressed_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_colors/font_hover_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_u1003")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0sb3x")
+theme_override_styles/hover = SubResource("StyleBoxFlat_354db")
+text = "How to play"
+
+[node name="SettingsButton" type="Button" parent="GameplayUI/PauseMenu/CenterContainer/PauseContainer" unique_id=436831202]
+custom_minimum_size = Vector2(260, 54)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_colors/font_pressed_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_colors/font_hover_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_u1003")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0sb3x")
+theme_override_styles/hover = SubResource("StyleBoxFlat_354db")
+text = "Settings"
+
+[node name="BackToMenuButton" type="Button" parent="GameplayUI/PauseMenu/CenterContainer/PauseContainer" unique_id=97228803]
+custom_minimum_size = Vector2(260, 54)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_colors/font_pressed_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_colors/font_hover_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_u1003")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0sb3x")
+theme_override_styles/hover = SubResource("StyleBoxFlat_354db")
+text = "Back to menu"
+
+[node name="Options" type="Label" parent="GameplayUI" unique_id=1737442647]
+process_mode = 2
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -293.0
+offset_top = -205.0
+offset_right = 296.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionsLabel" type="Label" parent="GameplayUI/Options" unique_id=1996089386]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.492
+anchor_top = 0.038000003
+anchor_right = 0.492
+anchor_bottom = 0.038000003
+offset_left = -357.288
+offset_top = -35.410004
+offset_right = 357.2233
+offset_bottom = 35.339996
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
+theme_override_font_sizes/font_size = 30
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close" type="Button" parent="GameplayUI/Options" unique_id=859013780]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.504
+anchor_top = 0.924
+anchor_right = 0.504
+anchor_bottom = 0.933
+offset_left = -120.85602
+offset_top = -30.180023
+offset_right = 125.14398
+offset_bottom = 15.815002
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
+theme_override_constants/line_spacing = 10
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_3owqy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0ebjn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ob46e")
+text = "Close"
+
+[node name="AudioControl" type="HSlider" parent="GameplayUI/Options" unique_id=80523180]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.096
+anchor_top = 0.067
+anchor_right = 0.096
+anchor_bottom = 0.067
+offset_left = 136.456
+offset_top = 15.184999
+offset_right = 430.456
+offset_bottom = 133.185
+theme_override_styles/slider = SubResource("StyleBoxLine_3owqy")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_drsw1")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_wem23")
+max_value = 1.0
+step = 0.05
+value = 0.5
+script = ExtResource("7_5vw27")
+audio_bus_name = "Music"
+
+[node name="MusicLabel" type="Label" parent="GameplayUI/Options" unique_id=443765902]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.034
+anchor_bottom = 0.026
+offset_left = 109.0
+offset_top = 79.0
+offset_right = 167.974
+offset_bottom = 114.43
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
+theme_override_font_sizes/font_size = 25
+text = "Music"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXLabel" type="Label" parent="GameplayUI/Options" unique_id=756906932]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.034
+anchor_bottom = 0.026
+offset_left = 137.0
+offset_top = 141.0
+offset_right = 159.974
+offset_bottom = 205.43
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
+theme_override_font_sizes/font_size = 25
+text = "SFX
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXControl" type="HSlider" parent="GameplayUI/Options" unique_id=1907727531]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.096
+anchor_top = 0.067
+anchor_right = 0.096
+anchor_bottom = 0.067
+offset_left = 136.456
+offset_top = 73.185
+offset_right = 430.456
+offset_bottom = 191.185
+theme_override_styles/slider = SubResource("StyleBoxLine_3owqy")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_drsw1")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_wem23")
+max_value = 1.0
+step = 0.05
+value = 0.5
+script = ExtResource("7_5vw27")
+audio_bus_name = "SFX"
+
+[node name="DisplaySection" type="HBoxContainer" parent="GameplayUI/Options" unique_id=789579981]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 188.0
+offset_right = 482.0
+offset_bottom = 255.0
+theme_override_constants/separation = 30
+script = ExtResource("8_kek77")
+
+[node name="Label" type="Label" parent="GameplayUI/Options/DisplaySection" unique_id=1271110919]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
+theme_override_font_sizes/font_size = 25
+text = "Display"
+vertical_alignment = 1
+
+[node name="WindowedButton" type="Button" parent="GameplayUI/Options/DisplaySection" unique_id=1474290609]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_3owqy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0ebjn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ob46e")
+text = "Windowed"
+
+[node name="FullscreenButton" type="Button" parent="GameplayUI/Options/DisplaySection" unique_id=1726994576]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_3owqy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0ebjn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ob46e")
+text = "FullScreen"
+
 [node name="ImpossibleScene" type="Control" parent="GameplayUI" unique_id=2061374961]
 visible = false
 layout_mode = 3
@@ -744,6 +1062,7 @@ text = "Declare"
 
 [connection signal="indicator_clicked" from="Board" to="." method="_on_board_indicator_clicked"]
 [connection signal="pending_tile_clicked" from="Board" to="." method="_on_board_pending_tile_clicked"]
+[connection signal="pressed" from="GameplayUI/HUD/MainLayout/TopArea/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/LeftControls/StraightTileObject" to="." method="_on_straight_button_pressed"]
 [connection signal="pressed" from="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/LeftControls/CornerTileObject" to="." method="_on_corner_button_pressed"]
 [connection signal="pressed" from="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/LeftControls/RotateButton" to="." method="_on_rotate_button_pressed"]
@@ -752,5 +1071,12 @@ text = "Declare"
 [connection signal="pressed" from="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/CenterControls/ImpossibleButton" to="." method="_on_impossible_button_pressed"]
 [connection signal="pressed" from="GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
 [connection signal="pressed" from="GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
+[connection signal="pressed" from="GameplayUI/PauseMenu/CenterContainer/PauseContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="GameplayUI/PauseMenu/CenterContainer/PauseContainer/SettingsButton" to="." method="_on_pause_settings_button_pressed"]
+[connection signal="pressed" from="GameplayUI/Options/Close" to="." method="_on_game_options_close_pressed"]
+[connection signal="value_changed" from="GameplayUI/Options/AudioControl" to="GameplayUI/Options/AudioControl" method="_on_value_changed"]
+[connection signal="value_changed" from="GameplayUI/Options/SFXControl" to="GameplayUI/Options/SFXControl" method="_on_value_changed"]
+[connection signal="pressed" from="GameplayUI/Options/DisplaySection/WindowedButton" to="GameplayUI/Options/DisplaySection" method="_on_windowed_button_pressed"]
+[connection signal="pressed" from="GameplayUI/Options/DisplaySection/FullscreenButton" to="GameplayUI/Options/DisplaySection" method="_on_fullscreen_button_pressed"]
 [connection signal="pressed" from="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content/ButtonRow/CancelButton" to="." method="_on_impossible_cancel_button_pressed"]
 [connection signal="pressed" from="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content/ButtonRow/DeclareButton" to="." method="_on_impossible_declare_button_pressed"]

@@ -23,6 +23,10 @@ var player_controllers: Array[PlayerController] = []
 @onready var impossible_scene: Control = $GameplayUI/ImpossibleScene
 @onready var impossible_message: Label = $GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content/MessageLabel
 @onready var impossible_action_button: Button = $GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content/ButtonRow/DeclareButton
+@onready var pause_menu: Control = $GameplayUI/PauseMenu
+@onready var hud: Control = $GameplayUI/HUD
+@onready var options_menu: Control = $GameplayUI/Options
+@onready var pause_content: Control = $GameplayUI/PauseMenu/CenterContainer
 
 func add_game_log(message: String) -> void:
 	game_log.append_text(message + "\n")
@@ -301,6 +305,7 @@ func _on_play_again_button_pressed():
 	get_tree().reload_current_scene()
 
 func _on_back_to_menu_button_pressed():
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn")
 
 func _on_impossible_button_pressed():
@@ -363,3 +368,23 @@ func _on_impossible_declare_button_pressed():
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
+
+func _on_menu_button_pressed():
+	$BoardCamera.reset_drag_state()
+	hud.visible = false
+	pause_menu.visible = true
+	get_tree().paused = true
+
+func _on_resume_button_pressed():
+	$BoardCamera.reset_drag_state()
+	get_tree().paused = false
+	pause_menu.visible = false
+	hud.visible = true
+
+func _on_pause_settings_button_pressed():
+	pause_content.visible = false
+	options_menu.visible = true
+
+func _on_game_options_close_pressed():
+	options_menu.visible = false
+	pause_content.visible = true
