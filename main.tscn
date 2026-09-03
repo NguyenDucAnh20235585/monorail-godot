@@ -7,35 +7,19 @@
 [ext_resource type="Texture2D" uid="uid://cu2duj0vw86v5" path="res://assets/png/Straight_tile.png" id="4_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://bja2egrh1pukd" path="res://assets/png/Curve_tile.png" id="5_lquwl"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hiya0"]
-bg_color = Color(0.56078434, 0.24705882, 0.24705882, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3owqy"]
+bg_color = Color(0.2627451, 0.33333334, 0.35686275, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
-shadow_color = Color(0, 0, 0, 0.44313726)
-shadow_size = 5
-shadow_offset = Vector2(0, 3.5)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
-bg_color = Color(0.8489673, 0.43312973, 0.7016545, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-shadow_color = Color(0, 0, 0, 0.44313726)
-shadow_size = 5
-shadow_offset = Vector2(0, 3.5)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2yge"]
-bg_color = Color(0.21960784, 0.43137255, 0.7019608, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-shadow_color = Color(0, 0, 0, 0.44313726)
-shadow_size = 5
-shadow_offset = Vector2(0, 3.5)
+shadow_color = Color(0.083911665, 0.083911665, 0.083911665, 0.6)
+shadow_offset = Vector2(0, 2)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kek77"]
 bg_color = Color(0.22352941, 0.29411766, 0.34117648, 1)
@@ -171,6 +155,36 @@ corner_radius_bottom_left = 8
 shadow_color = Color(0, 0, 0, 0)
 shadow_size = 3
 shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hiya0"]
+bg_color = Color(0.56078434, 0.24705882, 0.24705882, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.44313726)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
+bg_color = Color(0.8489673, 0.43312973, 0.7016545, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.44313726)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2yge"]
+bg_color = Color(0.21960784, 0.43137255, 0.7019608, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.44313726)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.5)
 
 [sub_resource type="FontVariation" id="FontVariation_lquwl"]
 
@@ -396,13 +410,46 @@ grow_vertical = 2
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 
+[node name="MenuFrame" type="PanelContainer" parent="GameplayUI/HUD/MainLayout/TopArea" unique_id=1897457648]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 40.0
+offset_bottom = 40.0
+offset_transform_enabled = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_3owqy")
+
+[node name="MenuButton" type="MenuButton" parent="GameplayUI/HUD/MainLayout/TopArea/MenuFrame" unique_id=637568001]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9254902, 0.9098039, 0.8745098, 1)
+text = "⋮"
+
+[node name="TimerLabel" type="Label" parent="GameplayUI/HUD/MainLayout/TopArea" unique_id=362376602]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.84313726, 0.65882355, 0.29411766, 1)
+theme_override_fonts/font = ExtResource("3_h2yge")
+theme_override_font_sizes/font_size = 26
+text = "00:45"
+horizontal_alignment = 1
+
 [node name="TopBar" type="HBoxContainer" parent="GameplayUI/HUD/MainLayout/TopArea" unique_id=1325801741]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 18.0
+offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 14
 
 [node name="LeftSide" type="MarginContainer" parent="GameplayUI/HUD/MainLayout/TopArea/TopBar" unique_id=1691835040]
 layout_mode = 2
@@ -431,22 +478,6 @@ theme_override_constants/shadow_outline_size = 10
 theme_override_fonts/font = ExtResource("3_h2yge")
 theme_override_font_sizes/font_size = 30
 text = "Tiles: 24"
-
-[node name="ImpossibleButton" type="Button" parent="GameplayUI/HUD/MainLayout/TopArea/TopBar/CenterInfo" unique_id=1074076662]
-custom_minimum_size = Vector2(108, 30)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
-theme_override_colors/font_pressed_color = Color(0.45490196, 0.2, 0.2, 1)
-theme_override_colors/font_hover_color = Color(0.6627451, 0.2901961, 0.2901961, 1)
-theme_override_constants/h_separation = 20
-theme_override_fonts/font = ExtResource("3_h2yge")
-theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxFlat_hiya0")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lquwl")
-theme_override_styles/hover = SubResource("StyleBoxFlat_h2yge")
-text = "Impossible"
 
 [node name="RightSide" type="MarginContainer" parent="GameplayUI/HUD/MainLayout/TopArea/TopBar" unique_id=1691410048]
 layout_mode = 2
@@ -548,6 +579,22 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_7mycd")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_272bh")
 theme_override_styles/hover = SubResource("StyleBoxFlat_5vw27")
 text = "CONFIRM"
+
+[node name="ImpossibleButton" type="Button" parent="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/CenterControls" unique_id=1074076662]
+custom_minimum_size = Vector2(100, 46)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
+theme_override_colors/font_pressed_color = Color(0.45490196, 0.2, 0.2, 1)
+theme_override_colors/font_hover_color = Color(0.6627451, 0.2901961, 0.2901961, 1)
+theme_override_constants/h_separation = 20
+theme_override_fonts/font = ExtResource("3_h2yge")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_hiya0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lquwl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_h2yge")
+text = "Impossible"
 
 [node name="RightControls" type="MarginContainer" parent="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow" unique_id=1807317531]
 layout_mode = 2
@@ -697,12 +744,12 @@ text = "Declare"
 
 [connection signal="indicator_clicked" from="Board" to="." method="_on_board_indicator_clicked"]
 [connection signal="pending_tile_clicked" from="Board" to="." method="_on_board_pending_tile_clicked"]
-[connection signal="pressed" from="GameplayUI/HUD/MainLayout/TopArea/TopBar/CenterInfo/ImpossibleButton" to="." method="_on_impossible_button_pressed"]
 [connection signal="pressed" from="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/LeftControls/StraightTileObject" to="." method="_on_straight_button_pressed"]
 [connection signal="pressed" from="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/LeftControls/CornerTileObject" to="." method="_on_corner_button_pressed"]
 [connection signal="pressed" from="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/LeftControls/RotateButton" to="." method="_on_rotate_button_pressed"]
 [connection signal="pressed" from="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/CenterControls/CancelButton" to="." method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/CenterControls/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/CenterControls/ImpossibleButton" to="." method="_on_impossible_button_pressed"]
 [connection signal="pressed" from="GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
 [connection signal="pressed" from="GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
 [connection signal="pressed" from="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content/ButtonRow/CancelButton" to="." method="_on_impossible_cancel_button_pressed"]
