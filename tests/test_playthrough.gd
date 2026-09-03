@@ -265,10 +265,7 @@ func _play_out_of_tiles() -> void:
 # ----------------------------------------------------------------------------
 
 func _move(player_id: int, entries: Array) -> Dictionary:
-	var tiles: Array = []
-	for e in entries:
-		tiles.append({"position": e[0], "type": e[1], "rotation": e[2]})
-	return {"player_id": player_id, "tiles": tiles}
+	return GameRunner.build_move(player_id, entries)
 
 
 ## Validate rồi apply. Trả về false và báo lỗi nếu validator chặn.
@@ -295,5 +292,3 @@ func _log_turn(
 	print("  Lượt %d — Người chơi %d đặt %d tile | còn %d tile | %s" % [
 		turn, mover + 1, tile_count, state.remaining_tiles, status
 	])
-
-
