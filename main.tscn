@@ -484,7 +484,7 @@ mouse_filter = 2
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 
-[node name="MenuButton" type="MenuButton" parent="GameplayUI/HUD/MainLayout/TopArea" unique_id=637568001]
+[node name="MenuButton" type="Button" parent="GameplayUI/HUD/MainLayout/TopArea" unique_id=165571324]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
 offset_left = 3.0

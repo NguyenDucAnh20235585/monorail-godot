@@ -76,6 +76,7 @@ func _ready():
 	update_hud()
 	game_log.clear()
 	add_game_log("Game started.")
+	maybe_start_ai_turn()
 	
 func _on_confirm_button_pressed():
 	confirm_move()
@@ -97,12 +98,73 @@ func update_hud():
 		
 func get_current_controller() -> PlayerController:
 	return player_controllers[game_state.current_player]
-		
+	
+func maybe_start_ai_turn():
+	if get_current_controller() != PlayerController.AI:
+		return
+
+	print("AI turn started")
+
+	var action := AIPlayer.choose_action(
+		game_state,
+		AIPlayer.Difficulty.HEURISTIC,
+		game_state.impossible_declared_by
+	)
+
+	print("AI action: ", action)
+	
+	match action["type"]:
+		AIPlayer.ACTION_MOVE:
+			execute_ai_move(action["move"])
+
+		AIPlayer.ACTION_DECLARE_IMPOSSIBLE:
+			execute_ai_declare_impossible()
+
+		AIPlayer.ACTION_NONE:
+			print("AI has no action: ", action["reason"])
+			add_game_log(action["reason"])
+
+func execute_ai_move(move: Dictionary):
+	for tile in move["tiles"]:
+		var added := pending_move.add_tile(
+			tile["position"],
+			tile["type"],
+			tile["rotation"],
+			get_pending_tile_limit()
+		)
+
+		if not added:
+			print("AI failed to add pending tile: ", tile)
+			return
+
+	$Board.set_pending_move(pending_move.to_move())
+	confirm_move()
+
+func execute_ai_declare_impossible() -> void:
+	var result := ImpossibleFlow.declare_impossible(
+		game_state,
+		game_state.current_player,
+		0,
+		game_state.impossible_declared_by
+	)
+
+	if not result["is_valid"]:
+		print("AI failed to declare Impossible: ", result["message"])
+		add_game_log(result["message"])
+		return
+
+	game_state.impossible_declared_by = result["declared_by"]
+	game_state.current_player = result["challenger"]
+
+	add_game_log(result["message"])
+	start_turn()
+
 func start_turn():
 	reset_pending_move()	
 	$Board.set_pending_move(pending_move.to_move())
 	$Board.set_indicators([])
 	update_hud()
+	maybe_start_ai_turn()
 	
 func reset_pending_move():
 	if pending_move == null:

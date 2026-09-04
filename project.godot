@@ -25,6 +25,7 @@ GameSession="*uid://ccnqp6pw06chr"
 
 [display]
 
+window/subwindows/embed_subwindows=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

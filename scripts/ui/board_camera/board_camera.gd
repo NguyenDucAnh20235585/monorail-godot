@@ -10,7 +10,6 @@ var left_mouse_down := false
 var is_dragging := false
 var drag_start_position := Vector2.ZERO
 
-
 func _ready() -> void:
 	set_process_input(true)
 
