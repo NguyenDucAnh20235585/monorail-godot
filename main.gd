@@ -82,12 +82,20 @@ func _on_confirm_button_pressed():
 	confirm_move()
 	
 func update_hud():
-	if game_state.current_player == 0:
-		player_1_label.text = "⬢ PLAYER 1"
-		player_2_label.text = "PLAYER 2"
+	if GameSession.game_mode == GameSession.GameMode.PVE:
+		if game_state.current_player == 0:
+			player_1_label.text = "⬢ PLAYER"
+			player_2_label.text = "AI"
+		else:
+			player_1_label.text = "PLAYER"
+			player_2_label.text = "⬢ AI"
 	else:
-		player_1_label.text = "PLAYER 1"
-		player_2_label.text = "⬢ PLAYER 2"
+		if game_state.current_player == 0:
+			player_1_label.text = "⬢ PLAYER 1"
+			player_2_label.text = "PLAYER 2"
+		else:
+			player_1_label.text = "PLAYER 1"
+			player_2_label.text = "⬢ PLAYER 2"
 
 	remaining_tiles_label.text = "TILES: %d" % game_state.remaining_tiles
 	
@@ -430,9 +438,15 @@ func _on_rotate_button_pressed() -> void:
 	print("New rotation: ", pending_move.get_tile_at(selected_pending_position)["rotation"])
 	
 func show_end_game(winner: int):
-	winner_label.text = "PLAYER %d WINS" % (winner + 1)
-	end_game_overlay.visible = true
+	if GameSession.game_mode == GameSession.GameMode.PVE:
+		if winner == 0:
+			winner_label.text = "PLAYER WINS"
+		else:
+			winner_label.text = "AI WINS"
+	else:
+		winner_label.text = "PLAYER %d WINS" % (winner + 1)
 
+	end_game_overlay.visible = true
 
 func _on_play_again_button_pressed():
 	get_tree().reload_current_scene()
