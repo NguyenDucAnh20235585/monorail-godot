@@ -94,7 +94,7 @@ static func get_closing_move(state: GameState, max_tiles: int = 3) -> Dictionary
 ## Thêm dần từng tile vào cụm đang dựng, ghi lại mọi nước đi hợp lệ gặp trên đường.
 static func _extend(
 	state: GameState, pending: Array, limit: int, result: Array, seen: Dictionary
-) -> void:
+):
 	for position in PlacementHelper.get_placeable_positions(state.board, pending):
 		for type in [MonoTile.TileType.STRAIGHT, MonoTile.TileType.CORNER]:
 			for rotation in range(MonoTile.get_distinct_rotation_count(type)):
@@ -129,7 +129,7 @@ static func _walk_to_target(
 	board: Dictionary, position: Vector2i, entry_edge: String,
 	target_position: Vector2i, target_edge: String,
 	used: Array, limit: int, found: Array
-) -> void:
+):
 	if used.size() >= limit:
 		return
 

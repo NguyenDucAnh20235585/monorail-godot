@@ -16,15 +16,15 @@ var pending_tiles: Array = []
 var indicator_positions: Array = []
 var selected_pending_position = null
 
-func set_board(board_data: Dictionary) -> void:
+func set_board(board_data: Dictionary):
 	board = board_data
 	queue_redraw()
 
-func set_indicators(positions: Array) -> void:
+func set_indicators(positions: Array):
 	indicator_positions = positions
 	queue_redraw()
 	
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 			var local_position := to_local(get_global_mouse_position())
@@ -86,7 +86,7 @@ func _draw():
 			true
 		)
 	
-func draw_cell(grid_position: Vector2i, color: Color) -> void:
+func draw_cell(grid_position: Vector2i, color: Color):
 	var screen_position = Vector2(
 		grid_position.x * CELL_SIZE,
 		grid_position.y * CELL_SIZE
@@ -163,10 +163,10 @@ func draw_tile(
 
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 		
-func set_pending_move(move: Dictionary) -> void:
+func set_pending_move(move: Dictionary):
 	pending_tiles = move["tiles"]
 	queue_redraw()
 	
-func set_selected_pending_position(grid_pos) -> void:
+func set_selected_pending_position(grid_pos):
 	selected_pending_position = grid_pos
 	queue_redraw()

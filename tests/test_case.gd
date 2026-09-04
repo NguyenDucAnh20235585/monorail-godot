@@ -9,7 +9,7 @@ extends Node
 #
 #     extends TestCase
 #
-#     func _ready() -> void:
+#     func _ready() :
 #         _begin("TÊN NHÓM TEST")
 #         _group("Nhóm nhỏ")
 #         _assert_eq(actual, expected, "mô tả")
@@ -24,47 +24,47 @@ var _failed: int = 0
 var _suite: String = "test"
 
 
-func _begin(title: String) -> void:
+func _begin(title: String) :
 	_suite = title
 	print("\n=========================================")
 	print("  %s" % title)
 	print("=========================================")
 
 
-func _group(title: String) -> void:
+func _group(title: String) :
 	print("\n--- %s ---" % title)
 
 
-func _pass(label: String) -> void:
+func _pass(label: String) :
 	_passed += 1
 	print("  PASS  %s" % label)
 
 
-func _fail(label: String) -> void:
+func _fail(label: String) :
 	_failed += 1
 	print("  FAIL  %s" % label)
 	push_error("[%s] FAIL: %s" % [_suite, label])
 
 
-func _assert_true(condition: bool, label: String) -> void:
+func _assert_true(condition: bool, label: String) :
 	if condition:
 		_pass(label)
 	else:
 		_fail(label)
 
 
-func _assert_false(condition: bool, label: String) -> void:
+func _assert_false(condition: bool, label: String) :
 	_assert_true(not condition, label)
 
 
-func _assert_eq(actual: Variant, expected: Variant, label: String) -> void:
+func _assert_eq(actual: Variant, expected: Variant, label: String) :
 	if actual == expected:
 		_pass(label)
 	else:
 		_fail("%s (nhận %s, mong đợi %s)" % [label, str(actual), str(expected)])
 
 
-func _print_summary() -> void:
+func _print_summary() :
 	var total: int = _passed + _failed
 	print("\n=========================================")
 	print("  TỔNG: %d test | PASS %d | FAIL %d" % [total, _passed, _failed])

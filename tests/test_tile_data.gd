@@ -9,7 +9,7 @@ extends TestCase
 # ============================================================================
 
 
-func _ready() -> void:
+func _ready() :
 	_begin("MONORAIL — TILE LOGIC TEST")
 
 	_test_straight_edges()
@@ -33,7 +33,7 @@ func _ready() -> void:
 # Test: STRAIGHT
 # ----------------------------------------------------------------------------
 
-func _test_straight_edges() -> void:
+func _test_straight_edges() :
 	_group("STRAIGHT — đủ 4 rotation")
 
 	# rotation 0 và 2: dọc (top + bottom)
@@ -49,7 +49,7 @@ func _test_straight_edges() -> void:
 # Test: CORNER
 # ----------------------------------------------------------------------------
 
-func _test_corner_edges() -> void:
+func _test_corner_edges() :
 	_group("CORNER — đủ 4 rotation")
 
 	# rotation 0: lên-phải
@@ -66,7 +66,7 @@ func _test_corner_edges() -> void:
 # Test: rotation
 # ----------------------------------------------------------------------------
 
-func _test_rotation_normalize() -> void:
+func _test_rotation_normalize() :
 	_group("normalize_rotation")
 
 	_assert_eq(MonoTile.normalize_rotation(0), 0, "0 -> 0")
@@ -82,7 +82,7 @@ func _test_rotation_normalize() -> void:
 	_assert_true(a == b, "get_edges(CORNER, 5) == get_edges(CORNER, 1)")
 
 
-func _test_rotate_returns_new_tile() -> void:
+func _test_rotate_returns_new_tile() :
 	_group("rotate_tile không sửa tile gốc")
 
 	var original: Dictionary = MonoTile.make_tile(MonoTile.TileType.CORNER, 0)
@@ -92,7 +92,7 @@ func _test_rotate_returns_new_tile() -> void:
 	_assert_eq(rotated["rotation"], 1, "tile mới có rotation 1")
 
 
-func _test_rotate_four_times_returns_to_origin() -> void:
+func _test_rotate_four_times_returns_to_origin() :
 	_group("Xoay 4 lần quay về trạng thái ban đầu")
 
 	for type in [MonoTile.TileType.STRAIGHT, MonoTile.TileType.CORNER]:
@@ -111,7 +111,7 @@ func _test_rotate_four_times_returns_to_origin() -> void:
 # Test: flip
 # ----------------------------------------------------------------------------
 
-func _test_flip() -> void:
+func _test_flip() :
 	_group("flip_tile đổi mặt, giữ rotation")
 
 	var straight: Dictionary = MonoTile.make_tile(MonoTile.TileType.STRAIGHT, 2)
@@ -125,7 +125,7 @@ func _test_flip() -> void:
 	_assert_eq(back["type"], MonoTile.TileType.STRAIGHT, "CORNER -> STRAIGHT")
 
 
-func _test_flip_twice_returns_to_origin() -> void:
+func _test_flip_twice_returns_to_origin() :
 	_group("Lật 2 lần quay về ban đầu")
 
 	for type in [MonoTile.TileType.STRAIGHT, MonoTile.TileType.CORNER]:
@@ -142,7 +142,7 @@ func _test_flip_twice_returns_to_origin() -> void:
 # Test: bất biến chung
 # ----------------------------------------------------------------------------
 
-func _test_edge_count_always_two() -> void:
+func _test_edge_count_always_two() :
 	_group("Mọi tile luôn có đúng 2 cạnh mở")
 
 	for type in [MonoTile.TileType.STRAIGHT, MonoTile.TileType.CORNER]:
@@ -165,7 +165,7 @@ func _test_edge_count_always_two() -> void:
 # Test: kề cạnh
 # ----------------------------------------------------------------------------
 
-func _test_adjacency() -> void:
+func _test_adjacency() :
 	_group("Kề cạnh (không tính chéo)")
 
 	var center := Vector2i(3, 4)
@@ -188,7 +188,7 @@ func _test_adjacency() -> void:
 # Test: nối đường ray
 # ----------------------------------------------------------------------------
 
-func _test_edges_connect() -> void:
+func _test_edges_connect() :
 	_group("Nối đường ray giữa 2 tile kề nhau")
 
 	var pos_left := Vector2i(0, 0)
@@ -238,7 +238,7 @@ func _test_edges_connect() -> void:
 # Test: canonical rotation
 # ----------------------------------------------------------------------------
 
-func _test_canonical_rotation() -> void:
+func _test_canonical_rotation() :
 	_group("Canonical rotation (dùng cho get_valid_moves / AI)")
 
 	_assert_eq(
@@ -276,7 +276,7 @@ func _test_canonical_rotation() -> void:
 # Test: serialize
 # ----------------------------------------------------------------------------
 
-func _test_serialize() -> void:
+func _test_serialize() :
 	_group("Serialize / deserialize")
 
 	for type in [MonoTile.TileType.STRAIGHT, MonoTile.TileType.CORNER]:
@@ -300,7 +300,7 @@ func _test_serialize() -> void:
 # Test: validate định dạng tile
 # ----------------------------------------------------------------------------
 
-func _test_is_valid_tile() -> void:
+func _test_is_valid_tile() :
 	_group("is_valid_tile")
 
 	_assert_true(
@@ -321,7 +321,7 @@ func _test_is_valid_tile() -> void:
 # (phần đếm PASS/FAIL nằm ở tests/test_case.gd)
 # ----------------------------------------------------------------------------
 
-func _check_edges(type: int, rotation: int, expected_open: Array) -> void:
+func _check_edges(type: int, rotation: int, expected_open: Array) :
 	var edges: Dictionary = MonoTile.get_edges(type, rotation)
 	var ok: bool = true
 	for edge_name in MonoTile.EDGE_ORDER:

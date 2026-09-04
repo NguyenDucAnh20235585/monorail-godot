@@ -46,7 +46,7 @@ const STATION_GLYPHS: Dictionary = {
 var _watched: GameState
 
 
-func _ready() -> void:
+func _ready() :
 	print("\n#########################################")
 	print("  MONORAIL — AI ARENA")
 	print("#########################################")
@@ -63,7 +63,7 @@ func _ready() -> void:
 # 1. Xem một ván đánh từng lượt
 # ----------------------------------------------------------------------------
 
-func _show_one_game() -> void:
+func _show_one_game() :
 	print("\n\n=========================================")
 	print("  MỘT VÁN AI vs AI, IN TỪNG LƯỢT")
 	print("=========================================")
@@ -97,18 +97,18 @@ func _show_one_game() -> void:
 	print("=========================================")
 
 
-func _on_action_chosen(turn: int, player: int, action: Dictionary) -> void:
+func _on_action_chosen(turn: int, player: int, action: Dictionary) :
 	print("\n--- Lượt %d — Người chơi %d ---" % [turn, player + 1])
 	print("  %s" % action["reason"])
 
 
-func _on_impossible_declared(_turn: int, _player: int, declaration: Dictionary) -> void:
+func _on_impossible_declared(_turn: int, _player: int, declaration: Dictionary) :
 	print("  -> Người chơi %d phải dùng %d tile còn lại để hoàn thành." % [
 		declaration["challenger"] + 1, _watched.remaining_tiles
 	])
 
 
-func _on_move_applied(_turn: int, _player: int, move: Dictionary) -> void:
+func _on_move_applied(_turn: int, _player: int, move: Dictionary) :
 	print("  Đặt %d tile: %s" % [move["tiles"].size(), _describe_tiles(move["tiles"])])
 	_print_board(_watched.board, _positions_of(move))
 	print("  Còn %d tile | trạng thái ray: %s | cần ít nhất %d tile nữa" % [
@@ -122,7 +122,7 @@ func _on_move_applied(_turn: int, _player: int, move: Dictionary) -> void:
 # 2. Thống kê đối đầu
 # ----------------------------------------------------------------------------
 
-func _run_matchups() -> void:
+func _run_matchups() :
 	print("\n\n=========================================")
 	print("  THỐNG KÊ ĐỐI ĐẦU (%d ván mỗi cặp)" % GAMES_PER_MATCHUP)
 	print("=========================================")
@@ -135,7 +135,7 @@ func _run_matchups() -> void:
 	_matchup("Random vs Random", AIPlayer.Difficulty.RANDOM, AIPlayer.Difficulty.RANDOM)
 
 
-func _matchup(label: String, first: AIPlayer.Difficulty, second: AIPlayer.Difficulty) -> void:
+func _matchup(label: String, first: AIPlayer.Difficulty, second: AIPlayer.Difficulty) :
 	var runner := GameRunner.new()
 	runner.difficulties = {0: first, 1: second}
 
@@ -184,7 +184,7 @@ func _tile_glyph(tile: Dictionary, is_station: bool) -> String:
 	return GLYPHS.get(key, "?")
 
 
-func _print_board(board: Dictionary, highlight: Array = []) -> void:
+func _print_board(board: Dictionary, highlight: Array = []) :
 	if board.is_empty():
 		print("  (bàn cờ trống)")
 		return

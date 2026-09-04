@@ -20,7 +20,7 @@ var straight: int = MonoTile.TileType.STRAIGHT
 var corner: int = MonoTile.TileType.CORNER
 
 
-func _ready() -> void:
+func _ready() :
 	_begin("MONORAIL — CHƠI HẾT VÁN (INTEGRATION)")
 
 	_play_normal_game()
@@ -51,7 +51,7 @@ func _loop_turns() -> Array:
 # Ván 1 — chơi bình thường tới khi khép vòng
 # ----------------------------------------------------------------------------
 
-func _play_normal_game() -> void:
+func _play_normal_game() :
 	_group("VÁN 1 — hai người thay phiên nhau tới khi khép vòng")
 
 	var state: GameState = RulesEngine.create_initial_state()
@@ -110,7 +110,7 @@ func _play_normal_game() -> void:
 # Ván 2 — tuyên bố Impossible, đối thủ hoàn thành được
 # ----------------------------------------------------------------------------
 
-func _play_impossible_challenger_wins() -> void:
+func _play_impossible_challenger_wins() :
 	_group("VÁN 2 — Impossible, đối thủ chứng minh tuyên bố sai")
 
 	var state: GameState = RulesEngine.create_initial_state()
@@ -173,7 +173,7 @@ func _play_impossible_challenger_wins() -> void:
 # Ván 3 — tuyên bố Impossible, đối thủ hết tile mà không xong
 # ----------------------------------------------------------------------------
 
-func _play_impossible_declarer_wins() -> void:
+func _play_impossible_declarer_wins() :
 	_group("VÁN 3 — Impossible, đối thủ hết tile mà không hoàn thành")
 
 	var state: GameState = RulesEngine.create_initial_state()
@@ -213,7 +213,7 @@ func _play_impossible_declarer_wins() -> void:
 # Ván 4 — hết tile mà không ai tuyên bố
 # ----------------------------------------------------------------------------
 
-func _play_out_of_tiles() -> void:
+func _play_out_of_tiles() :
 	_group("VÁN 4 — hết tile, không ai tuyên bố: người đặt cuối THUA")
 
 	var state: GameState = RulesEngine.create_initial_state()
@@ -283,7 +283,7 @@ func _apply_turn(state: GameState, move: Dictionary, label: String) -> bool:
 
 func _log_turn(
 	turn: int, mover: int, tile_count: int, state: GameState, result: Dictionary
-) -> void:
+) :
 	var status: String = "chưa kết thúc"
 	if result["is_win"]:
 		status = "KẾT THÚC — Người chơi %d thắng (%s)" % [

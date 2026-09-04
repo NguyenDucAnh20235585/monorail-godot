@@ -10,13 +10,13 @@ var left_mouse_down := false
 var is_dragging := false
 var drag_start_position := Vector2.ZERO
 
-func _ready() -> void:
+func _ready():
 	set_process_input(true)
 
 	zoom = Vector2.ONE
 	enabled = true
 
-func _input(event: InputEvent) -> void:
+func _input(event: InputEvent):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
 			change_zoom(ZOOM_STEP)
@@ -48,7 +48,7 @@ func _input(event: InputEvent) -> void:
 			position -= event.relative / zoom.x
 			get_viewport().set_input_as_handled()
 
-func change_zoom(amount: float) -> void:
+func change_zoom(amount: float):
 	var mouse_before: Vector2 = get_global_mouse_position()
 
 	var new_zoom: float = clampf(

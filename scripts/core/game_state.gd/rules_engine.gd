@@ -29,7 +29,7 @@ static func create_initial_state() -> GameState:
 static func apply_move(
 	state: GameState,
 	move: Dictionary
-) -> void:
+):
 	var tiles = move["tiles"]
 
 	for tile in tiles:
@@ -42,7 +42,7 @@ static func apply_move(
 
 	state.remaining_tiles -= tiles.size()
 	
-static func end_turn(state: GameState) -> void:
+static func end_turn(state: GameState):
 	if state.current_player == 0:
 		state.current_player = 1
 	else:

@@ -34,7 +34,7 @@ var player_id: int = -1
 var tiles: Array[Dictionary] = []
 
 
-func _init(owner_player_id: int = -1) -> void:
+func _init(owner_player_id: int = -1):
 	player_id = owner_player_id
 
 
@@ -120,7 +120,7 @@ func remove_at(position: Vector2i) -> bool:
 
 
 ## Xóa toàn bộ pending move (nút Clear / Cancel).
-func clear() -> void:
+func clear():
 	if tiles.is_empty():
 		return
 	tiles.clear()
@@ -203,7 +203,7 @@ static func from_move(move: Dictionary) -> PendingMove:
 
 ## Đổi người chơi sở hữu pending move này (dùng khi bắt đầu lượt mới).
 ## Tự động xóa sạch tile cũ để không mang tile của lượt trước sang lượt sau.
-func reset_for_player(new_player_id: int) -> void:
+func reset_for_player(new_player_id: int):
 	player_id = new_player_id
 	tiles.clear()
 	changed.emit()
