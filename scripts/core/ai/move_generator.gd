@@ -176,4 +176,5 @@ static func _completes_loop(board: Dictionary, tiles: Array) -> bool:
 	var preview: Dictionary = board.duplicate()
 	for tile in tiles:
 		preview[tile["position"]] = MonoTile.make_tile(tile["type"], tile["rotation"])
-	return not WinChecker.find_station_loop(preview).is_empty()
+	var loop: Array[Vector2i] = WinChecker.find_station_loop(preview)
+	return not loop.is_empty() and loop.size() == preview.size()

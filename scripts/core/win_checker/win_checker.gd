@@ -22,7 +22,6 @@ extends RefCounted
 #   Việc ghi kết quả vào GameState là của Công.
 # ============================================================================
 
-
 # ----------------------------------------------------------------------------
 # Lý do ván kết thúc
 # ----------------------------------------------------------------------------
@@ -36,7 +35,6 @@ const REASON_LOOP_COMPLETED: String = "LOOP_COMPLETED"
 ## Hết tile mà chưa có vòng — người vừa đặt tile thua.
 const REASON_OUT_OF_TILES: String = "OUT_OF_TILES"
 
-
 # ----------------------------------------------------------------------------
 # Trạng thái đoạn ray tính từ nhà ga
 # ----------------------------------------------------------------------------
@@ -45,7 +43,6 @@ const TRACK_NO_STATION: String = "NO_STATION"   ## board chưa có đủ tile ga
 const TRACK_BLOCKED: String = "BLOCKED"         ## ray đâm vào tile không nối được
 const TRACK_CLOSED: String = "CLOSED"           ## đã khép thành vòng
 const TRACK_OPEN: String = "OPEN"               ## còn hai đầu hở, nối tiếp được
-
 
 # ----------------------------------------------------------------------------
 # 1. Hàm chính
@@ -72,7 +69,7 @@ static func check_win(state: GameState, last_move: Dictionary = {}) -> Dictionar
 	var mover: int = _get_mover(state, last_move)
 	var loop: Array[Vector2i] = find_station_loop(state.board)
 
-	if not loop.is_empty():
+	if not loop.is_empty() and loop.size() == state.board.size():
 		return {
 			"is_win": true,
 			"winner": mover,

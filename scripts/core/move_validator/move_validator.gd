@@ -12,6 +12,7 @@ const CELL_OCCUPIED: String = "CELL_OCCUPIED"
 const TILES_NOT_ADJACENT: String = "TILES_NOT_ADJACENT"
 const NOT_TOUCHING_BOARD: String = "NOT_TOUCHING_BOARD"
 const TRACK_MISMATCH: String = "TRACK_MISMATCH"
+const CLOSED_LOOP_NOT_FINAL: String = "CLOSED_LOOP_NOT_FINAL"
 
 # ----------------------------------------------------------------------------
 # Hàm chính
@@ -131,6 +132,13 @@ static func validate_move(state: GameState, move: Dictionary) -> Dictionary:
 			TRACK_MISMATCH,
 			"Đầu ray không được đâm vào cạnh kín của tile kề.",
 			mismatch_positions
+		)
+
+	if _creates_invalid_closed_loop(state.board, tiles):
+		return _fail(
+			CLOSED_LOOP_NOT_FINAL,
+			"Không được tạo vòng ray khép kín khi vẫn còn tile nằm ngoài vòng.",
+			positions
 		)
 
 	return _ok()
@@ -254,3 +262,34 @@ static func _are_tiles_placeable_sequentially(
 		}
 
 	return true
+
+static func _creates_invalid_closed_loop(
+	board: Dictionary,
+	tiles: Array
+) -> bool:
+	var simulated_board: Dictionary = board.duplicate(true)
+
+	for tile in tiles:
+		simulated_board[tile["position"]] = {
+			"type": tile["type"],
+			"rotation": tile["rotation"],
+		}
+
+	# Nếu toàn bộ board chính là final station loop thì hợp lệ.
+	var final_loop: Array[Vector2i] = WinChecker.find_station_loop(simulated_board)
+
+	if not final_loop.is_empty() and final_loop.size() == simulated_board.size():
+		return false
+
+	# Nếu tồn tại BẤT KỲ closed loop nào khác thì nước đi không hợp lệ.
+	for key in simulated_board.keys():
+		var position: Vector2i = key
+		var loop: Array[Vector2i] = WinChecker.find_loop(
+			simulated_board,
+			position
+		)
+
+		if not loop.is_empty():
+			return true
+
+	return false

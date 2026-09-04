@@ -160,6 +160,21 @@ func execute_ai_declare_impossible() -> void:
 	start_turn()
 
 func start_turn():
+	if (
+		game_state.remaining_tiles <= 0
+		and not ImpossibleFlow.is_in_review(game_state.impossible_declared_by)
+	):
+		game_state.winner = game_state.current_player
+		game_state.phase = GameState.GamePhase.GAME_FINISHED
+
+		add_game_log(
+			"No tiles remaining. Player %d wins by Impossible."
+			% (game_state.winner + 1)
+		)
+
+		show_end_game(game_state.winner)
+		return
+
 	reset_pending_move()	
 	$Board.set_pending_move(pending_move.to_move())
 	$Board.set_indicators([])
