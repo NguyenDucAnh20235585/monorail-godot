@@ -124,7 +124,7 @@ Good games survive playtests before they survive roadmaps.
 ## Inspiration
 MONORAIL is inspired by the **Monorail game featured in the Korean television show *The Genius***.
 This project is an independent fan-made interpretation created for learning and experimentation and is not affiliated with or endorsed by the original show or its rights holders.
-And u guys can watch The Genius, especially season 4, it's peak entertainment and mind-blowing scenes
+And u guys can watch The Genius, especially season 4, it's peak entertainment with mind-blowing scenes. SS1 is good too imo
 ---
 
 ## Status
