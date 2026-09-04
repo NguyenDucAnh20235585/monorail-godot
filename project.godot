@@ -19,8 +19,13 @@ run/main_scene="uid://dlhsh326fq6kv"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameSession="*uid://ccnqp6pw06chr"
+
 [display]
 
+window/subwindows/embed_subwindows=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
@@ -45,3 +50,4 @@ rotate_tile={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.3372549, 0.38039216, 0.3882353, 1)

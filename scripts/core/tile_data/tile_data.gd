@@ -146,6 +146,23 @@ static func has_edge(tile: Dictionary, edge: String) -> bool:
 	return get_tile_edges(tile).get(edge, false)
 
 
+## Tile nào mở đúng hai cạnh cho trước.
+##
+## Vì mỗi tile chỉ có 2 cạnh nên cứ biết đường ray đi vào cạnh nào và ra cạnh
+## nào là xác định được tile duy nhất. Dùng khi AI dựng một đoạn ray nối hai đầu.
+##
+## Trả về Dictionary rỗng nếu hai cạnh trùng nhau (không có tile nào như vậy).
+static func tile_with_edges(edge_a: String, edge_b: String) -> Dictionary:
+	if edge_a == edge_b:
+		return {}
+	for type in [TileType.STRAIGHT, TileType.CORNER]:
+		for rotation in range(ROTATION_COUNT):
+			var edges: Dictionary = get_edges(type, rotation)
+			if edges.get(edge_a, false) and edges.get(edge_b, false):
+				return make_tile(type, rotation)
+	return {}
+
+
 # ----------------------------------------------------------------------------
 # 4. Biến đổi tile
 # ----------------------------------------------------------------------------

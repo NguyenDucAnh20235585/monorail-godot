@@ -88,12 +88,21 @@ static func is_adjacent_to_pending(pending_tiles: Array, position: Vector2i) -> 
 ## Nếu chỉ kề board mà rời khỏi cụm pending thì cả nước đi sẽ hỏng ở
 ## validate_move(), nên chặn ngay từ preview cho người chơi dễ hiểu.
 static func is_adjacency_ok(
-	board: Dictionary, pending_tiles: Array, position: Vector2i
+	board: Dictionary,
+	pending_tiles: Array,
+	position: Vector2i,
+	allow_board_when_pending: bool = false
 ) -> bool:
 	if pending_tiles.is_empty():
 		return is_adjacent_to_board(board, position)
-	return is_adjacent_to_pending(pending_tiles, position)
 
+	if allow_board_when_pending:
+		return (
+			is_adjacent_to_board(board, position)
+			or is_adjacent_to_pending(pending_tiles, position)
+		)
+
+	return is_adjacent_to_pending(pending_tiles, position)
 
 # ----------------------------------------------------------------------------
 # 3. Ghost preview
@@ -141,33 +150,50 @@ static func describe_preview_state(state: PreviewState) -> String:
 ## Danh sách mọi ô đặt được ngay lúc này.
 ## Dùng để tô sáng gợi ý cho người chơi, và sau này cho get_valid_moves().
 static func get_placeable_positions(
-	board: Dictionary, pending_tiles: Array
+	board: Dictionary,
+	pending_tiles: Array,
+	max_tiles: int = MAX_TILES_PER_MOVE,
+	allow_board_when_pending: bool = false
 ) -> Array[Vector2i]:
 	var result: Array[Vector2i] = []
-	if pending_tiles.size() >= MAX_TILES_PER_MOVE:
+
+	if pending_tiles.size() >= max_tiles:
 		return result
 
-	# Chỉ cần xét các ô kề với board và kề với cụm pending — không quét cả lưới.
 	var candidates: Dictionary = {}
+
 	for position in board.keys():
 		for neighbor in MonoTile.get_neighbor_positions(position):
 			candidates[neighbor] = true
+
 	for tile in pending_tiles:
 		for neighbor in MonoTile.get_neighbor_positions(tile["position"]):
 			candidates[neighbor] = true
 
 	for position in candidates.keys():
-		if can_place_at(board, pending_tiles, position):
-			result.append(position)
+		if not is_free(board, pending_tiles, position):
+			continue
 
-	# Sắp xếp trên xuống dưới, trái sang phải — để kết quả ổn định giữa các lần chạy.
+		if not is_adjacency_ok(
+			board,
+			pending_tiles,
+			position,
+			allow_board_when_pending
+		):
+			continue
+
+		result.append(position)
+
 	result.sort_custom(func(a: Vector2i, b: Vector2i) -> bool:
 		if a.y != b.y:
 			return a.y < b.y
 		return a.x < b.x
 	)
-	return result
 
+	return result
+	
+	if pending_tiles.size() >= MAX_TILES_PER_MOVE:
+		return result
 
 # ----------------------------------------------------------------------------
 # 4. Cụm tile

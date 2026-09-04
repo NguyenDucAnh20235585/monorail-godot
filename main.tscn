@@ -1,75 +1,1091 @@
-[gd_scene format=3 uid="uid://bykmcplhy1f47"]
+[gd_scene format=3 uid="uid://c2nmlwb1y3uqj"]
 
-[ext_resource type="Script" uid="uid://dbf83gq5o1iyi" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://6f44p8mo8ogn" path="res://main.gd" id="1_7mycd"]
 [ext_resource type="Script" uid="uid://d0hqdee5jplup" path="res://scripts/ui/board/board_view.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://cnm08ilbc28ks" path="res://scripts/ui/board_camera/board_camera.gd" id="3_7mycd"]
+[ext_resource type="FontFile" uid="uid://dl7sgbrkes2vd" path="res://assets/font/ARCADECLASSIC.TTF" id="3_h2yge"]
+[ext_resource type="Texture2D" uid="uid://cu2duj0vw86v5" path="res://assets/png/Straight_tile.png" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://bja2egrh1pukd" path="res://assets/png/Curve_tile.png" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://cqldyfbrhtlxg" path="res://scenes/main_menu/audio_control.gd" id="7_5vw27"]
+[ext_resource type="Script" uid="uid://bhjrnyefa0xyl" path="res://scenes/main_menu/display_section.gd" id="8_kek77"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yaehf"]
+bg_color = Color(0.27450982, 0.33333334, 0.3882353, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_074og"]
+bg_color = Color(0.22352941, 0.2784314, 0.32156864, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cegan"]
+bg_color = Color(0.33333334, 0.4, 0.45490196, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kek77"]
+bg_color = Color(0.22352941, 0.29411766, 0.34117648, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4c57u"]
+bg_color = Color(0.16078432, 0.22352941, 0.25882354, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3764706, 0.4627451, 0.5019608, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efxa6"]
+bg_color = Color(0.22352941, 0.29411766, 0.34117648, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dg77c"]
+bg_color = Color(0.22352941, 0.29411766, 0.34117648, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ycdy4"]
+bg_color = Color(0.16078432, 0.22352941, 0.25882354, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w48qg"]
+bg_color = Color(0.2784314, 0.38431373, 0.4392157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5686275, 0.6666667, 0.70980394, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mycd"]
+bg_color = Color(0.14117648, 0.30588236, 0.41568628, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.54901963, 0.77254903, 0.8392157, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272bh"]
+bg_color = Color(0.09411765, 0.22745098, 0.3137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3764706, 0.6156863, 0.6901961, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0.8627451, 0.9254902, 0.94509804, 1)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vw27"]
+bg_color = Color(0.18039216, 0.42745098, 0.47058824, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.54901963, 0.77254903, 0.8392157, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hiya0"]
+bg_color = Color(0.56078434, 0.24705882, 0.24705882, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.44313726)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
+bg_color = Color(0.8489673, 0.43312973, 0.7016545, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.44313726)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2yge"]
+bg_color = Color(0.21960784, 0.43137255, 0.7019608, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.44313726)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.5)
+
+[sub_resource type="FontVariation" id="FontVariation_lquwl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vivmo"]
+bg_color = Color(0.15294118, 0.20784314, 0.23921569, 0.003921569)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rnw2r"]
+bg_color = Color(0.84313726, 0.65882355, 0.29411766, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.90588236, 0.76862746, 0.46666667, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7024m"]
+bg_color = Color(0.7372549, 0.5568628, 0.21176471, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.90588236, 0.76862746, 0.46666667, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8f350"]
+bg_color = Color(0.88235295, 0.7137255, 0.3647059, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.90588236, 0.76862746, 0.46666667, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u1003"]
+bg_color = Color(0.27450982, 0.33333334, 0.3882353, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0sb3x"]
+bg_color = Color(0.22352941, 0.2784314, 0.32156864, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_354db"]
+bg_color = Color(0.33333334, 0.4, 0.45490196, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="InputEventKey" id="InputEventKey_5vw27"]
+pressed = true
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_3ovsr"]
+events = [SubResource("InputEventKey_5vw27")]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3owqy"]
+bg_color = Color(0.3529412, 0.24705882, 0.24705882, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.44313726)
+shadow_size = 2
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ebjn"]
+bg_color = Color(0.5753687, 0.5443133, 0.9233006, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0.054573774, 0.054573774, 0.05457376, 0.6)
+shadow_offset = Vector2(0, 3.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ob46e"]
+bg_color = Color(1, 0.18197519, 0.25317082, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0.04755766, 0.047557645, 0.047557645, 0.6)
+shadow_offset = Vector2(0, 3.5)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_3owqy"]
+color = Color(0.5411765, 0.4, 0.38431373, 1)
+thickness = 9
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_drsw1"]
+color = Color(0.8782683, 0.52268225, 0.5579117, 1)
+thickness = 9
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_wem23"]
+color = Color(0.8782683, 0.52268225, 0.5579117, 1)
+thickness = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2cqfq"]
+bg_color = Color(0.1882353, 0.21960784, 0.25490198, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.27450982, 0.33333334, 0.3882353, 1)
+corner_detail = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xad4f"]
+bg_color = Color(0.27450982, 0.33333334, 0.3882353, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jill7"]
+bg_color = Color(0.22352941, 0.2784314, 0.32156864, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tld6k"]
+bg_color = Color(0.33333334, 0.4, 0.45490196, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5254902, 0.76862746, 0.8352941, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h621w"]
+bg_color = Color(0.72156864, 0.39607844, 0.3529412, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.56078434, 0.32941177, 0.29803923, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5t2yk"]
+bg_color = Color(0.61960787, 0.32941177, 0.29411766, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.56078434, 0.32941177, 0.29803923, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0.7607843, 0.47843137, 0.44705883, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6crm3"]
+bg_color = Color(0.78431374, 0.45490196, 0.40784314, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.56078434, 0.32941177, 0.29803923, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0.88235295, 0.627451, 0.5921569, 1)
 
 [node name="Main" type="Node" unique_id=1208397320]
-script = ExtResource("1_ig7tw")
-
-[node name="TurnLabel" type="Label" parent="." unique_id=564717392]
-offset_left = 30.0
-offset_top = 25.0
-offset_right = 31.0
-offset_bottom = 48.0
-theme_override_font_sizes/font_size = 24
-
-[node name="RemainingTilesLabel" type="Label" parent="." unique_id=1375934370]
-offset_left = 30.0
-offset_top = 65.0
-offset_right = 110.0
-offset_bottom = 145.0
-theme_override_font_sizes/font_size = 25
-
-[node name="ConfirmButton" type="Button" parent="." unique_id=1635529809]
-custom_minimum_size = Vector2(140, 50)
-anchors_preset = -1
-anchor_left = -0.046000004
-anchor_top = -0.033
-anchor_right = 0.053000003
-anchor_bottom = 0.071
-offset_left = 702.992
-offset_top = 391.384
-offset_right = 734.944
-offset_bottom = 373.992
-theme_override_font_sizes/font_size = 30
-text = "CONFIRM
-"
-
-[node name="StraightButton" type="Button" parent="." unique_id=1806819512]
-custom_minimum_size = Vector2(160, 50)
-offset_left = 470.0
-offset_top = 300.0
-offset_right = 635.0
-offset_bottom = 350.0
-theme_override_font_sizes/font_size = 30
-text = "STRAIGHT"
-
-[node name="CancelButton" type="Button" parent="." unique_id=547421458]
-custom_minimum_size = Vector2(120, 50)
-offset_left = 500.0
-offset_top = 370.0
-offset_right = 620.0
-offset_bottom = 420.0
-theme_override_font_sizes/font_size = 25
-text = "CANCEL"
-
-[node name="CornerButton" type="Button" parent="." unique_id=2122806873]
-custom_minimum_size = Vector2(160, 50)
-offset_left = 650.0
-offset_top = 300.0
-offset_right = 815.0
-offset_bottom = 350.0
-theme_override_font_sizes/font_size = 30
-text = "CORNER
-"
+script = ExtResource("1_7mycd")
 
 [node name="Board" type="Node2D" parent="." unique_id=2008717891]
-position = Vector2(300, 220)
 script = ExtResource("2_0xm2m")
 
-[connection signal="pressed" from="ConfirmButton" to="." method="_on_confirm_button_pressed"]
-[connection signal="pressed" from="StraightButton" to="." method="_on_straight_button_pressed"]
-[connection signal="pressed" from="CancelButton" to="." method="_on_cancel_button_pressed"]
-[connection signal="pressed" from="CornerButton" to="." method="_on_corner_button_pressed"]
+[node name="BoardCamera" type="Camera2D" parent="." unique_id=946126118]
+position = Vector2(80, 40)
+zoom = Vector2(1.25, 1.25)
+script = ExtResource("3_7mycd")
+
+[node name="GameplayUI" type="CanvasLayer" parent="." unique_id=990129623]
+
+[node name="HUD" type="Control" parent="GameplayUI" unique_id=498430183]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MainLayout" type="VBoxContainer" parent="GameplayUI/HUD" unique_id=2120043514]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TopArea" type="Control" parent="GameplayUI/HUD/MainLayout" unique_id=1163806924]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+
+[node name="MenuButton" type="Button" parent="GameplayUI/HUD/MainLayout/TopArea" unique_id=165571324]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+offset_left = 3.0
+offset_top = 6.0
+offset_right = 47.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(0.9254902, 0.9098039, 0.8745098, 1)
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_yaehf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_074og")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cegan")
+text = "⋮"
+
+[node name="TimerLabel" type="Label" parent="GameplayUI/HUD/MainLayout/TopArea" unique_id=362376602]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.84313726, 0.65882355, 0.29411766, 1)
+theme_override_fonts/font = ExtResource("3_h2yge")
+theme_override_font_sizes/font_size = 26
+text = "00:45"
+horizontal_alignment = 1
+
+[node name="TopBar" type="HBoxContainer" parent="GameplayUI/HUD/MainLayout/TopArea" unique_id=1325801741]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 18.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 14
+
+[node name="LeftSide" type="MarginContainer" parent="GameplayUI/HUD/MainLayout/TopArea/TopBar" unique_id=1691835040]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 24
+
+[node name="Player1Label" type="Label" parent="GameplayUI/HUD/MainLayout/TopArea/TopBar/LeftSide" unique_id=1338864630]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9254902, 0.91764706, 0.89411765, 1)
+theme_override_colors/font_shadow_color = Color(0.15199637, 0.15199634, 0.15199634, 0)
+theme_override_fonts/font = ExtResource("3_h2yge")
+theme_override_font_sizes/font_size = 28
+text = "⬢ PLAYER 1"
+
+[node name="CenterInfo" type="HBoxContainer" parent="GameplayUI/HUD/MainLayout/TopArea/TopBar" unique_id=995534444]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="RemainingTilesLabel" type="Label" parent="GameplayUI/HUD/MainLayout/TopArea/TopBar/CenterInfo" unique_id=551859937]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9254902, 0.91764706, 0.89411765, 1)
+theme_override_colors/font_shadow_color = Color(0.093160845, 0.093160845, 0.09316083, 0)
+theme_override_constants/line_spacing = 2
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("3_h2yge")
+theme_override_font_sizes/font_size = 30
+text = "Tiles: 24"
+
+[node name="RightSide" type="MarginContainer" parent="GameplayUI/HUD/MainLayout/TopArea/TopBar" unique_id=1691410048]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 24
+
+[node name="Player2Label" type="Label" parent="GameplayUI/HUD/MainLayout/TopArea/TopBar/RightSide" unique_id=1890284870]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9254902, 0.91764706, 0.89411765, 1)
+theme_override_colors/font_shadow_color = Color(0.093160845, 0.093160845, 0.09316083, 0)
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("3_h2yge")
+theme_override_font_sizes/font_size = 28
+text = "PLAYER 2"
+horizontal_alignment = 2
+
+[node name="CenterArea" type="Control" parent="GameplayUI/HUD/MainLayout" unique_id=380588728]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="BottomArea" type="Control" parent="GameplayUI/HUD/MainLayout" unique_id=53408603]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="BottomLayout" type="VBoxContainer" parent="GameplayUI/HUD/MainLayout/BottomArea" unique_id=912296563]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ControlsRow" type="HBoxContainer" parent="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout" unique_id=280392677]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LeftControls" type="HBoxContainer" parent="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow" unique_id=1978371113]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_constants/separation = 16
+
+[node name="StraightTileObject" type="TextureButton" parent="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/LeftControls" unique_id=2126241641]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+texture_normal = ExtResource("4_1bvp3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="CornerTileObject" type="TextureButton" parent="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/LeftControls" unique_id=1875824984]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+texture_normal = ExtResource("5_lquwl")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="RotateButton" type="Button" parent="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/LeftControls" unique_id=704569226]
+custom_minimum_size = Vector2(88, 36)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.93333334, 0.9098039, 0.9137255, 1)
+theme_override_colors/font_pressed_color = Color(0.87058824, 0.8352941, 0.84313726, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_kek77")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4c57u")
+theme_override_styles/hover = SubResource("StyleBoxFlat_efxa6")
+text = "ROTATE
+"
+
+[node name="CenterControls" type="HBoxContainer" parent="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow" unique_id=2002038386]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="CancelButton" type="Button" parent="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/CenterControls" unique_id=1521902884]
+custom_minimum_size = Vector2(108, 54)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_dg77c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ycdy4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_w48qg")
+text = "CANCEL"
+
+[node name="ConfirmButton" type="Button" parent="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/CenterControls" unique_id=994016034]
+custom_minimum_size = Vector2(132, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.7346793, 0.73468024, 0.7346795, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_7mycd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_272bh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5vw27")
+text = "CONFIRM"
+
+[node name="ImpossibleButton" type="Button" parent="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/CenterControls" unique_id=1074076662]
+custom_minimum_size = Vector2(100, 46)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
+theme_override_colors/font_pressed_color = Color(0.45490196, 0.2, 0.2, 1)
+theme_override_colors/font_hover_color = Color(0.6627451, 0.2901961, 0.2901961, 1)
+theme_override_constants/h_separation = 20
+theme_override_fonts/font = ExtResource("3_h2yge")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_hiya0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lquwl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_h2yge")
+text = "Impossible"
+
+[node name="RightControls" type="MarginContainer" parent="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow" unique_id=1807317531]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+
+[node name="GameLog" type="RichTextLabel" parent="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/RightControls" unique_id=1425273130]
+custom_minimum_size = Vector2(400, 67)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/default_color = Color(0.8509804, 0.88235295, 0.8980392, 1)
+theme_override_colors/font_shadow_color = Color(0.2585664, 0.2585664, 0.25856638, 0.654902)
+theme_override_constants/line_separation = 2
+theme_override_fonts/normal_font = SubResource("FontVariation_lquwl")
+theme_override_font_sizes/normal_font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_vivmo")
+text = "Started."
+scroll_following = true
+
+[node name="EndGameOverlay" type="Control" parent="GameplayUI" unique_id=2135237721]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="GameplayUI/EndGameOverlay" unique_id=921984227]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="GameplayUI/EndGameOverlay" unique_id=316692667]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EndGameContainer" type="VBoxContainer" parent="GameplayUI/EndGameOverlay/CenterContainer" unique_id=309827006]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="WinnerLabel" type="Label" parent="GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer" unique_id=650253867]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.84313726, 0.65882355, 0.29411766, 1)
+theme_override_fonts/font = ExtResource("3_h2yge")
+theme_override_font_sizes/font_size = 46
+text = "PLAYER 1 WINS"
+horizontal_alignment = 1
+
+[node name="PlayAgainButton" type="Button" parent="GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer" unique_id=1077915538]
+custom_minimum_size = Vector2(260, 54)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_colors/font_pressed_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_colors/font_hover_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_rnw2r")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7024m")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8f350")
+text = "PLAY AGAIN"
+
+[node name="BackToMenuButton" type="Button" parent="GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer" unique_id=1515880853]
+custom_minimum_size = Vector2(260, 54)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_colors/font_pressed_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_colors/font_hover_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_u1003")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0sb3x")
+theme_override_styles/hover = SubResource("StyleBoxFlat_354db")
+text = "BACK TO MENU"
+
+[node name="PauseMenu" type="Control" parent="GameplayUI" unique_id=848764261]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="GameplayUI/PauseMenu" unique_id=611016638]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="GameplayUI/PauseMenu" unique_id=714354756]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseContainer" type="VBoxContainer" parent="GameplayUI/PauseMenu/CenterContainer" unique_id=448650416]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="PauseLabel" type="Label" parent="GameplayUI/PauseMenu/CenterContainer/PauseContainer" unique_id=2108770270]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.84313726, 0.65882355, 0.29411766, 1)
+theme_override_fonts/font = ExtResource("3_h2yge")
+theme_override_font_sizes/font_size = 46
+text = "PAused"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="GameplayUI/PauseMenu/CenterContainer/PauseContainer" unique_id=1516815904]
+custom_minimum_size = Vector2(260, 54)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_colors/font_pressed_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_colors/font_hover_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_rnw2r")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7024m")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8f350")
+shortcut = SubResource("Shortcut_3ovsr")
+text = "Resume"
+
+[node name="HowToPlayButton" type="Button" parent="GameplayUI/PauseMenu/CenterContainer/PauseContainer" unique_id=1205850055]
+custom_minimum_size = Vector2(260, 54)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_colors/font_pressed_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_colors/font_hover_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_u1003")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0sb3x")
+theme_override_styles/hover = SubResource("StyleBoxFlat_354db")
+text = "How to play"
+
+[node name="SettingsButton" type="Button" parent="GameplayUI/PauseMenu/CenterContainer/PauseContainer" unique_id=436831202]
+custom_minimum_size = Vector2(260, 54)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_colors/font_pressed_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_colors/font_hover_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_u1003")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0sb3x")
+theme_override_styles/hover = SubResource("StyleBoxFlat_354db")
+text = "Settings"
+
+[node name="BackToMenuButton" type="Button" parent="GameplayUI/PauseMenu/CenterContainer/PauseContainer" unique_id=97228803]
+custom_minimum_size = Vector2(260, 54)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_colors/font_pressed_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_colors/font_hover_color = Color(0.1254902, 0.14509805, 0.16862746, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_u1003")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0sb3x")
+theme_override_styles/hover = SubResource("StyleBoxFlat_354db")
+text = "Back to menu"
+
+[node name="Options" type="Label" parent="GameplayUI" unique_id=1737442647]
+process_mode = 2
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -293.0
+offset_top = -205.0
+offset_right = 296.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionsLabel" type="Label" parent="GameplayUI/Options" unique_id=1996089386]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.492
+anchor_top = 0.038000003
+anchor_right = 0.492
+anchor_bottom = 0.038000003
+offset_left = -357.288
+offset_top = -35.410004
+offset_right = 357.2233
+offset_bottom = 35.339996
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
+theme_override_font_sizes/font_size = 30
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close" type="Button" parent="GameplayUI/Options" unique_id=859013780]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.504
+anchor_top = 0.924
+anchor_right = 0.504
+anchor_bottom = 0.933
+offset_left = -120.85602
+offset_top = -30.180023
+offset_right = 125.14398
+offset_bottom = 15.815002
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
+theme_override_constants/line_spacing = 10
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_3owqy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0ebjn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ob46e")
+text = "Close"
+
+[node name="AudioControl" type="HSlider" parent="GameplayUI/Options" unique_id=80523180]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.096
+anchor_top = 0.067
+anchor_right = 0.096
+anchor_bottom = 0.067
+offset_left = 136.456
+offset_top = 15.184999
+offset_right = 430.456
+offset_bottom = 133.185
+theme_override_styles/slider = SubResource("StyleBoxLine_3owqy")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_drsw1")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_wem23")
+max_value = 1.0
+step = 0.05
+value = 0.5
+script = ExtResource("7_5vw27")
+audio_bus_name = "Music"
+
+[node name="MusicLabel" type="Label" parent="GameplayUI/Options" unique_id=443765902]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.034
+anchor_bottom = 0.026
+offset_left = 109.0
+offset_top = 79.0
+offset_right = 167.974
+offset_bottom = 114.43
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
+theme_override_font_sizes/font_size = 25
+text = "Music"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXLabel" type="Label" parent="GameplayUI/Options" unique_id=756906932]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.034
+anchor_bottom = 0.026
+offset_left = 137.0
+offset_top = 141.0
+offset_right = 159.974
+offset_bottom = 205.43
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
+theme_override_font_sizes/font_size = 25
+text = "SFX
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXControl" type="HSlider" parent="GameplayUI/Options" unique_id=1907727531]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.096
+anchor_top = 0.067
+anchor_right = 0.096
+anchor_bottom = 0.067
+offset_left = 136.456
+offset_top = 73.185
+offset_right = 430.456
+offset_bottom = 191.185
+theme_override_styles/slider = SubResource("StyleBoxLine_3owqy")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_drsw1")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_wem23")
+max_value = 1.0
+step = 0.05
+value = 0.5
+script = ExtResource("7_5vw27")
+audio_bus_name = "SFX"
+
+[node name="DisplaySection" type="HBoxContainer" parent="GameplayUI/Options" unique_id=789579981]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 188.0
+offset_right = 482.0
+offset_bottom = 255.0
+theme_override_constants/separation = 30
+script = ExtResource("8_kek77")
+
+[node name="Label" type="Label" parent="GameplayUI/Options/DisplaySection" unique_id=1271110919]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
+theme_override_font_sizes/font_size = 25
+text = "Display"
+vertical_alignment = 1
+
+[node name="WindowedButton" type="Button" parent="GameplayUI/Options/DisplaySection" unique_id=1474290609]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_3owqy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0ebjn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ob46e")
+text = "Windowed"
+
+[node name="FullscreenButton" type="Button" parent="GameplayUI/Options/DisplaySection" unique_id=1726994576]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_3owqy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0ebjn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ob46e")
+text = "FullScreen"
+
+[node name="ImpossibleScene" type="Control" parent="GameplayUI" unique_id=2061374961]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DimLayer" type="ColorRect" parent="GameplayUI/ImpossibleScene" unique_id=286451774]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="CenterContainer" type="CenterContainer" parent="GameplayUI/ImpossibleScene" unique_id=316781397]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="GameplayUI/ImpossibleScene/CenterContainer" unique_id=746319529]
+custom_minimum_size = Vector2(440, 180)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2cqfq")
+
+[node name="Content" type="VBoxContainer" parent="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer" unique_id=129488349]
+layout_mode = 2
+theme_override_constants/separation = 22
+alignment = 1
+
+[node name="MessageLabel" type="Label" parent="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content" unique_id=668971167]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9254902, 0.9098039, 0.8745098, 1)
+theme_override_font_sizes/font_size = 22
+text = "Declare this monorail impossible?"
+horizontal_alignment = 1
+
+[node name="ButtonRow" type="HBoxContainer" parent="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content" unique_id=915512357]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="CancelButton" type="Button" parent="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content/ButtonRow" unique_id=1553929276]
+custom_minimum_size = Vector2(120, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9254902, 0.9098039, 0.8745098, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_xad4f")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jill7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tld6k")
+text = "Cancel
+"
+
+[node name="DeclareButton" type="Button" parent="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content/ButtonRow" unique_id=1803974468]
+custom_minimum_size = Vector2(120, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9254902, 0.9098039, 0.8745098, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_h621w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5t2yk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6crm3")
+text = "Declare"
+
 [connection signal="indicator_clicked" from="Board" to="." method="_on_board_indicator_clicked"]
 [connection signal="pending_tile_clicked" from="Board" to="." method="_on_board_pending_tile_clicked"]
+[connection signal="pressed" from="GameplayUI/HUD/MainLayout/TopArea/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/LeftControls/StraightTileObject" to="." method="_on_straight_button_pressed"]
+[connection signal="pressed" from="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/LeftControls/CornerTileObject" to="." method="_on_corner_button_pressed"]
+[connection signal="pressed" from="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/LeftControls/RotateButton" to="." method="_on_rotate_button_pressed"]
+[connection signal="pressed" from="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/CenterControls/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/CenterControls/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="GameplayUI/HUD/MainLayout/BottomArea/BottomLayout/ControlsRow/CenterControls/ImpossibleButton" to="." method="_on_impossible_button_pressed"]
+[connection signal="pressed" from="GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
+[connection signal="pressed" from="GameplayUI/PauseMenu/CenterContainer/PauseContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="GameplayUI/PauseMenu/CenterContainer/PauseContainer/SettingsButton" to="." method="_on_pause_settings_button_pressed"]
+[connection signal="pressed" from="GameplayUI/PauseMenu/CenterContainer/PauseContainer/BackToMenuButton" to="." method="_on_options_back_to_menu_pressed"]
+[connection signal="pressed" from="GameplayUI/Options/Close" to="." method="_on_game_options_close_pressed"]
+[connection signal="value_changed" from="GameplayUI/Options/AudioControl" to="GameplayUI/Options/AudioControl" method="_on_value_changed"]
+[connection signal="value_changed" from="GameplayUI/Options/SFXControl" to="GameplayUI/Options/SFXControl" method="_on_value_changed"]
+[connection signal="pressed" from="GameplayUI/Options/DisplaySection/WindowedButton" to="GameplayUI/Options/DisplaySection" method="_on_windowed_button_pressed"]
+[connection signal="pressed" from="GameplayUI/Options/DisplaySection/FullscreenButton" to="GameplayUI/Options/DisplaySection" method="_on_fullscreen_button_pressed"]
+[connection signal="pressed" from="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content/ButtonRow/CancelButton" to="." method="_on_impossible_cancel_button_pressed"]
+[connection signal="pressed" from="GameplayUI/ImpossibleScene/CenterContainer/PanelContainer/Content/ButtonRow/DeclareButton" to="." method="_on_impossible_declare_button_pressed"]

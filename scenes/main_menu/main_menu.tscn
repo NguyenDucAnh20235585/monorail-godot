@@ -1,25 +1,25 @@
 [gd_scene format=3 uid="uid://dlhsh326fq6kv"]
 
-[ext_resource type="Texture2D" uid="uid://dr3x2m1oi8fnq" path="res://assets/png/monorail_wallpaper.jpg" id="1_0ebjn"]
 [ext_resource type="Script" uid="uid://dujrpru2yrm5m" path="res://scenes/main_menu/main_menu.gd" id="1_ob46e"]
 [ext_resource type="FontFile" uid="uid://dl7sgbrkes2vd" path="res://assets/font/ARCADECLASSIC.TTF" id="2_0ebjn"]
+[ext_resource type="Texture2D" uid="uid://chf28eq13lllo" path="res://assets/png/background.png" id="2_3ovsr"]
 [ext_resource type="AudioStream" uid="uid://kxmvbj2xkr6s" path="res://assets/soundtracks/Piano 6.ogg" id="4_uqeha"]
 [ext_resource type="Script" uid="uid://cqldyfbrhtlxg" path="res://scenes/main_menu/audio_control.gd" id="4_wem23"]
 [ext_resource type="Script" uid="uid://bhjrnyefa0xyl" path="res://scenes/main_menu/display_section.gd" id="5_3ovsr"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3owqy"]
-texture = ExtResource("1_0ebjn")
+texture = ExtResource("2_3ovsr")
 modulate_color = Color(0.7179641, 0.7179642, 0.7179641, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3owqy"]
-bg_color = Color(0.8489673, 0.43312973, 0.7016545, 1)
+bg_color = Color(0.3529412, 0.24705882, 0.24705882, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 shadow_color = Color(0, 0, 0, 0.44313726)
-shadow_size = 5
-shadow_offset = Vector2(0, 3.5)
+shadow_size = 2
+shadow_offset = Vector2(0, 2)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ebjn"]
 bg_color = Color(0.5753687, 0.5443133, 0.9233006, 1)
@@ -40,7 +40,7 @@ shadow_color = Color(0.04755766, 0.047557645, 0.047557645, 0.6)
 shadow_offset = Vector2(0, 3.5)
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_3owqy"]
-color = Color(0.802191, 0.8021911, 0.802191, 1)
+color = Color(0.5411765, 0.4, 0.38431373, 1)
 thickness = 9
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_drsw1"]
@@ -50,6 +50,141 @@ thickness = 9
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_wem23"]
 color = Color(0.8782683, 0.52268225, 0.5579117, 1)
 thickness = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ovsr"]
+bg_color = Color(0.27450982, 0.33333334, 0.3882353, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5seab"]
+bg_color = Color(0.22352941, 0.2784314, 0.32156864, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4xg86"]
+bg_color = Color(0.33333334, 0.4, 0.45490196, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_thkx5"]
+bg_color = Color(0.27450982, 0.33333334, 0.3882353, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x2yjq"]
+bg_color = Color(0.22352941, 0.2784314, 0.32156864, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lqpn7"]
+bg_color = Color(0.33333334, 0.4, 0.45490196, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qel0l"]
+bg_color = Color(0.27450982, 0.33333334, 0.3882353, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rrgl4"]
+bg_color = Color(0.22352941, 0.2784314, 0.32156864, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dn3lk"]
+bg_color = Color(0.33333334, 0.4, 0.45490196, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45490196, 0.5176471, 0.5294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
 
 [node name="MainMenu" type="Control" unique_id=187986517]
 layout_mode = 3
@@ -80,9 +215,11 @@ offset_bottom = 129.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.2668833, 0.182715, 0.20323488, 1)
 theme_override_colors/font_shadow_color = Color(0.06798274, 0.06798274, 0.06798273, 0)
+theme_override_colors/font_outline_color = Color(0.22745098, 0.16078432, 0.16078432, 1)
 theme_override_constants/shadow_offset_y = 10
+theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("2_0ebjn")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 67
 text = "MONORAIL"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -105,7 +242,9 @@ theme_override_constants/separation = 15
 [node name="PVPButton" type="Button" parent="MainButtons" unique_id=1578194747]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0.11183829, 0.062831916, 0.09567087, 1)
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_constants/line_spacing = 10
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_3owqy")
@@ -113,21 +252,25 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_0ebjn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ob46e")
 text = "PVP"
 
-[node name="Button2" type="Button" parent="MainButtons" unique_id=1316410941]
+[node name="PVEButton" type="Button" parent="MainButtons" unique_id=1316410941]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0.11183829, 0.062831916, 0.09567087, 1)
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_constants/line_spacing = 10
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_3owqy")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0ebjn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ob46e")
-text = "Versus Bot"
+text = "PVE"
 
 [node name="SettingsButton" type="Button" parent="MainButtons" unique_id=449774651]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0.11183829, 0.062831916, 0.09567087, 1)
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_constants/line_spacing = 10
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_3owqy")
@@ -135,16 +278,18 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_0ebjn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ob46e")
 text = "Options"
 
-[node name="Button4" type="Button" parent="MainButtons" unique_id=1819890538]
+[node name="ExitButton" type="Button" parent="MainButtons" unique_id=1819890538]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0.11183829, 0.062831916, 0.09567087, 1)
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_constants/line_spacing = 10
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_3owqy")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0ebjn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ob46e")
-text = "Bye"
+text = "Exit"
 
 [node name="Options" type="Label" parent="." unique_id=250259536]
 visible = false
@@ -174,7 +319,7 @@ offset_right = 357.2233
 offset_bottom = 35.339996
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.09923177, 0.09923177, 0.09923177, 1)
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
 theme_override_font_sizes/font_size = 30
 text = "Options"
 horizontal_alignment = 1
@@ -192,7 +337,7 @@ offset_top = -30.180023
 offset_right = 125.14398
 offset_bottom = 15.815002
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0.11183829, 0.062831916, 0.09567087, 1)
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
 theme_override_constants/line_spacing = 10
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_3owqy")
@@ -229,8 +374,7 @@ offset_left = 109.0
 offset_top = 79.0
 offset_right = 167.974
 offset_bottom = 114.43
-theme_override_colors/font_color = Color(0.096204735, 0.09620475, 0.096204735, 1)
-theme_override_colors/font_shadow_color = Color(0.04755766, 0.047557645, 0.047557645, 0)
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
 theme_override_font_sizes/font_size = 25
 text = "Music"
 horizontal_alignment = 1
@@ -245,8 +389,7 @@ offset_left = 137.0
 offset_top = 141.0
 offset_right = 159.974
 offset_bottom = 205.43
-theme_override_colors/font_color = Color(0.096204735, 0.09620475, 0.096204735, 1)
-theme_override_colors/font_shadow_color = Color(0.04755766, 0.047557645, 0.047557645, 0)
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
 theme_override_font_sizes/font_size = 25
 text = "SFX
 "
@@ -284,8 +427,7 @@ script = ExtResource("5_3ovsr")
 
 [node name="Label" type="Label" parent="Options/DisplaySection" unique_id=1948814325]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.09923177, 0.09923177, 0.09923177, 1)
-theme_override_colors/font_shadow_color = Color(0.093160845, 0.093160845, 0.09316083, 0)
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
 theme_override_font_sizes/font_size = 25
 text = "Display"
 vertical_alignment = 1
@@ -293,7 +435,7 @@ vertical_alignment = 1
 [node name="WindowedButton" type="Button" parent="Options/DisplaySection" unique_id=120170295]
 custom_minimum_size = Vector2(120, 30)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_3owqy")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0ebjn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ob46e")
@@ -302,20 +444,88 @@ text = "Windowed"
 [node name="FullscreenButton" type="Button" parent="Options/DisplaySection" unique_id=1658512770]
 custom_minimum_size = Vector2(120, 30)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.009317472, 0.009317516, 0.009317483, 1)
+theme_override_colors/font_color = Color(0.9490196, 0.9098039, 0.8627451, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_3owqy")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0ebjn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ob46e")
 text = "FullScreen"
 
+[node name="TurnOrder" type="Control" parent="." unique_id=1351995276]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="TurnOrder" unique_id=1880097647]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Content" type="VBoxContainer" parent="TurnOrder/CenterContainer" unique_id=1780884930]
+layout_mode = 2
+theme_override_constants/separation = 22
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="TurnOrder/CenterContainer/Content" unique_id=299233464]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.84313726, 0.65882355, 0.29411766, 1)
+theme_override_fonts/font = ExtResource("2_0ebjn")
+theme_override_font_sizes/font_size = 32
+text = "CHOOSE THE ORDER"
+horizontal_alignment = 1
+
+[node name="ButtonRow" type="HBoxContainer" parent="TurnOrder/CenterContainer/Content" unique_id=2073682734]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="GoFirst" type="Button" parent="TurnOrder/CenterContainer/Content/ButtonRow" unique_id=719211189]
+custom_minimum_size = Vector2(175, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9254902, 0.9098039, 0.8745098, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_3ovsr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5seab")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4xg86")
+text = "GO 1ST"
+
+[node name="GoSecond" type="Button" parent="TurnOrder/CenterContainer/Content/ButtonRow" unique_id=2029018821]
+custom_minimum_size = Vector2(175, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9254902, 0.9098039, 0.8745098, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_thkx5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_x2yjq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lqpn7")
+text = "GO 2ND"
+
+[node name="Random" type="Button" parent="TurnOrder/CenterContainer/Content/ButtonRow" unique_id=1075721969]
+custom_minimum_size = Vector2(175, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9254902, 0.9098039, 0.8745098, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_qel0l")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rrgl4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dn3lk")
+text = "RANDOM"
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=282359540]
 stream = ExtResource("4_uqeha")
 autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="MainButtons/PVPButton" to="." method="_on_pvp_button_pressed"]
+[connection signal="pressed" from="MainButtons/PVEButton" to="." method="_on_pve_button_pressed"]
 [connection signal="pressed" from="MainButtons/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MainButtons/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="Options/Close" to="." method="_on_close_options_pressed"]
 [connection signal="value_changed" from="Options/AudioControl" to="Options/AudioControl" method="_on_value_changed"]
 [connection signal="value_changed" from="Options/SFXControl" to="Options/SFXControl" method="_on_value_changed"]
 [connection signal="pressed" from="Options/DisplaySection/WindowedButton" to="Options/DisplaySection" method="_on_windowed_button_pressed"]
 [connection signal="pressed" from="Options/DisplaySection/FullscreenButton" to="Options/DisplaySection" method="_on_fullscreen_button_pressed"]
+[connection signal="pressed" from="TurnOrder/CenterContainer/Content/ButtonRow/GoFirst" to="." method="_on_go_first_pressed"]
+[connection signal="pressed" from="TurnOrder/CenterContainer/Content/ButtonRow/GoSecond" to="." method="_on_go_second_pressed"]
+[connection signal="pressed" from="TurnOrder/CenterContainer/Content/ButtonRow/Random" to="." method="_on_random_pressed"]
