@@ -520,6 +520,7 @@ bus = &"Music"
 [connection signal="pressed" from="MainButtons/PVPButton" to="." method="_on_pvp_button_pressed"]
 [connection signal="pressed" from="MainButtons/PVEButton" to="." method="_on_pve_button_pressed"]
 [connection signal="pressed" from="MainButtons/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MainButtons/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="Options/Close" to="." method="_on_close_options_pressed"]
 [connection signal="value_changed" from="Options/AudioControl" to="Options/AudioControl" method="_on_value_changed"]
 [connection signal="value_changed" from="Options/SFXControl" to="Options/SFXControl" method="_on_value_changed"]

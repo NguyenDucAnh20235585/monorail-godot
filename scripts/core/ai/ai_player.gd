@@ -80,6 +80,7 @@ static func choose_action(
 	difficulty: Difficulty = Difficulty.HEURISTIC,
 	declared_by: int = ImpossibleFlow.NOBODY
 ) -> Dictionary:
+	
 	if difficulty == Difficulty.RANDOM:
 		return _wrap_move(_choose_random_move(state), "AI chọn ngẫu nhiên một nước đi.")
 
@@ -142,17 +143,31 @@ static func _should_declare_impossible(state: GameState, declared_by: int) -> bo
 		return true
 
 	var needed: int = WinChecker.min_tiles_to_close(state.board)
-	return needed > 0 and needed > state.remaining_tiles
 
+	if needed > 0 and needed > state.remaining_tiles:
+		return true
+
+	# Hotfix: cho AI đôi lúc phán đoán Impossible ở giữa/cuối game.
+	if state.remaining_tiles <= 6:
+		return randf() < 0.45
+
+	if state.remaining_tiles <= 12:
+		return randf() < 0.20
+
+	return false
 
 static func _describe_impossible(state: GameState) -> String:
 	var trace: Dictionary = WinChecker.trace_station_track(state.board)
 	if trace["status"] == WinChecker.TRACK_BLOCKED:
 		return "AI tuyên bố Impossible: đường ray từ ga đã bị chặn."
-	return "AI tuyên bố Impossible: cần ít nhất %d tile mà chỉ còn %d." % [
-		WinChecker.min_tiles_to_close(state.board), state.remaining_tiles
-	]
+	var needed: int = WinChecker.min_tiles_to_close(state.board)
 
+	if needed > 0 and needed > state.remaining_tiles:
+		return "AI tuyên bố Impossible: cần ít nhất %d tile mà chỉ còn %d." % [
+			needed, state.remaining_tiles
+		]
+
+	return "AI tuyên bố Impossible."
 
 # ----------------------------------------------------------------------------
 # 3. Chọn nước đi

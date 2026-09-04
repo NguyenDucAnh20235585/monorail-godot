@@ -38,3 +38,6 @@ func _on_go_second_pressed():
 func _on_random_pressed():
 	GameSession.starting_choice = GameSession.StartingChoice.RANDOM
 	get_tree().change_scene_to_file("res://main.tscn")
+
+func _on_exit_button_pressed():
+	get_tree().quit()

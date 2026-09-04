@@ -326,6 +326,13 @@ shadow_color = Color(0, 0, 0, 0)
 shadow_size = 3
 shadow_offset = Vector2(0, 2)
 
+[sub_resource type="InputEventKey" id="InputEventKey_5vw27"]
+pressed = true
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_3ovsr"]
+events = [SubResource("InputEventKey_5vw27")]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3owqy"]
 bg_color = Color(0.3529412, 0.24705882, 0.24705882, 1)
 corner_radius_top_left = 16
@@ -799,6 +806,7 @@ theme_override_colors/font_hover_color = Color(0.1254902, 0.14509805, 0.16862746
 theme_override_styles/normal = SubResource("StyleBoxFlat_rnw2r")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_7024m")
 theme_override_styles/hover = SubResource("StyleBoxFlat_8f350")
+shortcut = SubResource("Shortcut_3ovsr")
 text = "Resume"
 
 [node name="HowToPlayButton" type="Button" parent="GameplayUI/PauseMenu/CenterContainer/PauseContainer" unique_id=1205850055]
@@ -1073,6 +1081,7 @@ text = "Declare"
 [connection signal="pressed" from="GameplayUI/EndGameOverlay/CenterContainer/EndGameContainer/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
 [connection signal="pressed" from="GameplayUI/PauseMenu/CenterContainer/PauseContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="GameplayUI/PauseMenu/CenterContainer/PauseContainer/SettingsButton" to="." method="_on_pause_settings_button_pressed"]
+[connection signal="pressed" from="GameplayUI/PauseMenu/CenterContainer/PauseContainer/BackToMenuButton" to="." method="_on_options_back_to_menu_pressed"]
 [connection signal="pressed" from="GameplayUI/Options/Close" to="." method="_on_game_options_close_pressed"]
 [connection signal="value_changed" from="GameplayUI/Options/AudioControl" to="GameplayUI/Options/AudioControl" method="_on_value_changed"]
 [connection signal="value_changed" from="GameplayUI/Options/SFXControl" to="GameplayUI/Options/SFXControl" method="_on_value_changed"]

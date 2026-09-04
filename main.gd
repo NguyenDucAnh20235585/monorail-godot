@@ -123,8 +123,18 @@ func maybe_start_ai_turn():
 		AIPlayer.ACTION_NONE:
 			print("AI has no action: ", action["reason"])
 			add_game_log(action["reason"])
+			recover_ai_turn(action["reason"])
 
 func execute_ai_move(move: Dictionary):
+	
+	var validation_result := MoveValidator.validate_move(game_state, move)
+
+	if not validation_result["is_valid"]:
+		print("AI generated invalid move: ", validation_result["message"])
+		add_game_log("AI could not use its planned move.")
+		recover_ai_turn(validation_result["message"])
+		return
+	
 	for tile in move["tiles"]:
 		var added := pending_move.add_tile(
 			tile["position"],
@@ -135,12 +145,13 @@ func execute_ai_move(move: Dictionary):
 
 		if not added:
 			print("AI failed to add pending tile: ", tile)
+			recover_ai_turn("Failed to create pending move.")
 			return
 
 	$Board.set_pending_move(pending_move.to_move())
 	confirm_move()
 
-func execute_ai_declare_impossible() -> void:
+func execute_ai_declare_impossible():
 	var result := ImpossibleFlow.declare_impossible(
 		game_state,
 		game_state.current_player,
@@ -157,6 +168,51 @@ func execute_ai_declare_impossible() -> void:
 	game_state.current_player = result["challenger"]
 
 	add_game_log(result["message"])
+	start_turn()
+
+func recover_ai_turn(reason: String) -> void:
+	reset_pending_move()
+	$Board.set_pending_move(pending_move.to_move())
+	$Board.set_indicators([])
+
+	print("AI recovery: ", reason)
+
+	# AI đang challenge Impossible mà không thể tiếp tục
+	# → coi như Give Up, người declare thắng.
+	if ImpossibleFlow.is_in_review(game_state.impossible_declared_by):
+		game_state.winner = game_state.impossible_declared_by
+		game_state.phase = GameState.GamePhase.GAME_FINISHED
+
+		add_game_log(
+			"AI could not continue the challenge. Player %d wins."
+			% (game_state.winner + 1)
+		)
+
+		show_end_game(game_state.winner)
+		return
+
+	# Normal turn: fallback sang Declare Impossible.
+	var result := ImpossibleFlow.declare_impossible(
+		game_state,
+		game_state.current_player,
+		0,
+		game_state.impossible_declared_by
+	)
+
+	if result["is_valid"]:
+		game_state.impossible_declared_by = result["declared_by"]
+		game_state.current_player = result["challenger"]
+
+		add_game_log("AI declared Impossible.")
+		start_turn()
+		return
+
+	# Emergency fallback cho tester build:
+	# tuyệt đối không để game đứng ở AI turn.
+	print("AI recovery failed. Skipping AI turn.")
+	add_game_log("AI could not act. Turn skipped.")
+
+	RulesEngine.end_turn(game_state)
 	start_turn()
 
 func start_turn():
@@ -443,8 +499,12 @@ func _on_impossible_declare_button_pressed():
 	start_turn()
 
 func _input(event):
-	if event.is_action_pressed("ui_cancel"):
-		get_tree().quit()
+	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
+		print("ESC detected | paused = ", get_tree().paused)
+
+		if not get_tree().paused:
+			get_viewport().set_input_as_handled()
+			_on_menu_button_pressed()
 
 func _on_menu_button_pressed():
 	$BoardCamera.reset_drag_state()
@@ -465,3 +525,11 @@ func _on_pause_settings_button_pressed():
 func _on_game_options_close_pressed():
 	options_menu.visible = false
 	pause_content.visible = true
+	
+func _on_options_back_to_menu_pressed():
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn")
+
+func _on_exit_game_pressed():
+	get_tree().paused = false
+	get_tree().quit()
