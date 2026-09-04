@@ -1,4 +1,4 @@
-# MONORAIL - by ZenZeros28 and Nice Nature, and the help of 3sori
+# MONORAIL - by ZenZeros7128 and Nice Nature, and the help of 3sori
 
 > **24 tiles. Two players. One loop.**
 > If you think the track cannot be completed, say it.
