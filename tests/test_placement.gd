@@ -13,7 +13,7 @@ var straight: int = MonoTile.TileType.STRAIGHT
 var corner: int = MonoTile.TileType.CORNER
 
 
-func _ready() -> void:
+func _ready() :
 	_begin("MONORAIL — PLACEMENT / PENDING / VALIDATOR")
 
 	_test_initial_state_contract()
@@ -70,7 +70,7 @@ func _pending(entries: Array) -> Array:
 # Contract với code của Công
 # ----------------------------------------------------------------------------
 
-func _test_initial_state_contract() -> void:
+func _test_initial_state_contract() :
 	_group("Contract với RulesEngine.create_initial_state()")
 
 	var state: GameState = RulesEngine.create_initial_state()
@@ -105,7 +105,7 @@ func _test_initial_state_contract() -> void:
 # PlacementHelper
 # ----------------------------------------------------------------------------
 
-func _test_occupancy() -> void:
+func _test_occupancy() :
 	_group("PlacementHelper — ô trống / ô bị chiếm")
 
 	var board: Dictionary = _make_state().board
@@ -121,7 +121,7 @@ func _test_occupancy() -> void:
 	)
 
 
-func _test_adjacency() -> void:
+func _test_adjacency() :
 	_group("PlacementHelper — kề board")
 
 	var board: Dictionary = _make_state().board
@@ -136,7 +136,7 @@ func _test_adjacency() -> void:
 	)
 
 
-func _test_preview_state() -> void:
+func _test_preview_state() :
 	_group("PlacementHelper — ghost preview")
 
 	var board: Dictionary = _make_state().board
@@ -191,7 +191,7 @@ func _test_preview_state() -> void:
 	)
 
 
-func _test_placeable_positions() -> void:
+func _test_placeable_positions() :
 	_group("PlacementHelper — danh sách ô đặt được")
 
 	var board: Dictionary = _make_state().board
@@ -220,7 +220,7 @@ func _test_placeable_positions() -> void:
 	)
 
 
-func _test_cluster() -> void:
+func _test_cluster() :
 	_group("PlacementHelper — cụm tile")
 
 	_assert_true(PlacementHelper.is_cluster_contiguous([]), "cụm rỗng")
@@ -281,7 +281,7 @@ func _test_cluster() -> void:
 	)
 
 
-func _test_connected_edges() -> void:
+func _test_connected_edges() :
 	_group("PlacementHelper — nối ray với board")
 
 	var board: Dictionary = _make_state().board
@@ -307,7 +307,7 @@ func _test_connected_edges() -> void:
 # PendingMove
 # ----------------------------------------------------------------------------
 
-func _test_pending_add_remove() -> void:
+func _test_pending_add_remove() :
 	_group("PendingMove — thêm / xóa / giới hạn 3")
 
 	var pending := PendingMove.new(0)
@@ -354,7 +354,7 @@ func _test_pending_add_remove() -> void:
 	_assert_true(pending.is_empty(), "clear xóa hết")
 
 
-func _test_pending_transform() -> void:
+func _test_pending_transform() :
 	_group("PendingMove — xoay / lật")
 
 	var pending := PendingMove.new(0)
@@ -389,7 +389,7 @@ func _test_pending_transform() -> void:
 	_assert_false(pending.flip_at(Vector2i(9, 9)), "lật ô trống -> false")
 
 
-func _test_pending_move_tile() -> void:
+func _test_pending_move_tile() :
 	_group("PendingMove — di chuyển tile")
 
 	var pending := PendingMove.new(0)
@@ -409,7 +409,7 @@ func _test_pending_move_tile() -> void:
 	_assert_false(pending.move_tile(Vector2i(2, 1), Vector2i(2, 1)), "chuyển vào chính nó -> false")
 
 
-func _test_pending_to_move() -> void:
+func _test_pending_to_move() :
 	_group("PendingMove — xuất ra Move")
 
 	var pending := PendingMove.new(1)
@@ -446,7 +446,7 @@ func _test_pending_to_move() -> void:
 # MoveValidator
 # ----------------------------------------------------------------------------
 
-func _test_validator_valid_moves() -> void:
+func _test_validator_valid_moves() :
 	_group("MoveValidator — nước đi hợp lệ")
 
 	var state: GameState = _make_state()
@@ -491,7 +491,7 @@ func _test_validator_valid_moves() -> void:
 	)
 
 
-func _test_validator_invalid_moves() -> void:
+func _test_validator_invalid_moves() :
 	_group("MoveValidator — nước đi không hợp lệ")
 
 	var state: GameState = _make_state()
@@ -565,7 +565,7 @@ func _test_validator_invalid_moves() -> void:
 	_assert_false(result["message"].is_empty(), "có message tiếng Việt cho UI")
 
 
-func _test_validator_does_not_touch_state() -> void:
+func _test_validator_does_not_touch_state() :
 	_group("MoveValidator — chỉ đọc, không sửa state")
 
 	var state: GameState = _make_state()
@@ -586,7 +586,7 @@ func _test_validator_does_not_touch_state() -> void:
 # (phần đếm PASS/FAIL nằm ở tests/test_case.gd)
 # ----------------------------------------------------------------------------
 
-func _assert_valid(state: GameState, move: Dictionary, label: String) -> void:
+func _assert_valid(state: GameState, move: Dictionary, label: String) :
 	var result: Dictionary = MoveValidator.validate_move(state, move)
 	if result["is_valid"]:
 		_pass(label)
@@ -596,7 +596,7 @@ func _assert_valid(state: GameState, move: Dictionary, label: String) -> void:
 
 func _assert_error(
 	state: GameState, move: Dictionary, expected_code: String, label: String
-) -> void:
+) :
 	var result: Dictionary = MoveValidator.validate_move(state, move)
 	if not result["is_valid"] and result["error_code"] == expected_code:
 		_pass("%s -> %s" % [label, expected_code])

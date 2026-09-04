@@ -28,7 +28,7 @@ var player_controllers: Array[PlayerController] = []
 @onready var options_menu: Control = $GameplayUI/Options
 @onready var pause_content: Control = $GameplayUI/PauseMenu/CenterContainer
 
-func add_game_log(message: String) -> void:
+func add_game_log(message: String):
 	game_log.append_text(message + "\n")
 
 func _ready():
@@ -178,7 +178,7 @@ func execute_ai_declare_impossible():
 	add_game_log(result["message"])
 	start_turn()
 
-func recover_ai_turn(reason: String) -> void:
+func recover_ai_turn(reason: String):
 	reset_pending_move()
 	$Board.set_pending_move(pending_move.to_move())
 	$Board.set_indicators([])
@@ -423,7 +423,7 @@ func _on_board_pending_tile_clicked(grid_pos: Vector2i):
 	$Board.set_selected_pending_position(selected_pending_position)
 	print("Pending tile selected at: ", grid_pos)
 
-func _on_rotate_button_pressed() -> void:
+func _on_rotate_button_pressed():
 	if selected_pending_position == null:
 		return
 

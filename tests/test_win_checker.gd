@@ -12,7 +12,7 @@ var straight: int = MonoTile.TileType.STRAIGHT
 var corner: int = MonoTile.TileType.CORNER
 
 
-func _ready() -> void:
+func _ready():
 	_begin("MONORAIL — WIN CHECKER / IMPOSSIBLE")
 
 	_test_no_loop_yet()
@@ -74,7 +74,7 @@ func _make_loop_state() -> GameState:
 
 
 ## Vòng 4 tile ở xa, không dính gì tới ga.
-func _add_far_loop(state: GameState) -> void:
+func _add_far_loop(state: GameState):
 	state.board[Vector2i(5, 5)] = MonoTile.make_tile(corner, 1)
 	state.board[Vector2i(6, 5)] = MonoTile.make_tile(corner, 2)
 	state.board[Vector2i(6, 6)] = MonoTile.make_tile(corner, 3)
@@ -92,7 +92,7 @@ func _move(player_id: int, entries: Array) -> Dictionary:
 # check_win
 # ----------------------------------------------------------------------------
 
-func _test_no_loop_yet() -> void:
+func _test_no_loop_yet():
 	_group("Board ban đầu — chưa có vòng")
 
 	var state: GameState = _make_state()
@@ -108,7 +108,7 @@ func _test_no_loop_yet() -> void:
 	)
 
 
-func _test_complete_loop_wins() -> void:
+func _test_complete_loop_wins():
 	_group("Vòng khép kín qua ga — THẮNG")
 
 	var state: GameState = _make_loop_state()
@@ -123,7 +123,7 @@ func _test_complete_loop_wins() -> void:
 	_assert_true(loop.has(RulesEngine.RIGHT_START_POS), "ga phải nằm trong vòng")
 
 
-func _test_incomplete_loop() -> void:
+func _test_incomplete_loop():
 	_group("Vòng chưa khép kín")
 
 	# Thiếu một tile ở ba vị trí khác nhau đều phải cho ra "chưa thắng"
@@ -144,7 +144,7 @@ func _test_incomplete_loop() -> void:
 	)
 
 
-func _test_broken_track() -> void:
+func _test_broken_track():
 	_group("Đường ray bị đứt")
 
 	var wrong_rotation: GameState = _make_loop_state()
@@ -162,7 +162,7 @@ func _test_broken_track() -> void:
 	)
 
 
-func _test_loop_without_station() -> void:
+func _test_loop_without_station():
 	_group("Vòng khép kín nhưng không qua ga")
 
 	var state: GameState = _make_state()
@@ -178,7 +178,7 @@ func _test_loop_without_station() -> void:
 	)
 
 
-func _test_extra_tiles_outside_loop() -> void:
+func _test_extra_tiles_outside_loop():
 	_group("Tile nằm ngoài vòng")
 
 	var stray: GameState = _make_loop_state()
@@ -196,7 +196,7 @@ func _test_extra_tiles_outside_loop() -> void:
 	)
 
 
-func _test_winner_is_last_mover() -> void:
+func _test_winner_is_last_mover():
 	_group("Winner là người đặt tile cuối cùng")
 
 	var state: GameState = _make_loop_state()
@@ -214,7 +214,7 @@ func _test_winner_is_last_mover() -> void:
 	)
 
 
-func _test_out_of_tiles() -> void:
+func _test_out_of_tiles():
 	_group("Hết tile mà chưa có vòng — người đặt cuối THUA")
 
 	var state: GameState = _make_state()
@@ -257,7 +257,7 @@ func _test_out_of_tiles() -> void:
 	)
 
 
-func _test_check_win_reads_only() -> void:
+func _test_check_win_reads_only():
 	_group("check_win chỉ đọc, không sửa state")
 
 	var state: GameState = _make_loop_state()
@@ -278,7 +278,7 @@ func _test_check_win_reads_only() -> void:
 # Impossible — tuyên bố
 # ----------------------------------------------------------------------------
 
-func _test_can_declare() -> void:
+func _test_can_declare():
 	_group("ImpossibleFlow — khi nào được tuyên bố")
 
 	var state: GameState = _make_state()
@@ -316,7 +316,7 @@ func _test_can_declare() -> void:
 	)
 
 
-func _test_declare_result() -> void:
+func _test_declare_result():
 	_group("ImpossibleFlow — kết quả tuyên bố")
 
 	var state: GameState = _make_state()
@@ -345,7 +345,7 @@ func _test_declare_result() -> void:
 # Impossible — giải quyết
 # ----------------------------------------------------------------------------
 
-func _test_resolve_challenger_wins() -> void:
+func _test_resolve_challenger_wins():
 	_group("Đối thủ hoàn thành được -> đối thủ thắng")
 
 	# Player 1 tuyên bố, player 0 là người phải hoàn thành và làm được.
@@ -361,7 +361,7 @@ func _test_resolve_challenger_wins() -> void:
 	_assert_eq(result["loop_positions"].size(), 10, "trả về vòng để UI tô sáng")
 
 
-func _test_resolve_declarer_wins() -> void:
+func _test_resolve_declarer_wins():
 	_group("Đối thủ hết tile mà chưa xong -> người tuyên bố thắng")
 
 	var state: GameState = _make_state()
@@ -386,7 +386,7 @@ func _test_resolve_declarer_wins() -> void:
 	)
 
 
-func _test_resolve_continue() -> void:
+func _test_resolve_continue():
 	_group("Đối thủ còn tile -> tiếp tục đi")
 
 	var state: GameState = _make_state()
@@ -405,7 +405,7 @@ func _test_resolve_continue() -> void:
 	_assert_false(normal["is_finished"], "chưa ai tuyên bố -> không xử lý")
 
 
-func _test_review_helpers() -> void:
+func _test_review_helpers():
 	_group("ImpossibleFlow — hàm phụ trợ")
 
 	_assert_false(ImpossibleFlow.is_in_review(ImpossibleFlow.NOBODY), "chưa ai tuyên bố")
@@ -433,7 +433,7 @@ func _test_review_helpers() -> void:
 # (phần đếm PASS/FAIL nằm ở tests/test_case.gd)
 # ----------------------------------------------------------------------------
 
-func _assert_error_code(result: Dictionary, expected: String, label: String) -> void:
+func _assert_error_code(result: Dictionary, expected: String, label: String):
 	if not result["is_allowed"] and result["error_code"] == expected:
 		_pass("%s -> %s" % [label, expected])
 	else:

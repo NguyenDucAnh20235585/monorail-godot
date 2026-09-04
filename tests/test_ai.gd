@@ -23,7 +23,7 @@ var straight: int = MonoTile.TileType.STRAIGHT
 var corner: int = MonoTile.TileType.CORNER
 
 
-func _ready() -> void:
+func _ready() :
 	_begin("MONORAIL — MOVE GENERATOR / AI")
 
 	_test_generator_basics()
@@ -76,7 +76,7 @@ func _make_almost_closed_state() -> GameState:
 # MoveGenerator
 # ----------------------------------------------------------------------------
 
-func _test_generator_basics() -> void:
+func _test_generator_basics() :
 	_group("MoveGenerator — sinh nước đi 1 tile")
 
 	var state: GameState = _make_state()
@@ -111,7 +111,7 @@ func _test_generator_basics() -> void:
 	_assert_eq(straight_rotations.size(), 2, "STRAIGHT chỉ sinh 2 rotation khác nhau")
 
 
-func _test_generator_respects_validator() -> void:
+func _test_generator_respects_validator() :
 	_group("MoveGenerator — mọi nước sinh ra đều qua được validator")
 
 	var state: GameState = _make_state()
@@ -125,7 +125,7 @@ func _test_generator_respects_validator() -> void:
 	_assert_eq(bad, 0, "không nước nào bị validator từ chối")
 
 
-func _test_generator_max_tiles() -> void:
+func _test_generator_max_tiles() :
 	_group("MoveGenerator — giới hạn số tile")
 
 	var state: GameState = _make_state()
@@ -157,7 +157,7 @@ func _test_generator_max_tiles() -> void:
 	)
 
 
-func _test_closing_move() -> void:
+func _test_closing_move() :
 	_group("MoveGenerator — tìm nước khép vòng")
 
 	var state: GameState = _make_almost_closed_state()
@@ -181,7 +181,7 @@ func _test_closing_move() -> void:
 	)
 
 
-func _test_no_closing_move_when_impossible() -> void:
+func _test_no_closing_move_when_impossible() :
 	_group("MoveGenerator — không bịa ra nước khép vòng")
 
 	_assert_true(
@@ -202,7 +202,7 @@ func _test_no_closing_move_when_impossible() -> void:
 # WinChecker — trạng thái đoạn ray
 # ----------------------------------------------------------------------------
 
-func _test_track_trace() -> void:
+func _test_track_trace() :
 	_group("WinChecker — trạng thái đoạn ray từ ga")
 
 	var state: GameState = _make_state()
@@ -246,7 +246,7 @@ func _test_track_trace() -> void:
 	)
 
 
-func _test_min_tiles_to_close() -> void:
+func _test_min_tiles_to_close() :
 	_group("WinChecker — cận dưới số tile cần để khép vòng")
 
 	_assert_eq(
@@ -277,7 +277,7 @@ func _test_min_tiles_to_close() -> void:
 # AIPlayer
 # ----------------------------------------------------------------------------
 
-func _test_parity_choice() -> void:
+func _test_parity_choice() :
 	_group("AIPlayer — chọn số tile theo parity")
 
 	# Còn 24 tile: đặt 3 để lại 21, mà 21 chia 4 dư 1
@@ -308,7 +308,7 @@ func _test_parity_choice() -> void:
 	)
 
 
-func _test_ai_declares_only_when_certain() -> void:
+func _test_ai_declares_only_when_certain() :
 	_group("AIPlayer — chỉ tuyên bố Impossible khi chắc chắn")
 
 	# Đầu ván thì không có lý do gì để tuyên bố
@@ -354,7 +354,7 @@ func _test_ai_declares_only_when_certain() -> void:
 	)
 
 
-func _test_ai_takes_the_win() -> void:
+func _test_ai_takes_the_win() :
 	_group("AIPlayer — thấy đường thắng là đi ngay")
 
 	var state: GameState = _make_almost_closed_state()
@@ -393,7 +393,7 @@ func _test_ai_takes_the_win() -> void:
 # AI tự chơi trọn ván
 # ----------------------------------------------------------------------------
 
-func _self_play() -> void:
+func _self_play() :
 	_group("AI tự chơi %d ván trọn vẹn" % SELF_PLAY_GAMES)
 
 	var runner := GameRunner.new()
