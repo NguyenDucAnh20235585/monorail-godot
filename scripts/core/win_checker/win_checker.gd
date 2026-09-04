@@ -38,6 +38,16 @@ const REASON_OUT_OF_TILES: String = "OUT_OF_TILES"
 
 
 # ----------------------------------------------------------------------------
+# Trạng thái đoạn ray tính từ nhà ga
+# ----------------------------------------------------------------------------
+
+const TRACK_NO_STATION: String = "NO_STATION"   ## board chưa có đủ tile ga
+const TRACK_BLOCKED: String = "BLOCKED"         ## ray đâm vào tile không nối được
+const TRACK_CLOSED: String = "CLOSED"           ## đã khép thành vòng
+const TRACK_OPEN: String = "OPEN"               ## còn hai đầu hở, nối tiếp được
+
+
+# ----------------------------------------------------------------------------
 # 1. Hàm chính
 # ----------------------------------------------------------------------------
 
@@ -178,7 +188,98 @@ static func find_loop(board: Dictionary, start: Vector2i) -> Array[Vector2i]:
 
 
 # ----------------------------------------------------------------------------
-# 3. Nội bộ
+# 3. Trạng thái đoạn ray chứa ga
+# ----------------------------------------------------------------------------
+
+## Đi từ nhà ga theo cả hai hướng cho tới khi gặp ô trống.
+##
+## Trả về:
+##   {
+##       "status": String,     # TRACK_* ở trên
+##       "ends": Array         # [{ "position": Vector2i, "edge": String }, ...]
+##   }
+##
+## `ends` chỉ có dữ liệu khi status là OPEN — đó là hai đầu hở của đoạn ray,
+## mỗi đầu gồm ô cuối cùng và cạnh đang mở ra chỗ trống.
+##
+## `BLOCKED` nghĩa là một cạnh của đoạn ray đâm vào tile đã commit mà tile đó
+## không mở về phía mình. Tile đã commit không sửa được, nên từ lúc này KHÔNG
+## ai còn có thể khép vòng qua ga nữa. AI dùng tín hiệu này để tuyên bố
+## Impossible mà chắc chắn đúng.
+static func trace_station_track(board: Dictionary) -> Dictionary:
+	var stations: Array[Vector2i] = get_station_positions()
+	for station in stations:
+		if not board.has(station):
+			return {"status": TRACK_NO_STATION, "ends": []}
+
+	var start: Vector2i = stations[0]
+	var start_edges: Array[String] = MonoTile.get_open_edges(
+		board[start]["type"], board[start]["rotation"]
+	)
+
+	var ends: Array = []
+
+	for start_edge in start_edges:
+		var current: Vector2i = start
+		var exit_edge: String = start_edge
+		var guard: int = 0
+
+		while true:
+			guard += 1
+			if guard > board.size() + 2:
+				# Không thể xảy ra với tile 2 cạnh, chặn cho chắc.
+				return {"status": TRACK_BLOCKED, "ends": []}
+
+			var next_position: Vector2i = current + MonoTile.EDGE_OFFSETS[exit_edge]
+
+			if not board.has(next_position):
+				ends.append({"position": current, "edge": exit_edge})
+				break
+
+			var entry_edge: String = MonoTile.OPPOSITE_EDGE[exit_edge]
+			var next_edges: Array[String] = MonoTile.get_open_edges(
+				board[next_position]["type"], board[next_position]["rotation"]
+			)
+
+			if not next_edges.has(entry_edge):
+				return {"status": TRACK_BLOCKED, "ends": []}
+
+			if next_position == start:
+				return {"status": TRACK_CLOSED, "ends": []}
+
+			exit_edge = next_edges[1] if next_edges[0] == entry_edge else next_edges[0]
+			current = next_position
+
+	if ends.size() != 2:
+		return {"status": TRACK_BLOCKED, "ends": []}
+
+	return {"status": TRACK_OPEN, "ends": ends}
+
+
+## Số tile ÍT NHẤT còn phải đặt để khép được vòng, hoặc -1 nếu không tính được
+## (ray đã khép, đã bị chặn, hoặc chưa có ga).
+##
+## Đây là CẬN DƯỚI, không phải con số chính xác: nó chỉ tính khoảng cách
+## Manhattan giữa hai ô trống ở hai đầu ray. Đường thật luôn dài hơn hoặc bằng.
+## Nhờ vậy, nếu cận dưới đã lớn hơn số tile còn lại thì chắc chắn không ai
+## khép nổi vòng — dùng làm căn cứ tuyên bố Impossible.
+static func min_tiles_to_close(board: Dictionary) -> int:
+	var trace: Dictionary = trace_station_track(board)
+	if trace["status"] != TRACK_OPEN:
+		return -1
+
+	var ends: Array = trace["ends"]
+	var first: Vector2i = ends[0]["position"] + MonoTile.EDGE_OFFSETS[ends[0]["edge"]]
+	var second: Vector2i = ends[1]["position"] + MonoTile.EDGE_OFFSETS[ends[1]["edge"]]
+
+	if first == second:
+		return 1
+
+	return absi(first.x - second.x) + absi(first.y - second.y) + 1
+
+
+# ----------------------------------------------------------------------------
+# 4. Nội bộ
 # ----------------------------------------------------------------------------
 
 static func _empty_path() -> Array[Vector2i]:
